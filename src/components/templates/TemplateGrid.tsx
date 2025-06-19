@@ -89,13 +89,13 @@ export const TemplateGrid: React.FC = () => {
   );
 
   if (error) return (
-    <div className="text-center text-red-600 py-8">
+    <div className="text-center text-red-600 py-8 text-sm sm:text-base">
       Error: {error}
     </div>
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <TemplateSearch
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -105,11 +105,11 @@ export const TemplateGrid: React.FC = () => {
       />
 
       {filteredTemplates.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-gray-500 text-sm sm:text-base">
           No templates found matching your criteria.
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredTemplates.map((template) => (
             <TemplateCard
               key={template.id}

@@ -52,20 +52,20 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({ templateId, clas
 
   if (showForm) {
     return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-white dark:bg-gray-900 rounded-lg p-6 w-full max-w-md">
-          <h3 className="text-xl font-semibold mb-4">Download Template</h3>
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-900 rounded-lg p-4 sm:p-6 w-full max-w-md">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4">Download Template</h3>
           {error && (
-            <div className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-lg mb-4">
+            <div className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-lg mb-4 text-sm">
               {error}
             </div>
           )}
           {submitted ? (
             <div className="text-center">
-              <p className="text-green-600 dark:text-green-400 mb-4">Download started!</p>
+              <p className="text-green-600 dark:text-green-400 mb-4 text-sm sm:text-base">Download started!</p>
               <button
                 onClick={() => setShowForm(false)}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700"
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-sm sm:text-base"
               >
                 Close
               </button>
@@ -81,23 +81,23 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({ templateId, clas
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800"
+                  className="w-full px-4 py-3 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 text-base"
                   placeholder="your@email.com"
                   required
                 />
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   type="submit"
                   disabled={downloading}
-                  className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50"
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 text-white rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 text-sm sm:text-base"
                 >
                   {downloading ? 'Downloading...' : 'Download'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700"
+                  className="px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-sm sm:text-base"
                 >
                   Cancel
                 </button>

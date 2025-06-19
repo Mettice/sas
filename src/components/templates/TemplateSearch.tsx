@@ -26,7 +26,7 @@ export const TemplateSearch: React.FC<TemplateSearchProps> = ({
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search templates..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+          className="w-full px-4 py-3 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base"
         />
       </div>
 
@@ -35,7 +35,7 @@ export const TemplateSearch: React.FC<TemplateSearchProps> = ({
           <button
             key={category}
             onClick={() => onCategoryChange(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            className={`px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedCategory === category
                 ? 'bg-indigo-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

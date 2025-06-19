@@ -347,10 +347,10 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
           ? "glass-dark border border-cyan-500/20 shadow-xl"
           : "glass border border-purple-400/20 shadow-xl"
       }
-      style={{ minHeight: 500, minWidth: 500, padding: 48, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      style={{ minHeight: 400, minWidth: 300, padding: 24, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <div className="flex size-full max-h-[300px] max-w-2xl flex-col items-stretch justify-between">
-        <div className="flex flex-row items-center justify-between px-24">
+      <div className="flex size-full max-h-[250px] max-w-lg flex-col items-stretch justify-between">
+        <div className="flex flex-row items-center justify-between px-8 sm:px-12">
           <Circle ref={div1Ref}>
             <Icons.googleDrive />
           </Circle>
@@ -358,18 +358,18 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
             <Icons.googleDocs />
           </Circle>
         </div>
-        <div className="flex flex-row items-center justify-between px-12">
+        <div className="flex flex-row items-center justify-between px-4 sm:px-8">
           <Circle ref={div2Ref}>
             <Icons.notion />
           </Circle>
-          <Circle ref={div4Ref} className="size-20">
+          <Circle ref={div4Ref} className="size-16 sm:size-20">
             <Icons.openai />
           </Circle>
           <Circle ref={div6Ref}>
             <Icons.zapier />
           </Circle>
         </div>
-        <div className="flex flex-row items-center justify-between px-24">
+        <div className="flex flex-row items-center justify-between px-8 sm:px-12">
           <Circle ref={div3Ref}>
             <Icons.whatsapp />
           </Circle>

@@ -22,10 +22,10 @@ interface TemplateCardProps {
 export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick }) => {
   return (
     <div 
-      className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden hover:border-cyan-500/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
+      className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden hover:border-cyan-500/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl active:scale-95"
       onClick={onClick}
     >
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex flex-wrap gap-2 mb-3">
           {template.category.map((cat, index) => (
             <span 
@@ -37,8 +37,8 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick })
           ))}
         </div>
 
-        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{template.title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-white">{template.title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 text-sm sm:text-base">
           {template.description}
         </p>
 
@@ -53,7 +53,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick })
           ))}
         </div>
 
-        <button className="flex items-center gap-2 text-cyan-500 hover:text-cyan-400 transition-colors">
+        <button className="flex items-center gap-2 text-cyan-500 hover:text-cyan-400 transition-colors text-sm sm:text-base">
           View Details
           <ArrowRight className="w-4 h-4" />
         </button>

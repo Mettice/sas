@@ -339,17 +339,17 @@ function App() {
       <AuthProvider>
         <div className={`${themeClasses} font-['Space_Grotesk'] transition-colors duration-300`}>
           {/* Header with Theme Toggle */}
-          <header className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-md bg-opacity-80 border-b ${
+          <header className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-md bg-opacity-80 border-b ${
             isDark ? 'border-gray-800 bg-[#0e0f11]/80' : 'border-gray-200 bg-gray-50/80'
           }`}>
             <div className="max-w-6xl mx-auto flex justify-between items-center">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <img 
                   src="/logo.png" 
                   alt="OpSyde Logo" 
-                  className="w-8 h-8"
+                  className="w-6 h-6 sm:w-8 sm:h-8"
                 />
-                <span className="text-xl font-bold">OpSyde</span>
+                <span className="text-lg sm:text-xl font-bold">OpSyde</span>
               </div>
               
               <motion.button
@@ -362,20 +362,20 @@ function App() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
               </motion.button>
             </div>
           </header>
 
           {/* Hero Section with Animated Beam */}
           <motion.section 
-            className="relative px-6 py-32 text-center"
+            className="relative px-4 sm:px-6 py-20 sm:py-32 text-center"
             initial="initial"
             animate="animate"
             variants={staggerContainer}
           >
             <motion.div className="max-w-6xl mx-auto" variants={fadeInUp}>
-              <div className="w-24 h-24 mx-auto mb-8">
+              <div className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8">
                 <img 
                   src="/logo.png" 
                   alt="OpSyde Logo" 
@@ -384,18 +384,18 @@ function App() {
               </div>
               
               <motion.h1 
-                className={`text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r ${
+                className={`text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r ${
                   isDark 
                     ? 'from-white to-gray-300' 
                     : 'from-gray-900 to-gray-600'
-                } bg-clip-text text-transparent`}
+                } bg-clip-text text-transparent leading-tight`}
                 variants={fadeInUp}
               >
                 Optimize Your Operations with Smart Automation
               </motion.h1>
               
               <motion.p 
-                className={`text-xl md:text-2xl mb-12 max-w-3xl mx-auto ${
+                className={`text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 max-w-3xl mx-auto px-4 ${
                   isDark ? 'text-gray-300' : 'text-gray-600'
                 }`}
                 variants={fadeInUp}
@@ -405,18 +405,18 @@ function App() {
               
               {/* Animated Beam Demo */}
               <motion.div 
-                className="mb-12 max-w-4xl mx-auto"
+                className="mb-8 sm:mb-12 max-w-4xl mx-auto px-4"
                 variants={fadeInUp}
               >
                 <AnimatedBeamDemo isDark={isDark} />
               </motion.div>
               
               <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex flex-col sm:flex-row gap-4 justify-center px-4"
                 variants={fadeInUp}
               >
                 <motion.button 
-                  className="px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-purple-500 transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-purple-500 transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleOpenScheduling}
@@ -424,7 +424,7 @@ function App() {
                   Book a Consultation
                 </motion.button>
                 <motion.button 
-                  className={`px-8 py-4 border-2 rounded-lg font-semibold text-lg transition-all duration-300 text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400`}
+                  className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleScrollToFeatures}
@@ -438,7 +438,7 @@ function App() {
           {/* Features Section */}
           <motion.section 
             ref={featuresRef}
-            className={`px-6 py-20 ${
+            className={`px-4 sm:px-6 py-16 sm:py-20 ${
               isDark ? 'bg-gray-900/30' : 'bg-gray-100'
             }`}
             initial="initial"
@@ -448,14 +448,14 @@ function App() {
           >
             <div className="max-w-6xl mx-auto">
               <motion.h2 
-                className="text-4xl font-bold text-center mb-6"
+                className="text-3xl sm:text-4xl font-bold text-center mb-4 sm:mb-6"
                 variants={fadeInUp}
               >
                 Why Choose OpSyde?
               </motion.h2>
               
               <motion.p 
-                className={`text-xl text-center mb-16 max-w-3xl mx-auto ${
+                className={`text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto px-4 ${
                   isDark ? 'text-gray-300' : 'text-gray-600'
                 }`}
                 variants={fadeInUp}
@@ -463,30 +463,30 @@ function App() {
                 We combine industry expertise with cutting-edge automation to deliver measurable results
               </motion.p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
-                    className={`p-8 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20' : 'glass border border-purple-400/20'} shadow-xl`}
+                    className={`p-6 sm:p-8 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20' : 'glass border border-purple-400/20'} shadow-xl`}
                     variants={fadeInUp}
                     whileHover={{ y: -5 }}
                   >
-                    <div className="aspect-video mb-6 overflow-hidden rounded-lg">
+                    <div className="aspect-video mb-4 sm:mb-6 overflow-hidden rounded-lg">
                       <ImagePlaceholder 
                         type="service" 
                         index={index}
                         imageSrc={service.image}
                       />
                     </div>
-                    <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                    <p className={`mb-6 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">{service.title}</h3>
+                    <p className={`mb-4 sm:mb-6 text-sm sm:text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                       {service.description}
                     </p>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2 sm:space-y-3">
                       {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center gap-3">
-                          <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                          <span className={isDark ? 'text-gray-300' : 'text-gray-700'}>
+                        <li key={featureIndex} className="flex items-start gap-3">
+                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                          <span className={`text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                             {feature}
                           </span>
                         </li>
@@ -500,7 +500,7 @@ function App() {
 
           {/* Add Templates Section */}
           <motion.section
-            className={`px-6 py-20 ${isDark ? 'bg-gray-900/30' : 'bg-white'}`}
+            className={`px-4 sm:px-6 py-16 sm:py-20 ${isDark ? 'bg-gray-900/30' : 'bg-white'}`}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -508,7 +508,7 @@ function App() {
           >
             <div className="max-w-6xl mx-auto">
               <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
+                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
                 variants={fadeInUp}
               >
                 Free Automation Templates
@@ -521,7 +521,7 @@ function App() {
           {/* Testimonials Section */}
           <motion.section 
             ref={testimonialsRef}
-            className={`px-6 py-20 ${isDark ? 'bg-gray-900/30' : 'bg-gray-100'}`}
+            className={`px-4 sm:px-6 py-16 sm:py-20 ${isDark ? 'bg-gray-900/30' : 'bg-gray-100'}`}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -529,40 +529,40 @@ function App() {
           >
             <div className="max-w-6xl mx-auto">
               <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
+                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
                 variants={fadeInUp}
               >
                 Case Studies
               </motion.h2>
               
-              <div className="text-center text-gray-500 mb-8">See how we've helped clients automate and grow.</div>
+              <div className="text-center text-gray-500 mb-8 text-sm sm:text-base">See how we've helped clients automate and grow.</div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                 {testimonials.map((testimonial, index) => (
                   <motion.div
                     key={index}
-                    className={`p-6 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20 shadow-xl' : 'glass border border-purple-400/20 shadow-xl'}`}
+                    className={`p-4 sm:p-6 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20 shadow-xl' : 'glass border border-purple-400/20 shadow-xl'}`}
                     variants={fadeInUp}
                   >
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-16 h-16 rounded-full overflow-hidden">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0">
                         <ImagePlaceholder 
                           type="testimonial" 
                           index={index}
                           imageSrc={testimonial.image}
                         />
                       </div>
-                      <div>
-                        <h4 className="font-semibold">{testimonial.name}</h4>
-                        <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-semibold text-sm sm:text-base">{testimonial.name}</h4>
+                        <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                           {testimonial.role}
                         </p>
-                        <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                        <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                           {testimonial.company}
                         </p>
                       </div>
                     </div>
-                    <p className={`italic ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                    <p className={`italic text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                       "{testimonial.content}"
                     </p>
                   </motion.div>
@@ -573,7 +573,7 @@ function App() {
 
           {/* Industries Ticker */}
           <motion.section 
-            className="px-6 py-20"
+            className="px-4 sm:px-6 py-16 sm:py-20"
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -581,7 +581,7 @@ function App() {
           >
             <div className="max-w-6xl mx-auto">
               <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
+                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
                 variants={fadeInUp}
               >
                 Industries We Serve
@@ -595,14 +595,14 @@ function App() {
                   {[...industries, ...industries].map((industry, index) => (
                     <div
                       key={index}
-                      className={`flex-none mx-8 p-6 rounded-xl ${
+                      className={`flex-none mx-4 sm:mx-8 p-4 sm:p-6 rounded-xl ${
                         isDark 
                           ? 'bg-gray-900/50 border border-gray-800' 
                           : 'bg-white border border-gray-200 shadow-lg'
                       }`}
                     >
-                      <div className="text-4xl mb-3">{industry.icon}</div>
-                      <h3 className="text-lg font-semibold">{industry.name}</h3>
+                      <div className="text-2xl sm:text-4xl mb-2 sm:mb-3">{industry.icon}</div>
+                      <h3 className="text-sm sm:text-lg font-semibold">{industry.name}</h3>
                     </div>
                   ))}
                 </div>
@@ -612,7 +612,7 @@ function App() {
 
           {/* Download System Section */}
           <motion.section 
-            className={`px-6 py-20 ${
+            className={`px-4 sm:px-6 py-16 sm:py-20 ${
               isDark ? 'bg-gray-900/30' : 'bg-gray-100'
             }`}
             initial="initial"
@@ -622,17 +622,17 @@ function App() {
           >
             <div className="max-w-6xl mx-auto">
               <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
+                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
                 variants={fadeInUp}
               >
                 {downloadSystem.title}
               </motion.h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
                 {downloadSystem.steps.map((step, index) => (
                   <motion.div
                     key={index}
-                    className={`p-6 rounded-xl text-center ${
+                    className={`p-4 sm:p-6 rounded-xl text-center ${
                       isDark 
                         ? 'bg-gray-800/50 border border-gray-700' 
                         : 'bg-white border border-gray-200 shadow-lg'
@@ -640,9 +640,9 @@ function App() {
                     variants={fadeInUp}
                     whileHover={{ y: -5 }}
                   >
-                    <div className="text-4xl mb-4">{step.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>{step.description}</p>
+                    <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{step.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">{step.title}</h3>
+                    <p className={`text-sm sm:text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{step.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -651,7 +651,7 @@ function App() {
 
           {/* CTA Section */}
           <motion.section 
-            className={`px-6 py-20 ${
+            className={`px-4 sm:px-6 py-16 sm:py-20 ${
               isDark ? 'bg-gray-900/30' : 'bg-gray-100'
             }`}
             initial="initial"
@@ -660,16 +660,16 @@ function App() {
             variants={staggerContainer}
           >
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <motion.div 
                   className="text-center lg:text-left"
                   variants={fadeInUp}
                 >
-                  <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
                     Ready to Automate Your Workflow?
                   </h2>
                   
-                  <p className={`text-xl mb-8 ${
+                  <p className={`text-lg sm:text-xl mb-6 sm:mb-8 ${
                     isDark ? 'text-gray-300' : 'text-gray-600'
                   }`}>
                     Join thousands of professionals who've transformed their productivity with our automation templates.
@@ -677,36 +677,36 @@ function App() {
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <motion.button 
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-purple-500 transition-all duration-300 text-white flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                      className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-purple-500 transition-all duration-300 text-white flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleOpenScheduling}
                     >
-                      <MessageSquare className="w-5 h-5" />
+                      <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
                       Schedule a Call
                     </motion.button>
                     
                     <motion.button 
-                      className={`px-8 py-4 border-2 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center gap-2 justify-center text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400`}
+                      className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center gap-2 justify-center text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={handleScrollToFeatures}
                     >
                       View Solutions
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </motion.button>
                   </div>
                 </motion.div>
 
                 <motion.div
                   variants={fadeInUp}
-                  className={`p-8 rounded-xl ${
+                  className={`p-6 sm:p-8 rounded-xl ${
                     isDark 
                       ? 'bg-gray-800/50 border border-gray-700' 
                       : 'bg-white border border-gray-200 shadow-lg'
                   }`}
                 >
-                  <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Get in Touch</h3>
                   <ContactForm />
                 </motion.div>
               </div>
@@ -714,7 +714,7 @@ function App() {
           </motion.section>
           
           {/* Footer */}
-          <footer className={`px-6 py-12 border-t ${
+          <footer className={`px-4 sm:px-6 py-8 sm:py-12 border-t ${
             isDark ? 'border-gray-800' : 'border-gray-200'
           }`}>
             <div className="max-w-6xl mx-auto">
@@ -723,11 +723,11 @@ function App() {
                   <img 
                     src="/logo.png" 
                     alt="OpSyde Logo" 
-                    className="w-8 h-8"
+                    className="w-6 h-6 sm:w-8 sm:h-8"
                   />
-                  <span className="text-xl font-bold">OpSyde</span>
+                  <span className="text-lg sm:text-xl font-bold">OpSyde</span>
                 </div>
-                <div className={`flex gap-8 ${
+                <div className={`flex gap-6 sm:gap-8 text-sm sm:text-base ${
                   isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>
                   <a href="#" className="hover:text-cyan-400 transition-colors">Templates</a>
@@ -735,7 +735,7 @@ function App() {
                   <a href="#" className="hover:text-cyan-400 transition-colors">Contact</a>
                 </div>
               </div>
-              <div className={`mt-8 pt-8 border-t text-center ${
+              <div className={`mt-6 sm:mt-8 pt-6 sm:pt-8 border-t text-center text-sm sm:text-base ${
                 isDark ? 'border-gray-800 text-gray-400' : 'border-gray-200 text-gray-600'
               }`}>
                 <p>&copy; 2024 OpSyde. All rights reserved.</p>
