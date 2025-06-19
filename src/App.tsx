@@ -346,10 +346,10 @@ function App() {
               <div className="flex items-center gap-3">
                 <img 
                   src="/logo.png" 
-                  alt="ScaleSync Logo" 
+                  alt="OpSyde Logo" 
                   className="w-8 h-8"
                 />
-                <span className="text-xl font-bold">ScaleSync</span>
+                <span className="text-xl font-bold">OpSyde</span>
               </div>
               
               <motion.button
@@ -378,7 +378,7 @@ function App() {
               <div className="w-24 h-24 mx-auto mb-8">
                 <img 
                   src="/logo.png" 
-                  alt="ScaleSync Logo" 
+                  alt="OpSyde Logo" 
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -391,7 +391,7 @@ function App() {
                 } bg-clip-text text-transparent`}
                 variants={fadeInUp}
               >
-                Build End-to-End Revenue Pipelines & Automate Your Business
+                Optimize Your Operations with Smart Automation
               </motion.h1>
               
               <motion.p 
@@ -400,7 +400,7 @@ function App() {
                 }`}
                 variants={fadeInUp}
               >
-                We help you scale and synchronize your business with custom automation solutions that drive revenue, streamline operations, and accelerate growth. From lead generation to HR, email, and social media automation—unlock your team's full potential with ScaleSync.
+                OpSyde helps businesses optimize and scale their operations through intelligent automation. From lead generation to HR, email, and social media automation—unlock your team's full potential with our proven solutions.
               </motion.p>
               
               {/* Animated Beam Demo */}
@@ -429,71 +429,10 @@ function App() {
                   whileTap={{ scale: 0.95 }}
                   onClick={handleScrollToFeatures}
                 >
-                 
-                  View Use Cases
+                  View Features
                 </motion.button>
               </motion.div>
             </motion.div>
-          </motion.section>
-
-          {/* Add Templates Section before Use Cases */}
-          <motion.section
-            className={`px-6 py-20 ${isDark ? 'bg-gray-900/30' : 'bg-white border border-gray-200'}`}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className={`max-w-6xl mx-auto ${isDark ? '' : 'bg-white border border-gray-200'}`}>
-              <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
-                variants={fadeInUp}
-              >
-                Free Automation Templates
-              </motion.h2>
-              
-              <TemplateGrid />
-            </div>
-          </motion.section>
-
-          {/* Use Cases Grid */}
-          <motion.section 
-            ref={useCasesRef}
-            className="px-6 py-20"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
-                variants={fadeInUp}
-              >
-                Our Solutions
-              </motion.h2>
-              
-              <div className="text-center text-gray-500 mb-8">Explore our automation solutions for your business needs.</div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {useCases.map((useCase, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-8 rounded-xl border transition-all duration-300 ${
-                      isDark 
-                        ? 'bg-gray-900/50 border-gray-800 hover:border-cyan-500/50' 
-                        : 'bg-white border-gray-200 hover:border-cyan-500/50 shadow-lg'
-                    }`}
-                    variants={fadeInUp}
-                    whileHover={{ y: -5 }}
-                  >
-                    <useCase.icon className="w-12 h-12 text-cyan-400 mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">{useCase.title}</h3>
-                    <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>{useCase.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </motion.section>
 
           {/* Features Section */}
@@ -509,56 +448,26 @@ function App() {
           >
             <div className="max-w-6xl mx-auto">
               <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
+                className="text-4xl font-bold text-center mb-6"
                 variants={fadeInUp}
               >
-                Why Choose Us?
+                Why Choose OpSyde?
               </motion.h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {whyChooseUs.map((reason, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-6 rounded-xl text-center ${isDark ? 'glass-dark border border-cyan-500/20 shadow-xl' : 'glass border border-purple-400/20 shadow-xl'}`}
-                    variants={fadeInUp}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-4xl">{reason.icon}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{reason.title}</h3>
-                    <p className={isDark ? 'text-gray-400' : 'text-gray-600'}>{reason.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.section>
+              <motion.p 
+                className={`text-xl text-center mb-16 max-w-3xl mx-auto ${
+                  isDark ? 'text-gray-300' : 'text-gray-600'
+                }`}
+                variants={fadeInUp}
+              >
+                We combine industry expertise with cutting-edge automation to deliver measurable results
+              </motion.p>
 
-          {/* Replace Pricing Section with Services */}
-          <motion.section 
-            className="px-6 py-20"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-4xl font-bold text-center mb-16"
-                variants={fadeInUp}
-              >
-                Our Services
-              </motion.h2>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
-                    className={`p-8 rounded-xl border transition-all duration-300 ${
-                      isDark 
-                        ? 'bg-gray-900/50 border-gray-800 hover:border-cyan-500/50' 
-                        : 'bg-white border-gray-200 hover:border-cyan-500/50 shadow-lg'
-                    }`}
+                    className={`p-8 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20' : 'glass border border-purple-400/20'} shadow-xl`}
                     variants={fadeInUp}
                     whileHover={{ y: -5 }}
                   >
@@ -586,6 +495,26 @@ function App() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </motion.section>
+
+          {/* Add Templates Section */}
+          <motion.section
+            className={`px-6 py-20 ${isDark ? 'bg-gray-900/30' : 'bg-white'}`}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <div className="max-w-6xl mx-auto">
+              <motion.h2 
+                className="text-4xl font-bold text-center mb-16"
+                variants={fadeInUp}
+              >
+                Free Automation Templates
+              </motion.h2>
+              
+              <TemplateGrid />
             </div>
           </motion.section>
 
@@ -793,10 +722,10 @@ function App() {
                 <div className="flex items-center gap-3 mb-4 md:mb-0">
                   <img 
                     src="/logo.png" 
-                    alt="ScaleSync Logo" 
+                    alt="OpSyde Logo" 
                     className="w-8 h-8"
                   />
-                  <span className="text-xl font-bold">ScaleSync</span>
+                  <span className="text-xl font-bold">OpSyde</span>
                 </div>
                 <div className={`flex gap-8 ${
                   isDark ? 'text-gray-400' : 'text-gray-600'
@@ -809,7 +738,7 @@ function App() {
               <div className={`mt-8 pt-8 border-t text-center ${
                 isDark ? 'border-gray-800 text-gray-400' : 'border-gray-200 text-gray-600'
               }`}>
-                <p>&copy; 2024 ScaleSync. All rights reserved.</p>
+                <p>&copy; 2024 OpSyde. All rights reserved.</p>
               </div>
             </div>
           </footer>

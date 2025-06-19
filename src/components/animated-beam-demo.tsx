@@ -347,10 +347,10 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
           ? "glass-dark border border-cyan-500/20 shadow-xl"
           : "glass border border-purple-400/20 shadow-xl"
       }
-      style={{ minHeight: 400, minWidth: 400, padding: 32, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      style={{ minHeight: 500, minWidth: 500, padding: 48, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <div className="flex size-full max-h-[200px] max-w-lg flex-col items-stretch justify-between">
-        <div className="flex flex-row items-center justify-between">
+      <div className="flex size-full max-h-[300px] max-w-2xl flex-col items-stretch justify-between">
+        <div className="flex flex-row items-center justify-between px-24">
           <Circle ref={div1Ref}>
             <Icons.googleDrive />
           </Circle>
@@ -358,18 +358,18 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
             <Icons.googleDocs />
           </Circle>
         </div>
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between px-12">
           <Circle ref={div2Ref}>
             <Icons.notion />
           </Circle>
-          <Circle ref={div4Ref} className="size-16">
+          <Circle ref={div4Ref} className="size-20">
             <Icons.openai />
           </Circle>
           <Circle ref={div6Ref}>
             <Icons.zapier />
           </Circle>
         </div>
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between px-24">
           <Circle ref={div3Ref}>
             <Icons.whatsapp />
           </Circle>
@@ -383,8 +383,11 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         containerRef={containerRef} 
         fromRef={div1Ref} 
         toRef={div4Ref} 
-        curvature={-75} 
-        endYOffset={-10}
+        curvature={-45} 
+        endYOffset={-8}
+        pathWidth={1.5}
+        pathOpacity={0.15}
+        duration={5}
         gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"}
         gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"}
       />
@@ -392,6 +395,10 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         containerRef={containerRef} 
         fromRef={div2Ref} 
         toRef={div4Ref}
+        curvature={-20}
+        pathWidth={1.5}
+        pathOpacity={0.15}
+        duration={4.5}
         gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"}
         gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"}
       />
@@ -399,8 +406,11 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         containerRef={containerRef} 
         fromRef={div3Ref} 
         toRef={div4Ref} 
-        curvature={75} 
-        endYOffset={10}
+        curvature={45} 
+        endYOffset={8}
+        pathWidth={1.5}
+        pathOpacity={0.15}
+        duration={5.5}
         gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"}
         gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"}
       />
@@ -408,8 +418,11 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         containerRef={containerRef}
         fromRef={div5Ref}
         toRef={div4Ref}
-        curvature={-75}
-        endYOffset={-10}
+        curvature={-45}
+        endYOffset={-8}
+        pathWidth={1.5}
+        pathOpacity={0.15}
+        duration={4.8}
         reverse
         gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"}
         gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"}
@@ -417,7 +430,11 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
       <AnimatedBeam 
         containerRef={containerRef} 
         fromRef={div6Ref} 
-        toRef={div4Ref} 
+        toRef={div4Ref}
+        curvature={20}
+        pathWidth={1.5}
+        pathOpacity={0.15}
+        duration={5.2}
         reverse
         gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"}
         gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"}
@@ -426,8 +443,11 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         containerRef={containerRef}
         fromRef={div7Ref}
         toRef={div4Ref}
-        curvature={75}
-        endYOffset={10}
+        curvature={45}
+        endYOffset={8}
+        pathWidth={1.5}
+        pathOpacity={0.15}
+        duration={4.6}
         reverse
         gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"}
         gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"}
