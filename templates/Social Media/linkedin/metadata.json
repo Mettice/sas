@@ -1,0 +1,15 @@
+{
+    "title": "LinkedIn Automation",
+    "description": "Automatically post to LinkedIn based on trending news stories.",
+    "category": ["automation", "social media"],
+    "tools": ["n8n", "LinkedIn", "OpenAI"],
+    "features": [
+      "Trending news research",
+      "AI-generated posts",
+      "Image generation",
+      "Post scheduling"
+    ],
+    "difficulty": "intermediate",
+    "estimatedSetupTime": "30 minutes", 
+    "isPublic": true
+  }

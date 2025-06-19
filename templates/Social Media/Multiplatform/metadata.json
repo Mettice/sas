@@ -1,0 +1,16 @@
+{
+    "title": "Multiplatform Automation",
+    "description": "Automatically post to multiple social media platforms based on trending news stories.",
+    "category": ["automation", "social media"],
+    "tools": ["n8n", "LinkedIn", "OpenAI", "Twitter", "Facebook", "Instagram", "TikTok"],
+    "features": [
+      "Trending news research",
+      "AI-generated posts",
+      "Image generation", 
+      "Post scheduling",
+      "Multiple platforms support"
+    ],
+    "difficulty": "advanced",
+    "estimatedSetupTime": "60 minutes", 
+    "isPublic": true
+  }

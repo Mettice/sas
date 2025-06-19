@@ -1,0 +1,14 @@
+{
+    "title": "Email Auto-Responder",
+    "description": "Automatically respond to emails based on keywords.",
+    "category": ["automation", "email"],
+    "tools": ["n8n", "Gmail"],
+    "features": [
+      "Keyword filtering",
+      "Custom responses",
+      "Schedule control"
+    ],
+    "difficulty": "beginner",
+    "estimatedSetupTime": "10 minutes",
+    "isPublic": true
+  }

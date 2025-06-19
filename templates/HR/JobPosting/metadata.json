@@ -1,0 +1,15 @@
+{
+    "title": "Job Posting Automation",
+    "description": "Automate job posting distribution across multiple platforms",
+    "category": ["HR", "automation"],
+    "tools": ["n8n", "LinkedIn", "Indeed"],
+    "features": [
+      "Multi-platform posting",
+      "Template management",
+      "Application tracking",
+      "Automated distribution"
+    ],
+    "difficulty": "intermediate",
+    "estimatedSetupTime": "20 minutes",
+    "isPublic": true
+  }

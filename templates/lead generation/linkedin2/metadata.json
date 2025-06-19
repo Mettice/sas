@@ -1,0 +1,16 @@
+{
+    "title": "LinkedIn comments to Lead generation",
+    "description": "Automatically generate leads from LinkedIn comments.",
+    "category": ["automation", "lead generation"],
+    "tools": ["n8n", "LinkedIn", "OpenAI"],
+    "features": [
+      "Comment scraping",  
+      "Lead generation",
+      "Schedule control",
+      "Lead generation",
+      "LinkedIn comments to Lead generation"
+    ],
+    "difficulty": "intermediate",
+    "estimatedSetupTime": "30 minutes",
+    "isPublic": true
+  }

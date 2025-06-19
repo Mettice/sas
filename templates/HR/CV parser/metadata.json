@@ -1,0 +1,14 @@
+{
+    "title": "CV Parser",
+    "description": "Automatically parse CVs and store the results in a Google Sheet.",
+    "category": ["automation", "HR"],
+    "tools": ["n8n", "Gmail", "Google Sheets"],
+    "features": [
+      "CV parsing",
+      "Google Sheet integration",
+      "Email notifications"
+    ],
+    "difficulty": "intermediate",
+    "estimatedSetupTime": "30 minutes",
+    "isPublic": true
+  }

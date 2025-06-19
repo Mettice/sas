@@ -1,0 +1,14 @@
+{
+    "title": "Email Auto-Label AI",
+    "description": "Automatically label emails based on keywords and content.",
+    "category": ["automation", "email"],
+    "tools": ["n8n", "Gmail", "OpenAI"],
+    "features": [
+      "Keyword filtering",  
+      "Custom labels",
+      "Schedule control"
+    ],
+    "difficulty": "beginner",
+    "estimatedSetupTime": "10 minutes",
+    "isPublic": true
+  }

@@ -1,0 +1,15 @@
+{
+    "title": "LinkedIn Lead Generation",
+    "description": "Automatically generate leads from LinkedIn.",
+    "category": ["automation", "lead generation"],
+    "tools": ["n8n", "LinkedIn", "OpenAI"],
+    "features": [
+      "Keyword filtering",  
+      "Custom labels",
+      "Schedule control",
+      "Lead generation"
+    ],
+    "difficulty": "advanced",
+    "estimatedSetupTime": "60 minutes",
+    "isPublic": true
+  }
