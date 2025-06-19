@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, Download } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, Download, ArrowLeft } from 'lucide-react';
 import { generateAIResponse, generateInitialMessage, extractLeadInfo } from '../lib/chatbot/knowledgeBase';
 import { supabase } from '../lib/supabase/client';
 
@@ -29,6 +29,8 @@ export const Chatbot: React.FC = () => {
   const [hasAskedForEmail, setHasAskedForEmail] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isOnline, setIsOnline] = useState(true);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -82,6 +84,26 @@ export const Chatbot: React.FC = () => {
     setIsTyping(false);
   };
 
+  // Swipe to close functionality
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientY);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientY);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isSwipeUp = distance > 50; // Minimum swipe distance
+
+    if (isSwipeUp) {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <>
       {/* Chat Button with Online Status */}
@@ -114,8 +136,11 @@ export const Chatbot: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             className="fixed inset-0 sm:bottom-20 sm:right-4 sm:inset-auto sm:w-96 bg-white dark:bg-gray-900 rounded-none sm:rounded-lg shadow-xl z-50 overflow-hidden border-0 sm:border sm:border-gray-200 dark:sm:border-gray-800"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
-            {/* Header */}
+            {/* Header with Swipe Indicator */}
             <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center bg-gradient-to-r from-purple-500 to-cyan-500 text-white">
               <div className="flex items-center gap-2">
                 <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -127,16 +152,23 @@ export const Chatbot: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                {/* Swipe indicator for mobile */}
+                <div className="hidden sm:block w-8 h-1 bg-white/30 rounded-full"></div>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
+            {/* Swipe indicator for mobile */}
+            <div className="sm:hidden w-12 h-1 bg-gray-300 rounded-full mx-auto mt-2 mb-1"></div>
+
             {/* Messages */}
-            <div className="h-[calc(100vh-140px)] sm:h-96 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-white dark:bg-gray-900">
+            <div className="h-[calc(100vh-180px)] sm:h-96 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-white dark:bg-gray-900">
               {messages.map((message, index) => (
                 <motion.div
                   key={index}
@@ -180,7 +212,7 @@ export const Chatbot: React.FC = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
+            {/* Input with Close Button */}
             <form onSubmit={handleSubmit} className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
               <div className="flex gap-2">
                 <input
@@ -199,6 +231,17 @@ export const Chatbot: React.FC = () => {
                 >
                   <Send className="w-5 h-5" />
                 </motion.button>
+              </div>
+              
+              {/* Mobile Close Button - Always visible */}
+              <div className="sm:hidden flex justify-center mt-3">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span className="text-sm">Close Chat</span>
+                </button>
               </div>
             </form>
           </motion.div>
