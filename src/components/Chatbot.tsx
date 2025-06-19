@@ -85,7 +85,7 @@ export const Chatbot: React.FC = () => {
   return (
     <>
       {/* Chat Button with Online Status */}
-      <div className="fixed bottom-4 right-4 flex flex-col items-end gap-2 z-50">
+      <div className="fixed bottom-4 right-4 sm:bottom-4 sm:right-4 flex flex-col items-end gap-2 z-50">
         {!isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -98,11 +98,11 @@ export const Chatbot: React.FC = () => {
         )}
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl"
+          className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl active:scale-95"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <MessageSquare className="w-6 h-6" />
+          <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
         </motion.button>
       </div>
 
@@ -113,15 +113,15 @@ export const Chatbot: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-20 right-4 w-96 bg-white dark:bg-gray-900 rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200 dark:border-gray-800"
+            className="fixed inset-0 sm:bottom-20 sm:right-4 sm:inset-auto sm:w-96 bg-white dark:bg-gray-900 rounded-none sm:rounded-lg shadow-xl z-50 overflow-hidden border-0 sm:border sm:border-gray-200 dark:sm:border-gray-800"
           >
             {/* Header */}
-            <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center bg-gradient-to-r from-purple-500 to-cyan-500 text-white">
+            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center bg-gradient-to-r from-purple-500 to-cyan-500 text-white">
               <div className="flex items-center gap-2">
-                <Bot className="w-6 h-6" />
+                <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
                 <div>
-                  <h3 className="font-semibold">Automation Assistant</h3>
-                  <div className="flex items-center gap-2 text-sm">
+                  <h3 className="font-semibold text-sm sm:text-base">Automation Assistant</h3>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm">
                     <div className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`} />
                     {isOnline ? 'Online' : 'Offline'}
                   </div>
@@ -129,14 +129,14 @@ export const Chatbot: React.FC = () => {
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-1 hover:bg-white/20 rounded-full transition-colors"
+                className="p-2 hover:bg-white/20 rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="h-96 overflow-y-auto p-4 space-y-4 bg-white dark:bg-gray-900">
+            <div className="h-[calc(100vh-140px)] sm:h-96 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 bg-white dark:bg-gray-900">
               {messages.map((message, index) => (
                 <motion.div
                   key={index}
@@ -145,7 +145,7 @@ export const Chatbot: React.FC = () => {
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg ${
+                    className={`max-w-[85%] sm:max-w-[80%] p-3 rounded-lg text-sm sm:text-base ${
                       message.sender === 'user'
                         ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white'
                         : 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white'
@@ -181,18 +181,18 @@ export const Chatbot: React.FC = () => {
             </div>
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+            <form onSubmit={handleSubmit} className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 p-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="flex-1 p-3 sm:p-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-base"
                 />
                 <motion.button
                   type="submit"
-                  className="p-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white rounded-lg"
+                  className="p-3 sm:p-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white rounded-lg active:scale-95"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   disabled={!inputValue.trim()}
