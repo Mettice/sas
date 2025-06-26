@@ -1,9 +1,11 @@
-import React, { useState, createContext, useContext, useRef } from 'react';
+import React, { useState, createContext, useContext, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AuthProvider } from './components/auth/AuthProvider';
 import { TemplateGrid } from './components/templates/TemplateGrid';
 import { ImagePlaceholder } from './components/ImagePlaceholder';
 import { Chatbot } from './components/Chatbot';
+import { HeroSection } from './components/HeroSection';
+import { ServiceCards } from './components/ServiceCards';
 import { 
   Bot, 
   MessageSquare, 
@@ -23,6 +25,7 @@ import {
 } from 'lucide-react';
 import AnimatedBeamDemo from './components/animated-beam-demo';
 import { ContactForm } from './components/ContactForm';
+import { initGSAP, enhancedColors } from './utils/gsap';
 
 // Theme Context
 interface ThemeContextType {
@@ -40,6 +43,12 @@ function App() {
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const useCasesRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+
+  // Initialize GSAP
+  useEffect(() => {
+    const cleanup = initGSAP();
+    return cleanup;
+  }, []);
 
   const handleScrollToSolutions = () => {
     solutionsRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -331,13 +340,21 @@ function App() {
   ];
 
   const themeClasses = isDark 
-    ? "min-h-screen bg-gradient-to-br from-[#0e0f11] via-[#181c2b] to-[#232946] text-white"
-    : "min-h-screen bg-gradient-to-br from-white via-[#f0f4ff] to-[#e0e7ff] text-gray-900";
+    ? `min-h-screen bg-gradient-to-br from-[${enhancedColors.dark.background.from}] via-[${enhancedColors.dark.background.via}] to-[${enhancedColors.dark.background.to}] text-white relative`
+    : `min-h-screen bg-[#f7fafd] text-gray-900 relative`;
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
       <AuthProvider>
-        <div className={`${themeClasses} font-['Space_Grotesk'] transition-colors duration-300`}>
+        <div className={`${themeClasses} font-['Space_Grotesk'] transition-colors duration-300 relative`}>
+          {/* Animated Gradient/Vignette Overlay for Dark Theme - absolute and only in dark mode */}
+          {isDark && (
+            <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#2d1a4a]/80 via-[#0ea5e9]/60 to-[#06b6d4]/70 opacity-80 animate-gradient-x" style={{mixBlendMode: 'screen'}}></div>
+              <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black opacity-60" style={{mixBlendMode: 'multiply'}}></div>
+            </div>
+          )}
+
           {/* Header with Theme Toggle */}
           <header className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-md bg-opacity-80 border-b ${
             isDark ? 'border-gray-800 bg-[#0e0f11]/80' : 'border-gray-200 bg-gray-50/80'
@@ -367,73 +384,12 @@ function App() {
             </div>
           </header>
 
-          {/* Hero Section with Animated Beam */}
-          <motion.section 
-            className="relative px-4 sm:px-6 py-20 sm:py-32 text-center"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-          >
-            <motion.div className="max-w-6xl mx-auto" variants={fadeInUp}>
-              <div className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8">
-                <img 
-                  src="/logo.png" 
-                  alt="OpSyde Logo" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              
-              <motion.h1 
-                className={`text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r ${
-                  isDark 
-                    ? 'from-white to-gray-300' 
-                    : 'from-gray-900 to-gray-600'
-                } bg-clip-text text-transparent leading-tight`}
-                variants={fadeInUp}
-              >
-                Optimize Your Operations with Smart Automation
-              </motion.h1>
-              
-              <motion.p 
-                className={`text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 max-w-3xl mx-auto px-4 ${
-                  isDark ? 'text-gray-300' : 'text-gray-600'
-                }`}
-                variants={fadeInUp}
-              >
-                OpSyde helps businesses optimize and scale their operations through intelligent automation. From lead generation to HR, email, and social media automation—unlock your team's full potential with our proven solutions.
-              </motion.p>
-              
-              {/* Animated Beam Demo */}
-              <motion.div 
-                className="mb-8 sm:mb-12 max-w-4xl mx-auto px-4"
-                variants={fadeInUp}
-              >
-                <AnimatedBeamDemo isDark={isDark} />
-              </motion.div>
-              
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center px-4"
-                variants={fadeInUp}
-              >
-                <motion.button 
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-purple-500 transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleOpenScheduling}
-                >
-                  Book a Consultation
-                </motion.button>
-                <motion.button 
-                  className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleScrollToFeatures}
-                >
-                  View Features
-                </motion.button>
-              </motion.div>
-            </motion.div>
-          </motion.section>
+          {/* Enhanced Hero Section */}
+          <HeroSection 
+            isDark={isDark}
+            onOpenScheduling={handleOpenScheduling}
+            onScrollToFeatures={handleScrollToFeatures}
+          />
 
           {/* Features Section */}
           <motion.section 
@@ -463,38 +419,7 @@ function App() {
                 We combine industry expertise with cutting-edge automation to deliver measurable results
               </motion.p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                {services.map((service, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-6 sm:p-8 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20' : 'glass border border-purple-400/20'} shadow-xl`}
-                    variants={fadeInUp}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="aspect-video mb-4 sm:mb-6 overflow-hidden rounded-lg">
-                      <ImagePlaceholder 
-                        type="service" 
-                        index={index}
-                        imageSrc={service.image}
-                      />
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">{service.title}</h3>
-                    <p className={`mb-4 sm:mb-6 text-sm sm:text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {service.description}
-                    </p>
-                    <ul className="space-y-2 sm:space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
-                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                          <span className={`text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
+              <ServiceCards isDark={isDark} services={services} />
             </div>
           </motion.section>
 
