@@ -138,10 +138,10 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({ isDark, services }) 
         <motion.div
           key={index}
           ref={(el) => { cards.current[index] = el; }}
-          className={`p-6 sm:p-8 rounded-xl transform transition-all duration-300 ${
+          className={`p-6 sm:p-8 rounded-xl transform transition-all duration-300 shadow-xl backdrop-blur-lg ${
             isDark 
-              ? 'glass-dark border border-cyan-500/20 bg-gradient-to-br from-gray-900/50 to-gray-800/50' 
-              : 'bg-white border border-gray-200 shadow-md'
+              ? 'glass-dark glass-card border border-cyan-400/20' 
+              : 'glass glass-card border border-purple-400/20'
           } card-hover relative`}
           style={{
             transformStyle: 'preserve-3d',

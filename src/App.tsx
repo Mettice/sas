@@ -37,6 +37,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 function App() {
   const [isDark, setIsDark] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
 
   // Add refs for scrolling
   const solutionsRef = useRef<HTMLDivElement>(null);
@@ -48,6 +49,14 @@ function App() {
   useEffect(() => {
     const cleanup = initGSAP();
     return cleanup;
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const handleScrollToSolutions = () => {
@@ -356,27 +365,37 @@ function App() {
           )}
 
           {/* Header with Theme Toggle */}
-          <header className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-md bg-opacity-80 border-b ${
-            isDark ? 'border-gray-800 bg-[#0e0f11]/80' : 'border-gray-200 bg-gray-50/80'
+          <header className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md border-b ${
+            isDark
+              ? `${scrolled ? 'bg-[#0e0f11]/95 shadow-2xl border-cyan-900/40' : 'bg-[#0e0f11]/80 border-gray-800'}`
+              : `${scrolled ? 'bg-white/95 shadow-2xl border-cyan-400/30' : 'bg-gray-50/80 border-gray-200'}`
           }`}>
             <div className="max-w-6xl mx-auto flex justify-between items-center">
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 transition-all duration-300">
                 <img 
                   src="/logo.png" 
                   alt="OpSyde Logo" 
-                  className="w-6 h-6 sm:w-8 sm:h-8"
+                  className={`transition-all duration-300 ${scrolled ? 'w-5 h-5 sm:w-7 sm:h-7' : 'w-6 h-6 sm:w-8 sm:h-8'}`}
                 />
-                <span className="text-lg sm:text-xl font-bold">OpSyde</span>
+                <span className={`text-lg sm:text-xl font-bold transition-all duration-300 ${scrolled ? 'scale-95' : ''}`}>OpSyde</span>
               </div>
-              
+              {/* Navbar Links */}
+              <nav className="hidden md:flex gap-6 text-base font-medium items-center">
+                <a href="#" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Home</a>
+                <a href="#features" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Solutions</a>
+                <a href="#templates" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Templates</a>
+                <a href="#process" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Process</a>
+                <a href="#testimonials" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Case Studies</a>
+                <a href="#contact" className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold shadow-md hover:from-purple-500 hover:to-cyan-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">Book a Call</a>
+              </nav>
               <motion.button
                 onClick={toggleTheme}
-                className={`p-2 rounded-lg transition-all duration-300 ${
+                className={`p-2 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
                   isDark 
                     ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400' 
                     : 'bg-white hover:bg-gray-100 text-gray-600 shadow-md'
                 }`}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.08, boxShadow: '0 0 0 4px #06b6d4, 0 0 16px #8b5cf6' }}
                 whileTap={{ scale: 0.95 }}
               >
                 {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -390,6 +409,21 @@ function App() {
             onOpenScheduling={handleOpenScheduling}
             onScrollToFeatures={handleScrollToFeatures}
           />
+          {/* Section Divider */}
+          {isDark && (
+            <div aria-hidden="true" className="-mt-2 mb-2 sm:mb-4">
+              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
+                <path d="M0,40 Q360,80 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-1)"/>
+                <defs>
+                  <linearGradient id="divider-gradient-1" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#0ea5e9" />
+                    <stop offset="0.5" stopColor="#8b5cf6" />
+                    <stop offset="1" stopColor="#ec4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          )}
 
           {/* Features Section */}
           <motion.section 
@@ -422,6 +456,21 @@ function App() {
               <ServiceCards isDark={isDark} services={services} />
             </div>
           </motion.section>
+          {/* Section Divider */}
+          {isDark && (
+            <div aria-hidden="true" className="-mt-4 -mb-4">
+              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
+                <path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-2)"/>
+                <defs>
+                  <linearGradient id="divider-gradient-2" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#06b6d4" />
+                    <stop offset="0.5" stopColor="#8b5cf6" />
+                    <stop offset="1" stopColor="#f472b6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          )}
 
           {/* Add Templates Section */}
           <motion.section
@@ -442,6 +491,21 @@ function App() {
               <TemplateGrid />
             </div>
           </motion.section>
+          {/* Section Divider */}
+          {isDark && (
+            <div aria-hidden="true" className="-mt-4 -mb-4">
+              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
+                <path d="M0,40 Q360,80 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-3)"/>
+                <defs>
+                  <linearGradient id="divider-gradient-3" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#f472b6" />
+                    <stop offset="0.5" stopColor="#06b6d4" />
+                    <stop offset="1" stopColor="#8b5cf6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          )}
 
           {/* Testimonials Section */}
           <motion.section 
@@ -495,6 +559,21 @@ function App() {
               </div>
             </div>
           </motion.section>
+          {/* Section Divider */}
+          {isDark && (
+            <div aria-hidden="true" className="-mt-4 -mb-4">
+              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
+                <path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-4)"/>
+                <defs>
+                  <linearGradient id="divider-gradient-4" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#8b5cf6" />
+                    <stop offset="0.5" stopColor="#0ea5e9" />
+                    <stop offset="1" stopColor="#f472b6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          )}
 
           {/* Industries Ticker */}
           <motion.section 
@@ -534,6 +613,21 @@ function App() {
               </motion.div>
             </div>
           </motion.section>
+          {/* Section Divider */}
+          {isDark && (
+            <div aria-hidden="true" className="-mt-4 -mb-4">
+              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
+                <path d="M0,40 Q360,80 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-5)"/>
+                <defs>
+                  <linearGradient id="divider-gradient-5" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#06b6d4" />
+                    <stop offset="0.5" stopColor="#f472b6" />
+                    <stop offset="1" stopColor="#8b5cf6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          )}
 
           {/* Download System Section */}
           <motion.section 

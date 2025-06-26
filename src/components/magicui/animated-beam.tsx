@@ -23,6 +23,7 @@ export interface AnimatedBeamProps {
   startYOffset?: number
   endXOffset?: number
   endYOffset?: number
+  toCenterOfContainer?: boolean
 }
 
 export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
@@ -43,6 +44,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
+  toCenterOfContainer = false,
 }) => {
   const id = useId()
   const [pathD, setPathD] = useState("")
@@ -64,10 +66,12 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
 
   useEffect(() => {
     const updatePath = () => {
-      if (containerRef.current && fromRef.current && toRef.current) {
+      if (containerRef.current && fromRef.current && (toRef.current || toCenterOfContainer)) {
         const containerRect = containerRef.current.getBoundingClientRect()
         const rectA = fromRef.current.getBoundingClientRect()
-        const rectB = toRef.current.getBoundingClientRect()
+        const rectB = toCenterOfContainer
+          ? containerRect
+          : toRef.current!.getBoundingClientRect()
 
         const svgWidth = containerRect.width
         const svgHeight = containerRect.height
@@ -99,7 +103,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
     return () => {
       resizeObserver.disconnect()
     }
-  }, [containerRef, fromRef, toRef, curvature, startXOffset, startYOffset, endXOffset, endYOffset])
+  }, [containerRef, fromRef, toRef, curvature, startXOffset, startYOffset, endXOffset, endYOffset, toCenterOfContainer])
 
   return (
     <svg

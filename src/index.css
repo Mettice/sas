@@ -446,3 +446,81 @@ select:focus {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes gradient-hero {
+  0% {
+    background: linear-gradient(120deg, #0ea5e9, #8b5cf6, #ec4899, #06b6d4);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+  }
+  50% {
+    background: linear-gradient(120deg, #8b5cf6, #06b6d4, #0ea5e9, #ec4899);
+    background-size: 200% 200%;
+    background-position: 100% 50%;
+  }
+  100% {
+    background: linear-gradient(120deg, #0ea5e9, #8b5cf6, #ec4899, #06b6d4);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+  }
+}
+.animate-gradient-hero {
+  animation: gradient-hero 16s ease-in-out infinite;
+  background: linear-gradient(120deg, #0ea5e9, #8b5cf6, #ec4899, #06b6d4);
+  background-size: 200% 200%;
+}
+
+@keyframes float-slow {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.08); }
+  100% { transform: translateY(0) scale(1); }
+}
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@keyframes float-medium {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  25% { transform: translateY(-10px) translateX(10px) scale(1.05); }
+  50% { transform: translateY(10px) translateX(-10px) scale(1.1); }
+  75% { transform: translateY(-10px) translateX(10px) scale(1.05); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+@keyframes float-fast {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(16px) scale(1.12); }
+  100% { transform: translateY(0) scale(1); }
+}
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes spin-reverse-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+.animate-spin-reverse-slow {
+  animation: spin-reverse-slow 22s linear infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-8px); }
+  50% { transform: translateY(8px); }
+  75% { transform: translateY(-4px); }
+}
+.animate-wiggle {
+  animation: wiggle 7s ease-in-out infinite;
+}

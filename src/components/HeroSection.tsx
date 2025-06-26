@@ -151,24 +151,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <motion.section 
       ref={heroRef}
-      className={`relative px-4 sm:px-6 py-20 sm:py-32 text-center ${isDark ? '' : 'bg-white border-b border-gray-200 shadow-sm'}`}
+      className={`relative pt-32 pb-20 sm:pt-40 sm:pb-24 text-center ${isDark ? '' : 'bg-white border-b border-gray-200 shadow-sm'}`}
       initial="initial"
       animate="animate"
     >
-      {/* Animated Background Particles and Gradients: Only in dark mode */}
+      {/* Animated Gradient Background (dark mode only for now) */}
       {isDark && (
         <>
-          <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-20 left-10 w-2 h-2 bg-cyan-400 rounded-full opacity-60 animate-pulse"></div>
-            <div className="absolute top-40 right-20 w-3 h-3 bg-purple-400 rounded-full opacity-40 animate-ping"></div>
-            <div className="absolute bottom-40 left-20 w-1 h-1 bg-pink-400 rounded-full opacity-80 animate-bounce"></div>
-            <div className="absolute top-60 left-1/2 w-2 h-2 bg-green-400 rounded-full opacity-50 animate-pulse"></div>
-            <div className="absolute bottom-20 right-10 w-1 h-1 bg-orange-400 rounded-full opacity-70 animate-ping"></div>
+          <div className="absolute inset-0 -z-10 animate-gradient-hero" aria-hidden="true"></div>
+          {/* Floating Particles */}
+          <div ref={particlesRef} className="absolute inset-0 pointer-events-none -z-10">
+            <div className="absolute top-20 left-10 w-8 h-8 bg-cyan-400/40 rounded-full blur-2xl animate-float-slow"></div>
+            <div className="absolute top-40 right-20 w-12 h-12 bg-purple-400/30 rounded-full blur-2xl animate-float-medium"></div>
+            <div className="absolute bottom-40 left-1/4 w-6 h-6 bg-pink-400/40 rounded-full blur-2xl animate-float-fast"></div>
+            <div className="absolute top-1/2 left-1/2 w-10 h-10 bg-green-400/30 rounded-full blur-2xl animate-float-medium"></div>
+            <div className="absolute bottom-20 right-10 w-7 h-7 bg-orange-400/30 rounded-full blur-2xl animate-float-slow"></div>
           </div>
+          {/* Animated Accent Elements */}
+          <svg className="absolute left-12 top-32 w-16 h-16 opacity-30 pointer-events-none blur-sm animate-spin-slow" viewBox="0 0 100 100" fill="none"><polygon points="50,10 90,90 10,90" fill="#8b5cf6" /></svg>
+          <svg className="absolute right-24 top-16 w-12 h-12 opacity-20 pointer-events-none animate-float-medium" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" fill="#06b6d4" /></svg>
+          <svg className="absolute left-1/3 bottom-24 w-14 h-14 opacity-20 pointer-events-none animate-spin-reverse-slow" viewBox="0 0 100 100" fill="none"><polygon points="50,10 90,35 75,90 25,90 10,35" fill="#ec4899" /></svg>
+          <svg className="absolute right-1/4 bottom-10 w-24 h-8 opacity-20 pointer-events-none animate-wiggle" viewBox="0 0 100 30" fill="none"><path d="M0,15 Q25,0 50,15 T100,15" stroke="#fbbf24" strokeWidth="4" fill="none" /></svg>
         </>
       )}
 
-      <motion.div className="max-w-6xl mx-auto relative z-20">
+      <motion.div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         {/* Logo */}
         <motion.div 
           ref={logoRef}
@@ -187,22 +194,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </motion.div>
         
         {/* Main Title */}
-        <motion.div className="relative w-full flex flex-col items-center justify-center mb-4 sm:mb-6" initial="initial" animate="animate">
+        <motion.div className="relative w-full flex flex-col items-center justify-center mb-8" initial="initial" animate="animate">
+          {/* Soft Glow Behind Heading (dark mode only) */}
+          {isDark && (
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 mx-auto w-3/4 h-2/3 -z-10 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 opacity-40 blur-3xl"></div>
+          )}
           {/* Fallback solid color heading */}
           <h1
-            className={`text-3xl sm:text-5xl md:text-7xl font-bold leading-tight z-10 relative ${
+            className={`text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight z-10 relative ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
             aria-hidden="false"
           >
             {splitText('Optimize Your Operations')}
             <br />
-            {splitText('with Smart Automation')}
+            <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              {splitText('with Smart Automation')}
+            </span>
           </h1>
           {/* Gradient heading overlay */}
           <h1
             ref={titleRef}
-            className={`text-3xl sm:text-5xl md:text-7xl font-bold leading-tight absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-clip-text text-transparent pointer-events-none select-none ${
+            className={`text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-clip-text text-transparent pointer-events-none select-none ${
               isDark
                 ? 'bg-gradient-to-r from-white via-cyan-300 to-purple-400'
                 : 'bg-gradient-to-r from-gray-900 via-blue-600 to-purple-600'
@@ -211,16 +224,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           >
             {splitText('Optimize Your Operations')}
             <br />
-            {splitText('with Smart Automation')}
+            <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              {splitText('with Smart Automation')}
+            </span>
           </h1>
         </motion.div>
         
         {/* Subtitle */}
         <motion.p 
           ref={subtitleRef}
-          className={`text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 max-w-3xl mx-auto px-4 ${
-            isDark ? 'text-gray-300' : 'text-gray-600'
-          } leading-relaxed`}
+          className={`max-w-2xl mx-auto text-lg sm:text-xl ${isDark ? 'text-gray-400' : 'text-gray-600'} mb-10 leading-relaxed`}
         >
           OpSyde helps businesses optimize and scale their operations through intelligent automation. 
           From lead generation to HR, email, and social media automation—unlock your team's full potential with our proven solutions.
@@ -242,7 +255,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="flex flex-col sm:flex-row gap-4 justify-center px-4"
         >
           <motion.button 
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 relative overflow-hidden group"
+            className={`relative group px-8 py-6 text-lg font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+              isDark 
+                ? 'bg-gradient-to-r from-cyan-500 to-purple-500 hover:opacity-90 text-white' 
+                : 'bg-gradient-to-r from-cyan-600 to-purple-600 hover:opacity-90 text-white'
+            }`}
             onClick={onOpenScheduling}
             whileHover={{ 
               scale: 1.05,
@@ -251,11 +268,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             whileTap={{ scale: 0.95 }}
           >
             <span className="relative z-10">Book a Consultation</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-white/20 blur-lg group-hover:blur-xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
           </motion.button>
           
           <motion.button 
-            className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 relative overflow-hidden group`}
+            className={`px-8 py-6 text-lg font-semibold border-2 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
+              isDark 
+                ? 'text-cyan-400 border-cyan-400 bg-transparent hover:bg-cyan-400/10 hover:text-white hover:border-cyan-300' 
+                : 'text-cyan-600 border-cyan-600 bg-transparent hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400'
+            }`}
             onClick={onScrollToFeatures}
             whileHover={{ 
               scale: 1.05,
@@ -264,7 +285,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             whileTap={{ scale: 0.95 }}
           >
             <span className="relative z-10">View Features</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
         </motion.div>
       </motion.div>
