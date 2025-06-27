@@ -241,7 +241,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         
         {/* Animated Beam Demo */}
         <motion.div 
-          className="mb-8 sm:mb-12 max-w-4xl mx-auto px-4"
+          className="mb-12 sm:mb-16 max-w-4xl mx-auto px-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.8 }}

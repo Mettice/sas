@@ -12,7 +12,7 @@ const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React
       <div
         ref={ref}
         className={cn(
-          "z-10 flex size-12 items-center justify-center rounded-full bg-white p-3 shadow-lg",
+          "z-10 flex w-12 h-12 items-center justify-center rounded-full bg-white p-3 shadow-lg",
           className,
         )}
       >
@@ -365,18 +365,18 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         </div>
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <Circle ref={div4Ref} isDark={isDark} className="size-16 sm:size-20">
+        <Circle ref={div4Ref} isDark={isDark} className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-red-500">
           <Icons.openai />
         </Circle>
       </div>
       {mounted && (
         <>
-          <AnimatedBeam containerRef={containerRef} fromRef={div1Ref} toRef={div4Ref} curvature={-45} endYOffset={-24} startYOffset={-24} pathWidth={1.5} pathOpacity={0.15} duration={5} gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
-          <AnimatedBeam containerRef={containerRef} fromRef={div2Ref} toRef={div4Ref} curvature={-20} endYOffset={-24} startYOffset={-24} pathWidth={1.5} pathOpacity={0.15} duration={4.5} gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
-          <AnimatedBeam containerRef={containerRef} fromRef={div3Ref} toRef={div4Ref} curvature={45} endYOffset={24} startYOffset={24} pathWidth={1.5} pathOpacity={0.15} duration={5.5} gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
-          <AnimatedBeam containerRef={containerRef} fromRef={div5Ref} toRef={div4Ref} curvature={-45} endYOffset={-24} startYOffset={-24} pathWidth={1.5} pathOpacity={0.15} duration={4.8} reverse gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
-          <AnimatedBeam containerRef={containerRef} fromRef={div6Ref} toRef={div4Ref} curvature={20} endYOffset={24} startYOffset={24} pathWidth={1.5} pathOpacity={0.15} duration={5.2} reverse gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
-          <AnimatedBeam containerRef={containerRef} fromRef={div7Ref} toRef={div4Ref} curvature={45} endYOffset={24} startYOffset={24} pathWidth={1.5} pathOpacity={0.15} duration={4.6} reverse gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
+          <AnimatedBeam containerRef={containerRef} fromRef={div1Ref} toRef={div4Ref} curvature={-45} endYOffset={-24-4} endXOffset={-4} startYOffset={-24} pathWidth={1.5} pathOpacity={0.15} duration={5} gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
+          <AnimatedBeam containerRef={containerRef} fromRef={div2Ref} toRef={div4Ref} curvature={-20} endYOffset={-24-4} endXOffset={-4} startYOffset={-24} pathWidth={1.5} pathOpacity={0.15} duration={4.5} gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
+          <AnimatedBeam containerRef={containerRef} fromRef={div3Ref} toRef={div4Ref} curvature={45} endYOffset={24-4} endXOffset={-4} startYOffset={24} pathWidth={1.5} pathOpacity={0.15} duration={5.5} gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
+          <AnimatedBeam containerRef={containerRef} fromRef={div5Ref} toRef={div4Ref} curvature={-45} endYOffset={-24-4} endXOffset={-4} startYOffset={-24} pathWidth={1.5} pathOpacity={0.15} duration={4.8} reverse gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
+          <AnimatedBeam containerRef={containerRef} fromRef={div6Ref} toRef={div4Ref} curvature={20} endYOffset={24-4} endXOffset={-4} startYOffset={24} pathWidth={1.5} pathOpacity={0.15} duration={5.2} reverse gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
+          <AnimatedBeam containerRef={containerRef} fromRef={div7Ref} toRef={div4Ref} curvature={45} endYOffset={24-4} endXOffset={-4} startYOffset={24} pathWidth={1.5} pathOpacity={0.15} duration={4.6} reverse gradientStartColor={isDark ? "#8b5cf6" : "#6366f1"} gradientStopColor={isDark ? "#06b6d4" : "#3b82f6"} />
         </>
       )}
     </div>

@@ -428,7 +428,7 @@ function App() {
           {/* Features Section */}
           <motion.section 
             ref={featuresRef}
-            className={`px-4 sm:px-6 py-16 sm:py-20 ${
+            className={`px-4 sm:px-6 py-16 sm:py-20 mt-12 sm:mt-16 ${
               isDark ? 'bg-gray-900/30' : 'bg-gray-100'
             }`}
             initial="initial"
