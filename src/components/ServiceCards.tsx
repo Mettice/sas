@@ -133,84 +133,30 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({ isDark, services }) 
   const colors = enhancedColors[isDark ? 'dark' : 'light'];
 
   return (
-    <div ref={cardsRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 ${isDark ? '' : 'bg-[#f7fafd]'}`}>
+    <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map((service, index) => (
         <motion.div
           key={index}
           ref={(el) => { cards.current[index] = el; }}
-          className={`p-6 sm:p-8 rounded-xl transform transition-all duration-300 shadow-xl backdrop-blur-lg ${
-            isDark 
-              ? 'glass-dark glass-card border border-cyan-400/20' 
-              : 'glass glass-card border border-purple-400/20'
-          } card-hover relative`}
-          style={{
-            transformStyle: 'preserve-3d',
-            perspective: '1000px'
-          }}
+          className="bg-zinc-800/50 border border-white/10 p-8 rounded-xl hover:bg-zinc-800/80 transition-colors flex flex-col items-center text-center relative"
         >
-          {/* Service Image */}
-          <div className="aspect-video mb-4 sm:mb-6 overflow-hidden rounded-lg relative group">
-            <ImagePlaceholder 
-              type="service" 
-              index={index}
-              imageSrc={service.image}
-            />
-            <div className={`absolute inset-0 bg-gradient-to-t ${
-              isDark 
-                ? 'from-gray-900/50 to-transparent' 
-                : 'from-white/50 to-transparent'
-            } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-          </div>
-
           {/* Service Icon */}
-          <div className="service-icon mb-4 sm:mb-6 flex justify-center">
-            <div className={`p-3 rounded-xl ${
-              isDark 
-                ? 'bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/30' 
-                : 'bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-purple-500/30'
-            }`}>
-              {service.icon}
-            </div>
+          <div className="mb-6 flex justify-center">
+            <span className="text-5xl text-purple-500 service-icon">{service.icon}</span>
           </div>
-
           {/* Service Title */}
-          <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-center">
-            {service.title}
-          </h3>
-
+          <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
           {/* Service Description */}
-          <p className={`mb-4 sm:mb-6 text-sm sm:text-base text-center ${
-            isDark ? 'text-gray-400' : 'text-gray-600'
-          }`}>
-            {service.description}
-          </p>
-
+          <p className="mb-6 text-zinc-300 text-base">{service.description}</p>
           {/* Features List */}
-          <ul className="space-y-2 sm:space-y-3">
+          <ul className="space-y-2 mb-2">
             {service.features.map((feature, featureIndex) => (
-              <li key={featureIndex} className="feature-item flex items-start gap-3">
-                <div className={`p-1 rounded-full ${
-                  isDark 
-                    ? 'bg-cyan-500/20 text-cyan-400' 
-                    : 'bg-purple-500/20 text-purple-600'
-                }`}>
-                  <Check className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                </div>
-                <span className={`text-sm sm:text-base ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  {feature}
-                </span>
+              <li key={featureIndex} className="flex items-center gap-2 justify-center text-zinc-300 text-sm feature-item">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-purple-600/20 text-purple-400"><Check className="w-4 h-4" /></span>
+                <span>{feature}</span>
               </li>
             ))}
           </ul>
-
-          {/* Hover Overlay */}
-          <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-            isDark 
-              ? 'bg-gradient-to-br from-cyan-500/5 to-purple-500/5' 
-              : 'bg-gradient-to-br from-purple-500/5 to-cyan-500/5'
-          }`}></div>
         </motion.div>
       ))}
     </div>

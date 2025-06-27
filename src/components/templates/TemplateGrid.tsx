@@ -84,18 +84,18 @@ export const TemplateGrid: React.FC = () => {
 
   if (loading) return (
     <div className="flex justify-center items-center min-h-[200px]">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
     </div>
   );
 
   if (error) return (
-    <div className="text-center text-red-600 py-8 text-sm sm:text-base">
+    <div className="text-center text-red-400 py-8 text-lg font-semibold">
       Error: {error}
     </div>
   );
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-8 bg-zinc-900/80 border border-white/10 rounded-2xl shadow-2xl p-8 backdrop-blur-md">
       <TemplateSearch
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -103,13 +103,12 @@ export const TemplateGrid: React.FC = () => {
         onCategoryChange={setSelectedCategory}
         categories={categories}
       />
-
       {filteredTemplates.length === 0 ? (
-        <div className="text-center py-8 text-gray-500 text-sm sm:text-base">
+        <div className="text-center py-16 text-zinc-400 text-lg font-semibold">
           No templates found matching your criteria.
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTemplates.map((template) => (
             <TemplateCard
               key={template.id}
@@ -119,7 +118,6 @@ export const TemplateGrid: React.FC = () => {
           ))}
         </div>
       )}
-
       {selectedTemplate && (
         <TemplateDetail
           template={selectedTemplate}

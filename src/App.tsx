@@ -21,11 +21,42 @@ import {
   Moon,
   Workflow,
   Brain,
-  BarChart
+  BarChart,
+  Building2,
+  Utensils,
+  Heart,
+  Building,
+  Plane,
+  Users,
+  ShoppingCart,
+  Stethoscope,
+  GraduationCap,
+  Target,
+  Rocket,
+  Trophy,
+  Crosshair,
+  Settings,
+  Handshake,
+  DollarSign,
+  Sparkles,
+  Clock,
+  FileText,
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  Search,
+  Lightbulb,
+  Code,
+  Wrench,
+  Play,
+  TrendingUp as TrendingUpIcon
 } from 'lucide-react';
 import AnimatedBeamDemo from './components/animated-beam-demo';
 import { ContactForm } from './components/ContactForm';
 import { initGSAP, enhancedColors } from './utils/gsap';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import TemplatesPage from './components/templates/TemplatesPage';
 
 // Theme Context
 interface ThemeContextType {
@@ -42,8 +73,9 @@ function App() {
   // Add refs for scrolling
   const solutionsRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
-  const useCasesRef = useRef<HTMLDivElement>(null);
+  const processRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   // Initialize GSAP
   useEffect(() => {
@@ -65,28 +97,47 @@ function App() {
   const handleScrollToTestimonials = () => {
     testimonialsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-  const handleScrollToUseCases = () => {
-    useCasesRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToProcess = () => {
+    processRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
   const handleScrollToFeatures = () => {
     featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+  const handleScrollToContact = () => {
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   const handleOpenScheduling = () => {
-    window.open('https://calendly.com/your-scheduling-link', '_blank');
+    handleScrollToContact();
+  };
+
+  const navigateToTemplates = () => {
+    // This would navigate to a separate templates page
+    window.location.href = '/templates';
+  };
+
+  const navigateToAbout = () => {
+    // This would navigate to a separate about page
+    window.location.href = '/about';
+  };
+
+  const navigateToTeam = () => {
+    // This would navigate to a separate team page
+    window.location.href = '/team';
   };
 
   const toggleTheme = () => setIsDark(!isDark);
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.5, ease: "easeOut" }
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
@@ -104,42 +155,43 @@ function App() {
     { 
       title: "Proven Track Record", 
       description: "We've successfully automated workflows for 100+ businesses across various industries, delivering measurable ROI and efficiency gains.",
-      icon: "🏆"
+      icon: <Trophy className="w-8 h-8 text-purple-500" />
     },
     { 
       title: "Industry Expertise", 
       description: "Deep understanding of business processes across hospitality, healthcare, e-commerce, and professional services sectors.",
-      icon: "🎯"
+      icon: <Crosshair className="w-8 h-8 text-cyan-500" />
     },
     { 
       title: "Custom Solutions", 
       description: "No one-size-fits-all approach. Every automation is tailored to your specific business needs and existing systems.",
-      icon: "⚙️"
+      icon: <Settings className="w-8 h-8 text-purple-500" 
+      />
     },
     { 
       title: "Ongoing Support", 
       description: "We don't just build and leave. Continuous support, optimization, and maintenance to ensure your automations keep performing.",
-      icon: "🤝"
+      icon: <Handshake className="w-8 h-8 text-cyan-500" />
     },
     { 
       title: "Cost-Effective", 
       description: "Our solutions typically pay for themselves within 3-6 months through time savings and increased productivity.",
-      icon: "💰"
+      icon: <DollarSign className="w-8 h-8 text-purple-500" />
     },
     { 
       title: "Future-Proof Technology", 
       description: "Built with scalable, modern tools that grow with your business and integrate with your existing tech stack.",
-      icon: "🚀"
+      icon: <Rocket className="w-8 h-8 text-cyan-500" />
     },
     { 
       title: "Quick Implementation", 
       description: "Most automations are live within 2-4 weeks, not months. Fast setup means faster results for your business.",
-      icon: "⚡"
+      icon: <Clock className="w-8 h-8 text-purple-500" />
     },
     { 
       title: "Transparent Process", 
       description: "Clear communication throughout the project. You'll always know what we're building and how it works.",
-      icon: "📋"
+      icon: <FileText className="w-8 h-8 text-cyan-500" />
     }
   ];
 
@@ -196,40 +248,38 @@ function App() {
     }
   ];
 
-  const downloadSystem = {
-    title: "Our Process",
-    steps: [
-      {
-        title: "Discovery",
-        description: "Understand your needs and goals",
-        icon: "🎯"
-      },
-      {
-        title: "Strategy",
-        description: "Design optimal automation solution",
-        icon: "⚡"
-      },
-      {
-        title: "Implementation",
-        description: "Deploy and optimize your solution",
-        icon: "🚀"
-      }
-    ],
-    enterpriseProcess: [
-      {
-        title: "Initial Assessment",
-        description: "We'll analyze your current processes and identify automation opportunities"
-      },
-      {
-        title: "Solution Design",
-        description: "Our team will design a custom automation strategy"
-      },
-      {
-        title: "Ongoing Support",
-        description: "Get continuous support and optimization"
-      }
-    ]
-  };
+  const processSteps = [
+    {
+      title: "Discovery",
+      description: "We begin by understanding your business objectives, challenges, and data landscape to identify automation opportunities.",
+      icon: <Search className="w-8 h-8 text-purple-500" />
+    },
+    {
+      title: "Strategy",
+      description: "Our team develops a comprehensive automation roadmap aligned with your business goals and technical requirements.",
+      icon: <Lightbulb className="w-8 h-8 text-cyan-500" />
+    },
+    {
+      title: "Development",
+      description: "We build, configure, and fine-tune automation workflows using state-of-the-art tools and your specific requirements.",
+      icon: <Code className="w-8 h-8 text-purple-500" />
+    },
+    {
+      title: "Integration",
+      description: "Our engineers seamlessly integrate automation solutions into your existing systems and workflows.",
+      icon: <Wrench className="w-8 h-8 text-cyan-500" />
+    },
+    {
+      title: "Deployment",
+      description: "We ensure smooth deployment with comprehensive testing and monitoring systems in place.",
+      icon: <Play className="w-8 h-8 text-purple-500" />
+    },
+    {
+      title: "Optimization",
+      description: "Continuous improvement through performance monitoring, refinement, and feature enhancement.",
+      icon: <TrendingUpIcon className="w-8 h-8 text-cyan-500" />
+    }
+  ];
 
   const services = [
     {
@@ -260,15 +310,16 @@ function App() {
     },
     {
       title: "Data Automation",
-      description: "Streamline your data processing and analysis workflows",
+      description: "Streamline, visualize your data processing, performance, with real-time dashboards and analytics.",
       icon: <BarChart className="w-12 h-12 text-green-500" />,
       image: "/images/services/data.png",
       features: [
         "Data extraction and processing",
-        "Automated reporting",
-        "Data synchronization",
         "ETL workflows",
-        "Real-time analytics"
+        "Real-time reporting", 
+        "Integrates with BI tools",
+        "And many more"
+
       ]
     },
     {
@@ -309,8 +360,51 @@ function App() {
         "Training session scheduling",
         "Progress tracking and reminders"
       ]
+    },
+    {
+      title: "Conversational Chatbots",
+      description: "Deploy AI-powered chatbots to engage customers, answer questions, and automate support 24/7.",
+      icon: <MessageSquare className="w-12 h-12 text-cyan-500" />,
+      image: "/images/services/chatbot.png",
+      features: [
+        "24/7 customer support",
+        "Lead qualification",
+        "Appointment scheduling",
+        "FAQ automation",
+        "Seamless handoff to human agents"
+      ]
+    },
+    {
+      title: "AI Caller & Receptionist",
+      description: "Automate inbound and outbound calls, appointment reminders, and customer reception with AI voice technology.",
+      icon: <Bot className="w-12 h-12 text-purple-500" />,
+      image: "/images/services/aicaller.png",
+      features: [
+        "Automated call answering",
+        "Appointment reminders",
+        "Voice-based lead capture",
+        "Natural language conversations",
+        "CRM integration"
+      ]
+    },
+    {
+      title: "CRM Integration",
+      description: "Seamlessly connect your business tools and automate workflows with powerful CRM integrations.",
+      icon: <Database className="w-12 h-12 text-cyan-500" />,
+      image: "/images/services/crm.png",
+      features: [
+        "Sync contacts and leads",
+        "Automated data entry",
+        "Two-way integration",
+        "Custom triggers and actions",
+        "Works with Salesforce, HubSpot, Zoho, and more"
+      ]
     }
   ];
+
+  // Remove the separate 'Dashboards & Analytics' card
+  const dashboardsIndex = services.findIndex(s => s.title === 'Dashboards & Analytics');
+  if (dashboardsIndex !== -1) services.splice(dashboardsIndex, 1);
 
   const testimonials = [
     {
@@ -337,436 +431,432 @@ function App() {
   ];
 
   const industries = [
-    { name: "Hotels & Hospitality", icon: "🏨" },
-    { name: "Restaurants", icon: "🍽️" },
-    { name: "Care Homes", icon: "🏥" },
-    { name: "Real Estate", icon: "🏢" },
-    { name: "Travel Agencies", icon: "✈️" },
-    { name: "Professional Coaches", icon: "👥" },
-    { name: "E-commerce", icon: "🛍️" },
-    { name: "Healthcare", icon: "⚕️" },
-    { name: "Education", icon: "📚" }
+    { name: "Hotels & Hospitality", icon: <Building2 className="w-8 h-8 text-blue-500" /> },
+    { name: "Restaurants", icon: <Utensils className="w-8 h-8 text-blue-500" /> },
+    { name: "Care Homes", icon: <Heart className="w-8 h-8 text-blue-500" /> },
+    { name: "Real Estate", icon: <Building className="w-8 h-8 text-blue-500" /> },
+    { name: "Travel Agencies", icon: <Plane className="w-8 h-8 text-blue-500" /> },
+    { name: "Professional Coaches", icon: <Users className="w-8 h-8 text-blue-500" /> },
+    { name: "E-commerce", icon: <ShoppingCart className="w-8 h-8 text-blue-500" /> },
+    { name: "Healthcare", icon: <Stethoscope className="w-8 h-8 text-blue-500" /> },
+    { name: "Education", icon: <GraduationCap className="w-8 h-8 text-blue-500" /> }
   ];
 
   const themeClasses = isDark 
-    ? `min-h-screen bg-gradient-to-br from-[${enhancedColors.dark.background.from}] via-[${enhancedColors.dark.background.via}] to-[${enhancedColors.dark.background.to}] text-white relative`
+    ? `min-h-screen bg-black text-white relative`
     : `min-h-screen bg-[#f7fafd] text-gray-900 relative`;
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <AuthProvider>
-        <div className={`${themeClasses} font-['Space_Grotesk'] transition-colors duration-300 relative`}>
-          {/* Animated Gradient/Vignette Overlay for Dark Theme - absolute and only in dark mode */}
-          {isDark && (
-            <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#2d1a4a]/80 via-[#0ea5e9]/60 to-[#06b6d4]/70 opacity-80 animate-gradient-x" style={{mixBlendMode: 'screen'}}></div>
-              <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black opacity-60" style={{mixBlendMode: 'multiply'}}></div>
-            </div>
-          )}
-
-          {/* Header with Theme Toggle */}
-          <header className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md border-b ${
-            isDark
-              ? `${scrolled ? 'bg-[#0e0f11]/95 shadow-2xl border-cyan-900/40' : 'bg-[#0e0f11]/80 border-gray-800'}`
-              : `${scrolled ? 'bg-white/95 shadow-2xl border-cyan-400/30' : 'bg-gray-50/80 border-gray-200'}`
-          }`}>
-            <div className="max-w-6xl mx-auto flex justify-between items-center">
-              <div className="flex items-center gap-2 sm:gap-3 transition-all duration-300">
-                <img 
-                  src="/logo.png" 
-                  alt="OpSyde Logo" 
-                  className={`transition-all duration-300 ${scrolled ? 'w-5 h-5 sm:w-7 sm:h-7' : 'w-6 h-6 sm:w-8 sm:h-8'}`}
-                />
-                <span className={`text-lg sm:text-xl font-bold transition-all duration-300 ${scrolled ? 'scale-95' : ''}`}>OpSyde</span>
+    <Router>
+      <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+        <AuthProvider>
+          <div className={`${themeClasses} font-['Space_Grotesk'] transition-colors duration-300 relative`}>
+            {/* Animated Gradient/Vignette Overlay for Dark Theme - absolute and only in dark mode */}
+            {isDark && (
+              <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-cyan-900/20 to-black opacity-80 animate-gradient-x" style={{mixBlendMode: 'screen'}}></div>
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black opacity-60" style={{mixBlendMode: 'multiply'}}></div>
               </div>
-              {/* Navbar Links */}
-              <nav className="hidden md:flex gap-6 text-base font-medium items-center">
-                <a href="#" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Home</a>
-                <a href="#features" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Solutions</a>
-                <a href="#templates" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Templates</a>
-                <a href="#process" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Process</a>
-                <a href="#testimonials" className="transition-colors duration-200 hover:text-cyan-400 focus:text-cyan-400">Case Studies</a>
-                <a href="#contact" className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold shadow-md hover:from-purple-500 hover:to-cyan-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400">Book a Call</a>
-              </nav>
-              <motion.button
-                onClick={toggleTheme}
-                className={`p-2 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
-                  isDark 
-                    ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400' 
-                    : 'bg-white hover:bg-gray-100 text-gray-600 shadow-md'
-                }`}
-                whileHover={{ scale: 1.08, boxShadow: '0 0 0 4px #06b6d4, 0 0 16px #8b5cf6' }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
-              </motion.button>
-            </div>
-          </header>
+            )}
 
-          {/* Enhanced Hero Section */}
-          <HeroSection 
-            isDark={isDark}
-            onOpenScheduling={handleOpenScheduling}
-            onScrollToFeatures={handleScrollToFeatures}
-          />
-          {/* Section Divider */}
-          {isDark && (
-            <div aria-hidden="true" className="-mt-2 mb-2 sm:mb-4">
-              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
-                <path d="M0,40 Q360,80 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-1)"/>
-                <defs>
-                  <linearGradient id="divider-gradient-1" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#0ea5e9" />
-                    <stop offset="0.5" stopColor="#8b5cf6" />
-                    <stop offset="1" stopColor="#ec4899" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          )}
-
-          {/* Features Section */}
-          <motion.section 
-            ref={featuresRef}
-            className={`px-4 sm:px-6 py-16 sm:py-20 mt-12 sm:mt-16 ${
-              isDark ? 'bg-gray-900/30' : 'bg-gray-100'
-            }`}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-3xl sm:text-4xl font-bold text-center mb-4 sm:mb-6"
-                variants={fadeInUp}
-              >
-                Why Choose OpSyde?
-              </motion.h2>
-              
-              <motion.p 
-                className={`text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto px-4 ${
-                  isDark ? 'text-gray-300' : 'text-gray-600'
-                }`}
-                variants={fadeInUp}
-              >
-                We combine industry expertise with cutting-edge automation to deliver measurable results
-              </motion.p>
-
-              <ServiceCards isDark={isDark} services={services} />
-            </div>
-          </motion.section>
-          {/* Section Divider */}
-          {isDark && (
-            <div aria-hidden="true" className="-mt-4 -mb-4">
-              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
-                <path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-2)"/>
-                <defs>
-                  <linearGradient id="divider-gradient-2" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#06b6d4" />
-                    <stop offset="0.5" stopColor="#8b5cf6" />
-                    <stop offset="1" stopColor="#f472b6" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          )}
-
-          {/* Add Templates Section */}
-          <motion.section
-            className={`px-4 sm:px-6 py-16 sm:py-20 ${isDark ? 'bg-gray-900/30' : 'bg-white'}`}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
-                variants={fadeInUp}
-              >
-                Free Automation Templates
-              </motion.h2>
-              
-              <TemplateGrid />
-            </div>
-          </motion.section>
-          {/* Section Divider */}
-          {isDark && (
-            <div aria-hidden="true" className="-mt-4 -mb-4">
-              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
-                <path d="M0,40 Q360,80 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-3)"/>
-                <defs>
-                  <linearGradient id="divider-gradient-3" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#f472b6" />
-                    <stop offset="0.5" stopColor="#06b6d4" />
-                    <stop offset="1" stopColor="#8b5cf6" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          )}
-
-          {/* Testimonials Section */}
-          <motion.section 
-            ref={testimonialsRef}
-            className={`px-4 sm:px-6 py-16 sm:py-20 ${isDark ? 'bg-gray-900/30' : 'bg-gray-100'}`}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
-                variants={fadeInUp}
-              >
-                Case Studies
-              </motion.h2>
-              
-              <div className="text-center text-gray-500 mb-8 text-sm sm:text-base">See how we've helped clients automate and grow.</div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                {testimonials.map((testimonial, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-4 sm:p-6 rounded-xl ${isDark ? 'glass-dark border border-cyan-500/20 shadow-xl' : 'glass border border-purple-400/20 shadow-xl'}`}
-                    variants={fadeInUp}
-                  >
-                    <div className="flex items-center gap-3 sm:gap-4 mb-4">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0">
-                        <ImagePlaceholder 
-                          type="testimonial" 
-                          index={index}
-                          imageSrc={testimonial.image}
-                        />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="font-semibold text-sm sm:text-base">{testimonial.name}</h4>
-                        <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                          {testimonial.role}
-                        </p>
-                        <p className={`text-xs sm:text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                          {testimonial.company}
-                        </p>
-                      </div>
-                    </div>
-                    <p className={`italic text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                      "{testimonial.content}"
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.section>
-          {/* Section Divider */}
-          {isDark && (
-            <div aria-hidden="true" className="-mt-4 -mb-4">
-              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
-                <path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-4)"/>
-                <defs>
-                  <linearGradient id="divider-gradient-4" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#8b5cf6" />
-                    <stop offset="0.5" stopColor="#0ea5e9" />
-                    <stop offset="1" stopColor="#f472b6" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          )}
-
-          {/* Industries Ticker */}
-          <motion.section 
-            className="px-4 sm:px-6 py-16 sm:py-20"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
-                variants={fadeInUp}
-              >
-                Industries We Serve
-              </motion.h2>
-              
-              <motion.div 
-                className="overflow-hidden"
-                variants={fadeInUp}
-              >
-                <div className="flex animate-scroll">
-                  {[...industries, ...industries].map((industry, index) => (
-                    <div
-                      key={index}
-                      className={`flex-none mx-4 sm:mx-8 p-4 sm:p-6 rounded-xl ${
-                        isDark 
-                          ? 'bg-gray-900/50 border border-gray-800' 
-                          : 'bg-white border border-gray-200 shadow-lg'
-                      }`}
-                    >
-                      <div className="text-2xl sm:text-4xl mb-2 sm:mb-3">{industry.icon}</div>
-                      <h3 className="text-sm sm:text-lg font-semibold">{industry.name}</h3>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </motion.section>
-          {/* Section Divider */}
-          {isDark && (
-            <div aria-hidden="true" className="-mt-4 -mb-4">
-              <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-12">
-                <path d="M0,40 Q360,80 720,40 T1440,40 V80 H0 Z" fill="url(#divider-gradient-5)"/>
-                <defs>
-                  <linearGradient id="divider-gradient-5" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#06b6d4" />
-                    <stop offset="0.5" stopColor="#f472b6" />
-                    <stop offset="1" stopColor="#8b5cf6" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-          )}
-
-          {/* Download System Section */}
-          <motion.section 
-            className={`px-4 sm:px-6 py-16 sm:py-20 ${
-              isDark ? 'bg-gray-900/30' : 'bg-gray-100'
-            }`}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <motion.h2 
-                className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
-                variants={fadeInUp}
-              >
-                {downloadSystem.title}
-              </motion.h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
-                {downloadSystem.steps.map((step, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-4 sm:p-6 rounded-xl text-center ${
-                      isDark 
-                        ? 'bg-gray-800/50 border border-gray-700' 
-                        : 'bg-white border border-gray-200 shadow-lg'
-                    }`}
-                    variants={fadeInUp}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{step.icon}</div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className={`text-sm sm:text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{step.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.section>
-
-          {/* CTA Section */}
-          <motion.section 
-            className={`px-4 sm:px-6 py-16 sm:py-20 ${
-              isDark ? 'bg-gray-900/30' : 'bg-gray-100'
-            }`}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-                <motion.div 
-                  className="text-center lg:text-left"
-                  variants={fadeInUp}
-                >
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-                    Ready to Automate Your Workflow?
-                  </h2>
-                  
-                  <p className={`text-lg sm:text-xl mb-6 sm:mb-8 ${
-                    isDark ? 'text-gray-300' : 'text-gray-600'
-                  }`}>
-                    Join thousands of professionals who've transformed their productivity with our automation templates.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <motion.button 
-                      className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-purple-500 transition-all duration-300 text-white flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handleOpenScheduling}
-                    >
-                      <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
-                      Schedule a Call
-                    </motion.button>
-                    
-                    <motion.button 
-                      className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center gap-2 justify-center text-cyan-600 border-cyan-400 bg-white hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400 focus:outline-none focus:ring-2 focus:ring-cyan-400`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handleScrollToFeatures}
-                    >
-                      View Solutions
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </motion.button>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  variants={fadeInUp}
-                  className={`p-6 sm:p-8 rounded-xl ${
-                    isDark 
-                      ? 'bg-gray-800/50 border border-gray-700' 
-                      : 'bg-white border border-gray-200 shadow-lg'
-                  }`}
-                >
-                  <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Get in Touch</h3>
-                  <ContactForm />
-                </motion.div>
-              </div>
-            </div>
-          </motion.section>
-          
-          {/* Footer */}
-          <footer className={`px-4 sm:px-6 py-8 sm:py-12 border-t ${
-            isDark ? 'border-gray-800' : 'border-gray-200'
-          }`}>
-            <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col md:flex-row justify-between items-center">
-                <div className="flex items-center gap-3 mb-4 md:mb-0">
+            {/* Header with Theme Toggle */}
+            <header className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md border-b ${
+              isDark
+                ? `${scrolled ? 'bg-zinc-900/95 shadow-2xl border-purple-500/20' : 'bg-zinc-900/80 border-white/10'}`
+                : `${scrolled ? 'bg-white/95 shadow-2xl border-purple-400/30' : 'bg-gray-50/80 border-gray-200'}`
+            }`}>
+              <div className="max-w-6xl mx-auto flex justify-between items-center">
+                <div className="flex items-center gap-2 sm:gap-3 transition-all duration-300">
                   <img 
                     src="/logo.png" 
                     alt="OpSyde Logo" 
-                    className="w-6 h-6 sm:w-8 sm:h-8"
+                    className={`transition-all duration-300 ${scrolled ? 'w-5 h-5 sm:w-7 sm:h-7' : 'w-6 h-6 sm:w-8 sm:h-8'}`}
                   />
-                  <span className="text-lg sm:text-xl font-bold">OpSyde</span>
+                  <span className={`text-lg sm:text-xl font-bold transition-all duration-300 ${scrolled ? 'scale-95' : ''}`}>OpSyde</span>
                 </div>
-                <div className={`flex gap-6 sm:gap-8 text-sm sm:text-base ${
-                  isDark ? 'text-gray-400' : 'text-gray-600'
-                }`}>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">Templates</a>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">Support</a>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">Contact</a>
-                </div>
+                {/* Navbar Links */}
+                <nav className="hidden md:flex gap-6 text-base font-medium items-center">
+                  <Link to="/" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Home</Link>
+                  <a href="#features" onClick={(e) => { e.preventDefault(); handleScrollToFeatures(); }} className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Solutions</a>
+                  <a href="#process" onClick={(e) => { e.preventDefault(); handleScrollToProcess(); }} className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Process</a>
+                  <a href="#testimonials" onClick={(e) => { e.preventDefault(); handleScrollToTestimonials(); }} className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Case Studies</a>
+                  <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link>
+                  <a href="#contact" onClick={(e) => { e.preventDefault(); handleScrollToContact(); }} className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400">Book a Call</a>
+                </nav>
               </div>
-              <div className={`mt-6 sm:mt-8 pt-6 sm:pt-8 border-t text-center text-sm sm:text-base ${
-                isDark ? 'border-gray-800 text-gray-400' : 'border-gray-200 text-gray-600'
-              }`}>
-                <p>&copy; 2024 OpSyde. All rights reserved.</p>
-              </div>
-            </div>
-          </footer>
+            </header>
 
-          {/* Add Chatbot before the closing div */}
-          <Chatbot />
-        </div>
-      </AuthProvider>
-    </ThemeContext.Provider>
+            <Routes>
+              <Route path="/" element={
+                <>
+                  {/* Enhanced Hero Section */}
+                  <HeroSection 
+                    isDark={isDark}
+                    onOpenScheduling={handleOpenScheduling}
+                    onScrollToFeatures={handleScrollToFeatures}
+                  />
+                  {/* Section Divider */}
+                  {isDark && (
+                    <div aria-hidden="true" className="-mt-4 -mb-4">
+                      <div className="w-full h-px bg-gray-800"></div>
+                    </div>
+                  )}
+
+                  {/* Features Section */}
+                  <motion.section 
+                    ref={featuresRef}
+                    className={`px-4 sm:px-6 py-16 sm:py-20 mt-12 sm:mt-16 ${
+                      isDark ? 'bg-zinc-900/30' : 'bg-gray-100'
+                    }`}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                  >
+                    <div className="max-w-6xl mx-auto">
+                      <motion.h2 
+                        className="text-3xl sm:text-4xl font-bold text-center mb-4 sm:mb-6"
+                        variants={fadeInUp}
+                      >
+                        What We Deliver?
+                      </motion.h2>
+                      
+                      <motion.p 
+                        className={`text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto px-4 ${
+                          isDark ? 'text-zinc-300' : 'text-gray-600'
+                        }`}
+                        variants={fadeInUp}
+                      >
+                        We combine industry expertise with cutting-edge automation to deliver measurable results
+                      </motion.p>
+
+                      <ServiceCards isDark={isDark} services={services} />
+                    </div>
+                  </motion.section>
+                  {/* Section Divider */}
+                  {isDark && (
+                    <div aria-hidden="true" className="-mt-4 -mb-4">
+                      <div className="w-full h-px bg-gray-800"></div>
+                    </div>
+                  )}
+
+                  {/* Why Choose Us Section */}
+                  <motion.section 
+                    className="px-4 sm:px-6 py-16 sm:py-20 bg-zinc-900/30"
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                  >
+                    <div className="max-w-6xl mx-auto">
+                      <motion.h2 
+                        className="text-3xl sm:text-4xl font-bold text-center mb-4 sm:mb-6"
+                        variants={fadeInUp}
+                      >
+                        Why Choose Us
+                      </motion.h2>
+                      <motion.p 
+                        className="text-lg sm:text-xl text-center mb-12 sm:mb-16 max-w-3xl mx-auto px-4 text-zinc-300"
+                        variants={fadeInUp}
+                      >
+                        We combine industry expertise with cutting-edge automation to deliver measurable results
+                      </motion.p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        {whyChooseUs.map((item, idx) => (
+                          <motion.div
+                            key={idx}
+                            className="bg-zinc-800/50 border border-white/10 rounded-2xl shadow-lg p-8 flex flex-col items-center text-center hover:bg-zinc-800/80 transition-colors"
+                            variants={fadeInUp}
+                          >
+                            <span className="mb-4">{item.icon}</span>
+                            <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
+                            <p className="text-zinc-300 text-base">{item.description}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.section>
+                  {/* Section Divider */}
+                  {isDark && (
+                    <div aria-hidden="true" className="-mt-4 -mb-4">
+                      <div className="w-full h-px bg-gray-800"></div>
+                    </div>
+                  )}
+
+                  {/* Testimonials Section */}
+                  <motion.section 
+                    ref={testimonialsRef}
+                    className={`px-4 sm:px-6 py-16 sm:py-20 ${isDark ? 'bg-zinc-900/50' : 'bg-gray-50'}`}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                  >
+                    <div className="max-w-6xl mx-auto">
+                      <motion.h2 
+                        className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
+                        variants={fadeInUp}
+                      >
+                        Case Studies
+                      </motion.h2>
+                      
+                      <div className="text-center text-zinc-400 mb-8 text-sm sm:text-base">See how we've helped clients automate and grow.</div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                        {testimonials.map((testimonial, index) => (
+                          <motion.div
+                            key={index}
+                            className={`p-6 sm:p-8 rounded-xl border transition-all duration-300 ${
+                              isDark 
+                                ? 'bg-zinc-800/50 border-white/10 hover:border-purple-500' 
+                                : 'bg-white border-gray-200 hover:border-purple-500 shadow-sm'
+                            }`}
+                            variants={fadeInUp}
+                            whileHover={{ y: -2 }}
+                          >
+                            {/* Testimonial Icon */}
+                            <div className="mb-6 flex justify-center">
+                              <div className={`w-16 h-16 flex items-center justify-center rounded-full border-2 overflow-hidden ${
+                                isDark
+                                  ? 'bg-zinc-700 border-white/10'
+                                  : 'bg-gray-100 border-gray-300'
+                              }`}>
+                                <ImagePlaceholder 
+                                  type="testimonial" 
+                                  index={index}
+                                  imageSrc={testimonial.image}
+                                  className="w-full h-full rounded-full"
+                                />
+                              </div>
+                            </div>
+                            
+                            <div className="text-center mb-6">
+                              <h4 className="text-xl font-bold mb-2 text-white">{testimonial.name}</h4>
+                              <p className={`text-sm ${isDark ? 'text-zinc-400' : 'text-gray-600'}`}>
+                                {testimonial.role}
+                              </p>
+                              <p className={`text-sm ${isDark ? 'text-zinc-400' : 'text-gray-600'}`}>
+                                {testimonial.company}
+                              </p>
+                            </div>
+                            
+                            <p className={`italic text-base text-center ${isDark ? 'text-zinc-300' : 'text-gray-600'}`}>
+                              "{testimonial.content}"
+                            </p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.section>
+                  {/* Section Divider */}
+                  {isDark && (
+                    <div aria-hidden="true" className="-mt-4 -mb-4">
+                      <div className="w-full h-px bg-gray-800"></div>
+                    </div>
+                  )}
+
+                  {/* Process Section */}
+                  <motion.section 
+                    ref={processRef}
+                    className={`px-4 sm:px-6 py-16 sm:py-20 ${
+                      isDark ? 'bg-zinc-900/50' : 'bg-gray-50'
+                    }`}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer}
+                  >
+                    <div className="max-w-6xl mx-auto">
+                      <motion.h2 
+                        className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
+                        variants={fadeInUp}
+                      >
+                        Our Process
+                      </motion.h2>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        {processSteps.map((step, index) => (
+                          <motion.div
+                            key={index}
+                            className={`p-6 sm:p-8 rounded-xl border transition-all duration-300 ${
+                              isDark 
+                                ? 'bg-zinc-800/50 border-white/10 hover:border-purple-500' 
+                                : 'bg-white border-gray-200 hover:border-purple-500 shadow-sm'
+                            }`}
+                            variants={fadeInUp}
+                            whileHover={{ y: -2 }}
+                          >
+                            {/* Step Icon */}
+                            <div className="flex items-center justify-between mb-6">
+                              <div className={`w-12 h-12 flex items-center justify-center rounded-lg border ${
+                                isDark
+                                  ? 'bg-zinc-700 border-white/10'
+                                  : 'bg-gray-100 border-gray-300'
+                              }`}>
+                                {step.icon}
+                              </div>
+                            </div>
+                            
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-white">{step.title}</h3>
+                            <p className={`text-base ${isDark ? 'text-zinc-400' : 'text-gray-600'}`}>{step.description}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.section>
+
+                  {/* Industries Section */}
+                  <motion.section 
+                    className="px-4 sm:px-6 py-16 sm:py-20 bg-gradient-to-br from-purple-900/20 to-cyan-900/20"
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={staggerContainer}
+                  >
+                    <div className="max-w-6xl mx-auto">
+                      <motion.h2 
+                        className="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16"
+                        variants={fadeInUp}
+                      >
+                        Industries We Serve
+                      </motion.h2>
+                      
+                      <div className="relative w-full overflow-hidden">
+                        <div className="flex gap-4 sm:gap-6 animate-scroll" style={{ width: 'max-content' }}>
+                          {industries.map((industry, index) => (
+                            <motion.div
+                              key={index}
+                              className={`flex-shrink-0 w-64 p-6 rounded-xl border transition-all duration-300 text-center shadow-sm hover:shadow-md ${
+                                isDark 
+                                  ? 'bg-zinc-800/50 border-white/10 hover:border-purple-500' 
+                                  : 'bg-white border-gray-200 hover:border-purple-500'
+                              }`}
+                              whileHover={{ y: -2 }}
+                            >
+                              {/* Industry Icon */}
+                              <div className="mb-4 flex justify-center">
+                                <div className={`w-12 h-12 flex items-center justify-center rounded-lg border ${
+                                  isDark
+                                    ? 'bg-zinc-800 border-white/10'
+                                    : 'bg-gray-100 border-gray-300'
+                                }`}>
+                                  {industry.icon}
+                                </div>
+                              </div>
+                              
+                              <h3 className="text-base font-semibold text-white">{industry.name}</h3>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.section>
+
+                  {/* CTA Section */}
+                  <motion.section 
+                    ref={contactRef}
+                    className={`px-4 sm:px-6 py-16 sm:py-20 ${
+                      isDark ? 'bg-zinc-900/50' : 'bg-gray-50'
+                    }`}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    variants={staggerContainer}
+                  >
+                    <div className="max-w-6xl mx-auto">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+                        <motion.div 
+                          className="text-center lg:text-left"
+                          variants={fadeInUp}
+                        >
+                          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+                            Ready to Automate Your Workflow?
+                          </h2>
+                          
+                          <p className={`text-lg sm:text-xl mb-6 sm:mb-8 ${
+                            isDark ? 'text-zinc-300' : 'text-gray-600'
+                          }`}>
+                            Join thousands of professionals who've transformed their productivity with our automation templates.
+                          </p>
+                          
+                          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <motion.button 
+                              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-white flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-purple-500"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={handleOpenScheduling}
+                            >
+                              <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
+                              Schedule a Call
+                            </motion.button>
+                            
+                            <motion.button 
+                              className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center gap-2 justify-center text-purple-400 border-purple-400 bg-transparent hover:bg-purple-400/10 hover:text-purple-300 hover:border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500`}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                              onClick={navigateToTemplates}
+                            >
+                              View Templates
+                              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                            </motion.button>
+                          </div>
+                        </motion.div>
+
+                        <motion.div
+                          variants={fadeInUp}
+                          className={`p-6 sm:p-8 rounded-xl border ${
+                            isDark 
+                              ? 'bg-zinc-800/50 border-white/10' 
+                              : 'bg-white border-gray-200 shadow-sm'
+                          }`}
+                        >
+                          <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">Get in Touch</h3>
+                          <ContactForm />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.section>
+                </>
+              } />
+              <Route path="/templates" element={<TemplatesPage />} />
+            </Routes>
+            
+            {/* Footer */}
+            <footer className={`px-4 sm:px-6 py-8 sm:py-12 border-t ${
+              isDark ? 'border-white/10 bg-zinc-900/50' : 'border-gray-200'
+            }`}>
+              <div className="max-w-6xl mx-auto">
+                <div className="flex flex-col md:flex-row justify-between items-center">
+                  <div className="flex items-center gap-3 mb-4 md:mb-0">
+                    <img 
+                      src="/logo.png" 
+                      alt="OpSyde Logo" 
+                      className="w-6 h-6 sm:w-8 sm:h-8"
+                    />
+                    <span className="text-lg sm:text-xl font-bold text-white">OpSyde</span>
+                  </div>
+                  <div className={`flex gap-6 sm:gap-8 text-sm sm:text-base ${
+                    isDark ? 'text-zinc-400' : 'text-gray-600'
+                  }`}>
+                    <a href="#" className="hover:text-purple-400 transition-colors">Templates</a>
+                    <a href="#" className="hover:text-purple-400 transition-colors">Support</a>
+                    <a href="#" className="hover:text-purple-400 transition-colors">Contact</a>
+                  </div>
+                </div>
+                <div className={`mt-6 sm:mt-8 pt-6 sm:pt-8 border-t text-center text-sm sm:text-base ${
+                  isDark ? 'border-white/10 text-zinc-400' : 'border-gray-200 text-gray-600'
+                }`}>
+                  <p>&copy; 2024 OpSyde. All rights reserved.</p>
+                </div>
+              </div>
+            </footer>
+
+            {/* Add Chatbot before the closing div */}
+            <Chatbot />
+          </div>
+        </AuthProvider>
+      </ThemeContext.Provider>
+    </Router>
   );
 }
 

@@ -365,7 +365,7 @@ export default function AnimatedBeamDemo({ isDark }: AnimatedBeamDemoProps) {
         </div>
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <Circle ref={div4Ref} isDark={isDark} className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-red-500">
+        <Circle ref={div4Ref} isDark={isDark} className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-blue-500">
           <Icons.openai />
         </Circle>
       </div>

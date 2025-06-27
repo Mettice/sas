@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase/client';
-import { MessageSquare, Send, Loader2 } from 'lucide-react';
+import { MessageSquare, Send, Loader2, Mail, Sparkles } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 interface ContactFormProps {
@@ -100,11 +100,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg text-center"
+        className="bg-zinc-800/50 border border-white/10 p-8 rounded-xl text-center"
       >
-        <MessageSquare className="w-12 h-12 text-green-500 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-        <p className="text-gray-600 dark:text-gray-400">
+        <MessageSquare className="w-12 h-12 text-purple-500 mx-auto mb-4" />
+        <h3 className="text-2xl font-bold mb-2 text-white">Message Sent!</h3>
+        <p className="text-zinc-300">
           Thank you for reaching out. We'll get back to you soon.
         </p>
       </motion.div>
@@ -115,18 +115,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
     <motion.form
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`space-y-6 ${className}`}
+      className={`space-y-8 bg-zinc-800/50 border border-white/10 p-8 rounded-xl ${className}`}
       onSubmit={handleSubmit}
     >
       {error && (
-        <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-4 rounded-lg">
+        <div className="bg-red-500/10 text-red-400 p-4 rounded-lg border border-red-500/20 font-semibold">
           {error}
         </div>
       )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
+          <label htmlFor="name" className="block text-base font-semibold mb-2 text-white">
             Name *
           </label>
           <input
@@ -136,13 +135,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             value={formData.name}
             onChange={handleChange}
             placeholder="Enter your name"
-            className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
             required
           />
         </div>
-
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
+          <label htmlFor="email" className="block text-base font-semibold mb-2 text-white">
             Email *
           </label>
           <input
@@ -152,14 +150,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
             required
           />
         </div>
       </div>
-
       <div>
-        <label htmlFor="company" className="block text-sm font-medium mb-2 text-white">
+        <label htmlFor="company" className="block text-base font-semibold mb-2 text-white">
           Company
         </label>
         <input
@@ -169,12 +166,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
           value={formData.company}
           onChange={handleChange}
           placeholder="Enter your company name"
-          className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+          className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
         />
       </div>
-
       <div>
-        <label htmlFor="service" className="block text-sm font-medium mb-2 text-white">
+        <label htmlFor="service" className="block text-base font-semibold mb-2 text-white">
           Service Interest
         </label>
         <select
@@ -182,17 +178,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
           name="service"
           value={formData.service}
           onChange={handleChange}
-          className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black dark:text-white"
+          className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
         >
           <option value="general">General Inquiry</option>
-          <option value="workflow">Custom Workflow Development</option>
-          <option value="ai">AI Integration Services</option>
+          <option value="workflow">Workflow Automation</option>
+          <option value="ai">AI Integration</option>
           <option value="data">Data Automation</option>
+          <option value="leadgen">Lead Generation</option>
+          <option value="marketing">Marketing Automation</option>
+          <option value="onboarding">Customer Onboarding</option>
         </select>
       </div>
-
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">
+        <label htmlFor="message" className="block text-base font-semibold mb-2 text-white">
           Message *
         </label>
         <textarea
@@ -202,15 +200,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
           onChange={handleChange}
           rows={4}
           placeholder="Tell us about your automation needs..."
-          className="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+          className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400 min-h-[120px]"
           required
         />
       </div>
-
       <motion.button
         type="submit"
         disabled={loading}
-        className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
+        className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-bold py-3 rounded-lg mt-6 flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-60"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >

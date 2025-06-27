@@ -524,3 +524,33 @@ select:focus {
 .animate-wiggle {
   animation: wiggle 7s ease-in-out infinite;
 }
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+}
+.scrollbar-thumb-purple-500 {
+  &::-webkit-scrollbar-thumb {
+    background: #8b5cf6;
+  }
+}
+.scrollbar-thumb-cyan-400 {
+  &::-webkit-scrollbar-thumb {
+    background: #22d3ee;
+  }
+}
+.scrollbar-track-transparent {
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Hide scrollbar for industries ticker */
+.industries-ticker::-webkit-scrollbar {
+  display: none;
+}
+.industries-ticker {
+  scrollbar-width: none;
+}

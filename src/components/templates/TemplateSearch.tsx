@@ -19,26 +19,25 @@ export const TemplateSearch: React.FC<TemplateSearchProps> = ({
   const allCategories = ['all', ...categories];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="relative">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search templates..."
-          className="w-full px-4 py-3 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base"
+          className="w-full px-5 py-4 rounded-xl border border-white/10 bg-zinc-900/80 text-white text-lg font-medium placeholder:text-zinc-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 shadow-lg backdrop-blur-md"
         />
       </div>
-
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         {allCategories.map((category) => (
           <button
             key={category}
             onClick={() => onCategoryChange(category)}
-            className={`px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            className={`px-5 py-2 rounded-full text-base font-semibold transition-colors border border-white/10 shadow-sm backdrop-blur-md ${
               selectedCategory === category
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-gradient-to-r from-purple-600 to-cyan-500 text-white shadow-lg'
+                : 'bg-zinc-800/60 text-zinc-200 hover:bg-zinc-700/80'
             }`}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}

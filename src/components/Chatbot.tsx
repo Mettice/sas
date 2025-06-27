@@ -112,7 +112,7 @@ export const Chatbot: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-1.5 rounded-full shadow-lg"
+            className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-1.5 rounded-full shadow-lg border border-gray-200 dark:border-gray-700"
           >
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             <span className="text-sm text-gray-600 dark:text-gray-300">Online</span>
@@ -120,7 +120,7 @@ export const Chatbot: React.FC = () => {
         )}
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl active:scale-95"
+          className="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -135,13 +135,13 @@ export const Chatbot: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed inset-0 sm:bottom-20 sm:right-4 sm:inset-auto sm:w-96 bg-white dark:bg-gray-900 rounded-none sm:rounded-lg shadow-xl z-50 overflow-hidden border-0 sm:border sm:border-gray-200 dark:sm:border-gray-800"
+            className="fixed inset-0 sm:bottom-20 sm:right-4 sm:inset-auto sm:w-96 bg-white dark:bg-gray-900 rounded-none sm:rounded-lg shadow-xl z-50 overflow-hidden border-0 sm:border sm:border-gray-200 dark:sm:border-gray-700"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
             {/* Header with Swipe Indicator */}
-            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center bg-gradient-to-r from-purple-500 to-cyan-500 text-white">
+            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-blue-600 text-white">
               <div className="flex items-center gap-2">
                 <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
                 <div>

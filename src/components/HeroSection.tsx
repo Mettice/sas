@@ -9,6 +9,7 @@ import {
   enhancedColors 
 } from '../utils/gsap';
 import AnimatedBeamDemo from './animated-beam-demo';
+import { Sparkles, ChevronRight } from 'lucide-react';
 
 interface HeroSectionProps {
   isDark: boolean;
@@ -26,7 +27,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const particlesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!heroRef.current) return;
@@ -54,7 +54,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         ease: 'back.out(1.7)'
       });
 
-      // Title animation with character reveal
+      // Title animation
       tl.to(titleRef.current, {
         opacity: 1,
         y: 0,
@@ -104,17 +104,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         floating(logoRef.current, { y: -15, duration: 3 });
       }
 
-      // Parallax effect for background elements
-      if (particlesRef.current) {
-        parallax(particlesRef.current, 0.3);
-      }
-
       // Animate CTA buttons on hover
       const buttons = ctaRef.current?.querySelectorAll('button');
       buttons?.forEach(button => {
         button.addEventListener('mouseenter', () => {
           gsap.to(button, {
-            scale: 1.05,
+            scale: 1.02,
             duration: 0.3,
             ease: 'power2.out'
           });
@@ -146,160 +141,74 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     ));
   };
 
-  const colors = enhancedColors[isDark ? 'dark' : 'light'];
-
   return (
     <motion.section 
       ref={heroRef}
-      className={`relative pt-32 pb-20 sm:pt-40 sm:pb-24 text-center ${isDark ? '' : 'bg-white border-b border-gray-200 shadow-sm'}`}
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black text-white"
       initial="initial"
       animate="animate"
     >
-      {/* Animated Gradient Background (dark mode only for now) */}
-      {isDark && (
-        <>
-          <div className="absolute inset-0 -z-10 animate-gradient-hero" aria-hidden="true"></div>
-          {/* Floating Particles */}
-          <div ref={particlesRef} className="absolute inset-0 pointer-events-none -z-10">
-            <div className="absolute top-20 left-10 w-8 h-8 bg-cyan-400/40 rounded-full blur-2xl animate-float-slow"></div>
-            <div className="absolute top-40 right-20 w-12 h-12 bg-purple-400/30 rounded-full blur-2xl animate-float-medium"></div>
-            <div className="absolute bottom-40 left-1/4 w-6 h-6 bg-pink-400/40 rounded-full blur-2xl animate-float-fast"></div>
-            <div className="absolute top-1/2 left-1/2 w-10 h-10 bg-green-400/30 rounded-full blur-2xl animate-float-medium"></div>
-            <div className="absolute bottom-20 right-10 w-7 h-7 bg-orange-400/30 rounded-full blur-2xl animate-float-slow"></div>
-          </div>
-          {/* Animated Accent Elements */}
-          <svg className="absolute left-12 top-32 w-16 h-16 opacity-30 pointer-events-none blur-sm animate-spin-slow" viewBox="0 0 100 100" fill="none"><polygon points="50,10 90,90 10,90" fill="#8b5cf6" /></svg>
-          <svg className="absolute right-24 top-16 w-12 h-12 opacity-20 pointer-events-none animate-float-medium" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" fill="#06b6d4" /></svg>
-          <svg className="absolute left-1/3 bottom-24 w-14 h-14 opacity-20 pointer-events-none animate-spin-reverse-slow" viewBox="0 0 100 100" fill="none"><polygon points="50,10 90,35 75,90 25,90 10,35" fill="#ec4899" /></svg>
-          <svg className="absolute right-1/4 bottom-10 w-24 h-8 opacity-20 pointer-events-none animate-wiggle" viewBox="0 0 100 30" fill="none"><path d="M0,15 Q25,0 50,15 T100,15" stroke="#fbbf24" strokeWidth="4" fill="none" /></svg>
-        </>
-      )}
-
-      <motion.div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        {/* Logo */}
-        <motion.div 
-          ref={logoRef}
-          className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8"
-          whileHover={{ 
-            scale: 1.1,
-            rotate: 5,
-            transition: { duration: 0.3 }
-          }}
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/20 to-black"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-cyan-600/10 rounded-full filter blur-3xl"></div>
+      </div>
+      <motion.div className="container mx-auto px-4 z-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto"
         >
-          <img 
-            src="/logo.png" 
-            alt="OpSyde Logo" 
-            className="w-full h-full object-contain drop-shadow-lg"
-          />
-        </motion.div>
-        
-        {/* Main Title */}
-        <motion.div className="relative w-full flex flex-col items-center justify-center mb-8" initial="initial" animate="animate">
-          {/* Soft Glow Behind Heading (dark mode only) */}
-          {isDark && (
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 mx-auto w-3/4 h-2/3 -z-10 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400 opacity-40 blur-3xl"></div>
-          )}
-          {/* Fallback solid color heading */}
-          <h1
-            className={`text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight z-10 relative ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-            aria-hidden="false"
-          >
-            {splitText('Optimize Your Operations')}
-            <br />
-            <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              {splitText('with Smart Automation')}
-            </span>
-          </h1>
-          {/* Gradient heading overlay */}
+          <div className="flex justify-center mb-8">
+            <Sparkles className="h-10 w-10 text-purple-500" />
+          </div>
           <h1
             ref={titleRef}
-            className={`text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-clip-text text-transparent pointer-events-none select-none ${
-              isDark
-                ? 'bg-gradient-to-r from-white via-cyan-300 to-purple-400'
-                : 'bg-gradient-to-r from-gray-900 via-blue-600 to-purple-600'
-            }`}
-            aria-hidden="true"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
           >
-            {splitText('Optimize Your Operations')}
-            <br />
-            <span className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              {splitText('with Smart Automation')}
+            <span className="block">Optimize Your Operations</span>
+            <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400">
+              with Smart Automation
             </span>
           </h1>
-        </motion.div>
-        
-        {/* Subtitle */}
-        <motion.p 
-          ref={subtitleRef}
-          className={`max-w-2xl mx-auto text-lg sm:text-xl ${isDark ? 'text-gray-400' : 'text-gray-600'} mb-10 leading-relaxed`}
-        >
-          OpSyde helps businesses optimize and scale their operations through intelligent automation. 
-          From lead generation to HR, email, and social media automation—unlock your team's full potential with our proven solutions.
-        </motion.p>
-        
-        {/* Animated Beam Demo */}
-        <motion.div 
-          className="mb-12 sm:mb-16 max-w-4xl mx-auto px-4"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          <AnimatedBeamDemo isDark={isDark} />
-        </motion.div>
-        
-        {/* CTA Buttons */}
-        <motion.div 
-          ref={ctaRef}
-          className="flex flex-col sm:flex-row gap-4 justify-center px-4"
-        >
-          <motion.button 
-            className={`relative group px-8 py-6 text-lg font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
-              isDark 
-                ? 'bg-gradient-to-r from-cyan-500 to-purple-500 hover:opacity-90 text-white' 
-                : 'bg-gradient-to-r from-cyan-600 to-purple-600 hover:opacity-90 text-white'
-            }`}
-            onClick={onOpenScheduling}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-            whileTap={{ scale: 0.95 }}
+          <motion.p 
+            ref={subtitleRef}
+            className="mt-6 text-xl text-zinc-300 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            <span className="relative z-10">Book a Consultation</span>
-            <div className="absolute inset-0 bg-white/20 blur-lg group-hover:blur-xl transition-all duration-300 opacity-0 group-hover:opacity-100" />
-          </motion.button>
-          
-          <motion.button 
-            className={`px-8 py-6 text-lg font-semibold border-2 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 ${
-              isDark 
-                ? 'text-cyan-400 border-cyan-400 bg-transparent hover:bg-cyan-400/10 hover:text-white hover:border-cyan-300' 
-                : 'text-cyan-600 border-cyan-600 bg-transparent hover:bg-cyan-50 hover:text-purple-700 hover:border-purple-400'
-            }`}
-            onClick={onScrollToFeatures}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-            whileTap={{ scale: 0.95 }}
+            OpSyde helps businesses optimize and scale their operations through intelligent automation. From lead generation to HR, email, and social media automation—unlock your team's full potential with our proven solutions.
+          </motion.p>
+          <motion.div className="mb-16 max-w-4xl mx-auto px-4">
+            <AnimatedBeamDemo isDark={isDark} />
+          </motion.div>
+          <motion.div 
+            ref={ctaRef}
+            className="flex flex-col sm:flex-row gap-4 justify-center px-4"
           >
-            <span className="relative z-10">View Features</span>
-          </motion.button>
+            <motion.button 
+              className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-8 py-6 text-lg font-bold rounded-xl shadow-lg transition-all duration-300"
+              onClick={onOpenScheduling}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Book a Consultation
+            </motion.button>
+            <motion.button 
+              className="border-2 border-white/20 hover:bg-white/10 text-white px-8 py-6 text-lg font-bold rounded-xl transition-all duration-300"
+              onClick={onScrollToFeatures}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              View Features
+            </motion.button>
+          </motion.div>
+          <div className="mt-16 flex justify-center">
+            <div className="animate-bounce">
+              <ChevronRight className="h-8 w-8 rotate-90 text-white/50" />
+            </div>
+          </div>
         </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className={`w-6 h-10 border-2 rounded-full border-current ${
-          isDark ? 'text-cyan-400' : 'text-gray-600'
-        } flex justify-center`}>
-          <div className={`w-1 h-3 bg-current rounded-full mt-2 animate-bounce`}></div>
-        </div>
       </motion.div>
     </motion.section>
   );

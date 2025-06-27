@@ -22,42 +22,37 @@ interface TemplateCardProps {
 export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick }) => {
   return (
     <div 
-      className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden hover:border-cyan-500/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl active:scale-95"
+      className="bg-zinc-900/80 border border-white/10 rounded-2xl shadow-2xl p-8 transition-transform hover:scale-105 hover:shadow-2xl cursor-pointer backdrop-blur-md"
       onClick={onClick}
     >
-      <div className="p-4 sm:p-6">
-        <div className="flex flex-wrap gap-2 mb-3">
-          {template.category.map((cat, index) => (
-            <span 
-              key={index}
-              className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-xs"
-            >
-              {cat}
-            </span>
-          ))}
-        </div>
-
-        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-white">{template.title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 text-sm sm:text-base">
-          {template.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {template.tools.map((tool, index) => (
-            <span 
-              key={index}
-              className="px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 rounded-full text-xs"
-            >
-              {tool}
-            </span>
-          ))}
-        </div>
-
-        <button className="flex items-center gap-2 text-cyan-500 hover:text-cyan-400 transition-colors text-sm sm:text-base">
-          View Details
-          <ArrowRight className="w-4 h-4" />
-        </button>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {template.category.map((cat, index) => (
+          <span 
+            key={index}
+            className="px-3 py-1 bg-purple-600/10 text-purple-300 rounded-full text-xs font-semibold tracking-wide border border-purple-500/20"
+          >
+            {cat}
+          </span>
+        ))}
       </div>
+      <h3 className="text-xl font-bold text-white mb-2 leading-tight">{template.title}</h3>
+      <p className="text-zinc-300 mb-6 line-clamp-2 text-base font-medium">
+        {template.description}
+      </p>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {template.tools.map((tool, index) => (
+          <span 
+            key={index}
+            className="px-3 py-1 bg-cyan-600/10 text-cyan-300 rounded-full text-xs font-semibold border border-cyan-500/20"
+          >
+            {tool}
+          </span>
+        ))}
+      </div>
+      <button className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-bold shadow-lg transition-all duration-300">
+        View Details
+        <ArrowRight className="w-4 h-4" />
+      </button>
     </div>
   );
 };
