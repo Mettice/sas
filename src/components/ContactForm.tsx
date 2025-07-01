@@ -27,47 +27,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
     setError(null);
 
     try {
-      // Validate form data
-      if (!formData.name || !formData.email || !formData.message) {
-        throw new Error('Please fill in all required fields');
-      }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      if (!formData.email.includes('@')) {
-        throw new Error('Please enter a valid email address');
-      }
-
-      // Save to Supabase
-      const { error: dbError } = await supabase
-        .from('contact_submissions')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          message: formData.message,
-          service: formData.service,
-          status: 'new'
-        }]);
-
-      if (dbError) throw dbError;
-
-      // Send email notification using EmailJS
-      try {
-        await emailjs.send(
-          process.env.REACT_APP_EMAILJS_SERVICE_ID || 'your_service_id',
-          process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'your_template_id',
-          {
-            from_name: formData.name,
-            from_email: formData.email,
-            company: formData.company || 'Not specified',
-            message: formData.message,
-            service: formData.service,
-            to_email: process.env.REACT_APP_CONTACT_EMAIL || 'your-email@example.com'
-          },
-          process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'your_public_key'
-        );
-      } catch (emailError) {
-        console.error('Email sending failed:', emailError);
-        // Don't throw error here - we still want to show success if DB save worked
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to send message');
       }
 
       setSuccess(true);
@@ -78,7 +46,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
         message: '',
         service: 'general'
       });
-      
+
       if (onSuccess) onSuccess();
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');

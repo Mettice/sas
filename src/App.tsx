@@ -55,7 +55,7 @@ import {
 import AnimatedBeamDemo from './components/animated-beam-demo';
 import { ContactForm } from './components/ContactForm';
 import { initGSAP, enhancedColors } from './utils/gsap';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import TemplatesPage from './components/templates/TemplatesPage';
 
 // Theme Context
@@ -65,6 +65,101 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+// Header component for logo and navigation
+const Header: React.FC<{ isDark: boolean; scrolled: boolean }> = ({ isDark, scrolled }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Home/logo click logic
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      window.location.href = '/';
+    } else {
+      navigate('/');
+    }
+  };
+
+  // Navigation logic
+  const handleNavigation = (section?: string) => {
+    if (!section) {
+      handleHomeClick();
+      return;
+    }
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  return (
+    <header className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md border-b ${
+      isDark
+        ? `${scrolled ? 'bg-zinc-900/95 shadow-2xl border-purple-500/20' : 'bg-zinc-900/80 border-white/10'}`
+        : `${scrolled ? 'bg-white/95 shadow-2xl border-purple-400/30' : 'bg-gray-50/80 border-gray-200'}`
+    }`}>
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        {/* Clickable logo */}
+        <button
+          onClick={handleHomeClick}
+          className="flex items-center gap-2 sm:gap-3 transition-all duration-300 focus:outline-none bg-transparent border-none cursor-pointer"
+          aria-label="Go to home"
+        >
+          <img
+            src="/logo.png"
+            alt="OpSyde Logo"
+            className={`transition-all duration-300 ${scrolled ? 'w-5 h-5 sm:w-7 sm:h-7' : 'w-6 h-6 sm:w-8 sm:h-8'}`}
+          />
+          <span className={`text-lg sm:text-xl font-bold transition-all duration-300 ${scrolled ? 'scale-95' : ''}`}>OpSyde</span>
+        </button>
+        {/* Navigation */}
+        <nav className="hidden md:flex gap-6 text-base font-medium items-center">
+          <button
+            onClick={handleHomeClick}
+            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+          >
+            Home
+          </button>
+          <button 
+            onClick={() => handleNavigation('features')} 
+            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+          >
+            Solutions
+          </button>
+          <button 
+            onClick={() => handleNavigation('process')} 
+            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+          >
+            Process
+          </button>
+          <button 
+            onClick={() => handleNavigation('testimonials')} 
+            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+          >
+            Case Studies
+          </button>
+          <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link>
+          <button 
+            onClick={() => handleNavigation('contact')}
+            className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer"
+          >
+            Book a Call
+          </button>
+        </nav>
+      </div>
+    </header>
+  );
+};
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -460,31 +555,7 @@ function App() {
             )}
 
             {/* Header with Theme Toggle */}
-            <header className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md border-b ${
-              isDark
-                ? `${scrolled ? 'bg-zinc-900/95 shadow-2xl border-purple-500/20' : 'bg-zinc-900/80 border-white/10'}`
-                : `${scrolled ? 'bg-white/95 shadow-2xl border-purple-400/30' : 'bg-gray-50/80 border-gray-200'}`
-            }`}>
-              <div className="max-w-6xl mx-auto flex justify-between items-center">
-                <div className="flex items-center gap-2 sm:gap-3 transition-all duration-300">
-                  <img 
-                    src="/logo.png" 
-                    alt="OpSyde Logo" 
-                    className={`transition-all duration-300 ${scrolled ? 'w-5 h-5 sm:w-7 sm:h-7' : 'w-6 h-6 sm:w-8 sm:h-8'}`}
-                  />
-                  <span className={`text-lg sm:text-xl font-bold transition-all duration-300 ${scrolled ? 'scale-95' : ''}`}>OpSyde</span>
-                </div>
-                {/* Navbar Links */}
-                <nav className="hidden md:flex gap-6 text-base font-medium items-center">
-                  <Link to="/" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Home</Link>
-                  <a href="#features" onClick={(e) => { e.preventDefault(); handleScrollToFeatures(); }} className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Solutions</a>
-                  <a href="#process" onClick={(e) => { e.preventDefault(); handleScrollToProcess(); }} className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Process</a>
-                  <a href="#testimonials" onClick={(e) => { e.preventDefault(); handleScrollToTestimonials(); }} className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Case Studies</a>
-                  <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link>
-                  <a href="#contact" onClick={(e) => { e.preventDefault(); handleScrollToContact(); }} className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400">Book a Call</a>
-                </nav>
-              </div>
-            </header>
+            <Header isDark={isDark} scrolled={scrolled} />
 
             <Routes>
               <Route path="/" element={
@@ -504,6 +575,7 @@ function App() {
 
                   {/* Features Section */}
                   <motion.section 
+                    id="features"
                     ref={featuresRef}
                     className={`px-4 sm:px-6 py-16 sm:py-20 mt-12 sm:mt-16 ${
                       isDark ? 'bg-zinc-900/30' : 'bg-gray-100'
@@ -585,6 +657,7 @@ function App() {
 
                   {/* Testimonials Section */}
                   <motion.section 
+                    id="testimonials"
                     ref={testimonialsRef}
                     className={`px-4 sm:px-6 py-16 sm:py-20 ${isDark ? 'bg-zinc-900/50' : 'bg-gray-50'}`}
                     initial="initial"
@@ -657,6 +730,7 @@ function App() {
 
                   {/* Process Section */}
                   <motion.section 
+                    id="process"
                     ref={processRef}
                     className={`px-4 sm:px-6 py-16 sm:py-20 ${
                       isDark ? 'bg-zinc-900/50' : 'bg-gray-50'
@@ -754,6 +828,7 @@ function App() {
 
                   {/* CTA Section */}
                   <motion.section 
+                    id="contact"
                     ref={contactRef}
                     className={`px-4 sm:px-6 py-16 sm:py-20 ${
                       isDark ? 'bg-zinc-900/50' : 'bg-gray-50'
@@ -818,7 +893,7 @@ function App() {
                   </motion.section>
                 </>
               } />
-              <Route path="/templates" element={<TemplatesPage />} />
+              <Route path="/templates" element={<TemplatesPage isDark={isDark} scrolled={scrolled} />} />
             </Routes>
             
             {/* Footer */}

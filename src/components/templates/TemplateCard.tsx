@@ -22,14 +22,15 @@ interface TemplateCardProps {
 export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick }) => {
   return (
     <div 
-      className="bg-zinc-900/80 border border-white/10 rounded-2xl shadow-2xl p-8 transition-transform hover:scale-105 hover:shadow-2xl cursor-pointer backdrop-blur-md"
+      className="glass-card rounded-2xl p-8 transition-transform hover:scale-105 hover:shadow-xl cursor-pointer"
       onClick={onClick}
+      style={{ boxShadow: '0 4px 24px 0 rgba(31,38,135,0.12)' }}
     >
       <div className="flex flex-wrap gap-2 mb-4">
         {template.category.map((cat, index) => (
           <span 
             key={index}
-            className="px-3 py-1 bg-purple-600/10 text-purple-300 rounded-full text-xs font-semibold tracking-wide border border-purple-500/20"
+            className="px-3 py-1 bg-purple-600/10 text-purple-300 rounded-full text-xs font-semibold tracking-wide"
           >
             {cat}
           </span>
@@ -43,7 +44,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick })
         {template.tools.map((tool, index) => (
           <span 
             key={index}
-            className="px-3 py-1 bg-cyan-600/10 text-cyan-300 rounded-full text-xs font-semibold border border-cyan-500/20"
+            className="px-3 py-1 bg-cyan-600/10 text-cyan-300 rounded-full text-xs font-semibold"
           >
             {tool}
           </span>
