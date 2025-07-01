@@ -902,14 +902,24 @@ function App() {
             }`}>
               <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-center">
-                  <div className="flex items-center gap-3 mb-4 md:mb-0">
-                    <img 
-                      src="/logo.png" 
-                      alt="OpSyde Logo" 
+                  <button
+                    onClick={() => {
+                      if (window.location.pathname === '/') {
+                        window.location.href = '/';
+                      } else {
+                        window.location.href = '/'; // fallback for Link in footer
+                      }
+                    }}
+                    className="flex items-center gap-3 mb-4 md:mb-0 bg-transparent border-none cursor-pointer focus:outline-none"
+                    aria-label="Go to home"
+                  >
+                    <img
+                      src="/logo.png"
+                      alt="OpSyde Logo"
                       className="w-6 h-6 sm:w-8 sm:h-8"
                     />
                     <span className="text-lg sm:text-xl font-bold text-white">OpSyde</span>
-                  </div>
+                  </button>
                   <div className={`flex gap-6 sm:gap-8 text-sm sm:text-base ${
                     isDark ? 'text-zinc-400' : 'text-gray-600'
                   }`}>

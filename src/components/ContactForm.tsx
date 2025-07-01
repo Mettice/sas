@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { supabase } from '../lib/supabase/client';
-import { MessageSquare, Send, Loader2, Mail, Sparkles } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { MessageSquare, Send, Loader2 } from 'lucide-react';
 
 interface ContactFormProps {
   className?: string;
