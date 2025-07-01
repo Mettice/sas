@@ -148,7 +148,7 @@ const Header: React.FC<{ isDark: boolean; scrolled: boolean }> = ({ isDark, scro
           >
             Case Studies
           </button>
-          <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link>
+          {/* <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link> */}
           <button 
             onClick={() => handleNavigation('contact')}
             className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer"

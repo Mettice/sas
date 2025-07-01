@@ -11,6 +11,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    website: '',
     company: '',
     message: '',
     service: 'general'
@@ -31,8 +33,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
         body: JSON.stringify(formData),
       });
 
+      const contentType = response.headers.get('content-type');
       if (!response.ok) {
-        const data = await response.json();
+        let data;
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json();
+        } else {
+          data = { error: 'Unexpected response from server (not JSON).' };
+        }
         throw new Error(data.error || 'Failed to send message');
       }
 
@@ -40,6 +48,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
       setFormData({
         name: '',
         email: '',
+        phone: '',
+        website: '',
         company: '',
         message: '',
         service: 'general'
@@ -118,6 +128,35 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             placeholder="Enter your email"
             className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
             required
+          />
+        </div>
+        <div>
+          <label htmlFor="phone" className="block text-base font-semibold mb-2 text-white">
+            Phone *
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Enter your phone number"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="website" className="block text-base font-semibold mb-2 text-white">
+            Website
+          </label>
+          <input
+            type="url"
+            id="website"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            placeholder="Enter your website (optional)"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
           />
         </div>
       </div>
