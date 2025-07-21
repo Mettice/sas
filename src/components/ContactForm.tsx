@@ -150,7 +150,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             Website
           </label>
           <input
-            type="url"
+            type="text"
             id="website"
             name="website"
             value={formData.website}
