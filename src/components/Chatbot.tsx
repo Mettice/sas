@@ -30,7 +30,6 @@ export const Chatbot: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const [isOnline, setIsOnline] = useState(true);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const storedEmailsRef = useRef<Set<string>>(new Set());
@@ -195,7 +194,7 @@ export const Chatbot: React.FC = () => {
                 <div>
                   <h3 className="font-semibold text-sm sm:text-base">Automation Assistant</h3>
                   <div className="flex items-center gap-2 text-xs sm:text-sm">
-                    <div className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`} />
+                    <div className={`w-2 h-2 rounded-full bg-green-400 animate-pulse`} />
                   </div>
                 </div>
               </div>

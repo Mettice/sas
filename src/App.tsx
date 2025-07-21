@@ -1,7 +1,6 @@
-import React, { useState, createContext, useContext, useRef, useEffect } from 'react';
+import React, { useState, createContext, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AuthProvider } from './components/auth/AuthProvider';
-import { TemplateGrid } from './components/templates/TemplateGrid';
 import { ImagePlaceholder } from './components/ImagePlaceholder';
 import { Chatbot } from './components/Chatbot';
 import { HeroSection } from './components/HeroSection';
@@ -13,15 +12,15 @@ import {
   TrendingUp, 
   Zap, 
   Shield, 
-  Download, 
-  Star,
-  Check,
   ArrowRight,
-  Sun,
-  Moon,
-  Workflow,
-  Brain,
-  BarChart,
+  Trophy,
+  Crosshair,
+  Settings,
+  Handshake,
+  DollarSign,
+  Rocket,
+  Clock,
+  FileText,
   Building2,
   Utensils,
   Heart,
@@ -31,31 +30,19 @@ import {
   ShoppingCart,
   Stethoscope,
   GraduationCap,
-  Target,
-  Rocket,
-  Trophy,
-  Crosshair,
-  Settings,
-  Handshake,
-  DollarSign,
-  Sparkles,
-  Clock,
-  FileText,
-  Github,
-  Linkedin,
-  Twitter,
-  Mail,
   Search,
   Lightbulb,
   Code,
   Wrench,
   Play,
-  TrendingUp as TrendingUpIcon
+  TrendingUp as TrendingUpIcon,
+  Workflow,
+  Brain,
+  BarChart
 } from 'lucide-react';
-import AnimatedBeamDemo from './components/animated-beam-demo';
 import { ContactForm } from './components/ContactForm';
-import { initGSAP, enhancedColors } from './utils/gsap';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { initGSAP } from './utils/gsap';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import TemplatesPage from './components/templates/TemplatesPage';
 
 // Theme Context
@@ -150,7 +137,7 @@ const Header: React.FC<{ isDark: boolean; scrolled: boolean }> = ({ isDark, scro
           </button>
           {/* <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link> */}
           <button 
-            onClick={() => handleNavigation('contact')}
+            onClick={() => window.open('https://calendly.com/opsyde-info/30min', '_blank', 'noopener noreferrer')}
             className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer"
           >
             Book a Call
@@ -859,7 +846,7 @@ function App() {
                               className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-white flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-purple-500"
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
-                              onClick={handleOpenScheduling}
+                              onClick={() => window.open('https://calendly.com/opsyde-info/30min', '_blank', 'noopener noreferrer')}
                             >
                               <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
                               Schedule a Call
@@ -923,9 +910,9 @@ function App() {
                   <div className={`flex gap-6 sm:gap-8 text-sm sm:text-base ${
                     isDark ? 'text-zinc-400' : 'text-gray-600'
                   }`}>
-                    <a href="#" className="hover:text-purple-400 transition-colors">Templates</a>
-                    <a href="#" className="hover:text-purple-400 transition-colors">Support</a>
-                    <a href="#" className="hover:text-purple-400 transition-colors">Contact</a>
+                    <button className="hover:text-purple-400 transition-colors bg-transparent border-none cursor-pointer">Templates</button>
+                    <button className="hover:text-purple-400 transition-colors bg-transparent border-none cursor-pointer">Support</button>
+                    <button className="hover:text-purple-400 transition-colors bg-transparent border-none cursor-pointer">Contact</button>
                   </div>
                 </div>
                 <div className={`mt-6 sm:mt-8 pt-6 sm:pt-8 border-t text-center text-sm sm:text-base ${

@@ -1,5 +1,4 @@
 import { OpenAI } from 'openai';
-import { supabase } from '../supabase/client';
 import type { ChatCompletionMessageParam } from 'openai/resources/chat';
 
 const SYSTEM_PROMPT = `You are a friendly and helpful AI assistant for Smart Automation Suite. Your goal is to have natural conversations while helping users discover automation solutions for their business needs.
