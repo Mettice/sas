@@ -148,7 +148,7 @@ export const Chatbot: React.FC = () => {
         )}
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
+          className="bg-yellow-500 hover:bg-yellow-600 text-black p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -188,7 +188,7 @@ export const Chatbot: React.FC = () => {
             role="dialog"
           >
             {/* Header with Minimize and Close */}
-            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-blue-600 text-white">
+            <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-yellow-500 text-black">
               <div className="flex items-center gap-2">
                 <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
                 <div>
@@ -265,7 +265,7 @@ export const Chatbot: React.FC = () => {
                   <div
                     className={`max-w-xs sm:max-w-md p-3 rounded-2xl shadow text-sm sm:text-base ${
                       message.sender === 'user'
-                        ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white'
+                        ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-black'
                         : 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white'
                     }`}
                   >
@@ -316,12 +316,12 @@ export const Chatbot: React.FC = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 p-3 sm:p-2 rounded-lg border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-base"
+                  className="flex-1 p-3 sm:p-2 rounded-lg border-none bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-base"
                   autoFocus
                 />
                 <motion.button
                   type="submit"
-                  className="p-3 sm:p-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white rounded-lg active:scale-95"
+                  className="p-3 sm:p-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-lg active:scale-95"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   disabled={!inputValue.trim()}

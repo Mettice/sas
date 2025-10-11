@@ -93,7 +93,10 @@ export const animations = {
 
 // Text reveal animation
 export const textReveal = (element: string | Element, options = {}) => {
-  return gsap.fromTo(element, 
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.fromTo(target, 
     { 
       opacity: 0, 
       y: 50,
@@ -112,7 +115,10 @@ export const textReveal = (element: string | Element, options = {}) => {
 
 // Character-by-character text animation
 export const charReveal = (element: string | Element, options = {}) => {
-  return gsap.fromTo(element,
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.fromTo(target,
     { 
       opacity: 0,
       scale: 0,
@@ -132,7 +138,10 @@ export const charReveal = (element: string | Element, options = {}) => {
 
 // Floating animation
 export const floating = (element: string | Element, options = {}) => {
-  return gsap.to(element, {
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.to(target, {
     y: -10,
     duration: 2,
     ease: 'power1.inOut',
@@ -144,11 +153,14 @@ export const floating = (element: string | Element, options = {}) => {
 
 // Parallax effect
 export const parallax = (element: string | Element, speed = 0.5, options = {}) => {
-  return gsap.to(element, {
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.to(target, {
     yPercent: -50 * speed,
     ease: 'none',
     scrollTrigger: {
-      trigger: element,
+      trigger: target,
       start: 'top bottom',
       end: 'bottom top',
       scrub: true,
@@ -159,20 +171,24 @@ export const parallax = (element: string | Element, speed = 0.5, options = {}) =
 
 // 3D tilt effect
 export const tilt3D = (element: string | Element, options = {}) => {
-  const tilt = gsap.to(element, {
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.to(target, {
     rotationY: 15,
     rotationX: 5,
     duration: 0.3,
     ease: 'power2.out',
     ...options
   });
-  
-  return tilt;
 };
 
 // Glow pulse effect
 export const glowPulse = (element: string | Element, options = {}) => {
-  return gsap.to(element, {
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.to(target, {
     boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)',
     duration: 1.5,
     ease: 'power1.inOut',
@@ -184,7 +200,10 @@ export const glowPulse = (element: string | Element, options = {}) => {
 
 // Scroll-triggered animations
 export const scrollReveal = (element: string | Element, options = {}) => {
-  return gsap.fromTo(element,
+  const target = typeof element === 'string' ? document.querySelector(element) : element;
+  if (!target) return null;
+  
+  return gsap.fromTo(target,
     { 
       opacity: 0, 
       y: 100,
@@ -197,7 +216,7 @@ export const scrollReveal = (element: string | Element, options = {}) => {
       duration: 0.8,
       ease: 'power2.out',
       scrollTrigger: {
-        trigger: element,
+        trigger: target,
         start: 'top 80%',
         end: 'bottom 20%',
         toggleActions: 'play none none reverse',
@@ -209,7 +228,13 @@ export const scrollReveal = (element: string | Element, options = {}) => {
 
 // Staggered grid animation
 export const staggerGrid = (elements: string | Element[], options = {}) => {
-  return gsap.fromTo(elements,
+  const targets = Array.isArray(elements) 
+    ? elements.map(el => typeof el === 'string' ? document.querySelector(el) : el).filter(Boolean)
+    : (typeof elements === 'string' ? document.querySelectorAll(elements) : elements);
+  
+  if (!targets || targets.length === 0) return null;
+  
+  return gsap.fromTo(targets,
     { 
       opacity: 0, 
       y: 50,
@@ -223,7 +248,7 @@ export const staggerGrid = (elements: string | Element[], options = {}) => {
       ease: 'back.out(1.7)',
       stagger: 0.1,
       scrollTrigger: {
-        trigger: elements[0],
+        trigger: targets[0],
         start: 'top 80%',
         toggleActions: 'play none none reverse',
         ...options

@@ -92,8 +92,8 @@ const Header: React.FC<{ isDark: boolean; scrolled: boolean }> = ({ isDark, scro
   return (
     <header className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md border-b ${
       isDark
-        ? `${scrolled ? 'bg-zinc-900/95 shadow-2xl border-purple-500/20' : 'bg-zinc-900/80 border-white/10'}`
-        : `${scrolled ? 'bg-white/95 shadow-2xl border-purple-400/30' : 'bg-gray-50/80 border-gray-200'}`
+        ? `${scrolled ? 'bg-zinc-900/95 shadow-2xl border-yellow-500/20' : 'bg-zinc-900/80 border-white/10'}`
+        : `${scrolled ? 'bg-white/95 shadow-2xl border-yellow-400/30' : 'bg-gray-50/80 border-gray-200'}`
     }`}>
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         {/* Clickable logo */}
@@ -113,32 +113,32 @@ const Header: React.FC<{ isDark: boolean; scrolled: boolean }> = ({ isDark, scro
         <nav className="hidden md:flex gap-6 text-base font-medium items-center">
           <button
             onClick={handleHomeClick}
-            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+            className="transition-colors duration-200 hover:text-yellow-500 focus:text-yellow-500 bg-transparent border-none cursor-pointer"
           >
             Home
           </button>
           <button 
             onClick={() => handleNavigation('features')} 
-            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+            className="transition-colors duration-200 hover:text-yellow-500 focus:text-yellow-500 bg-transparent border-none cursor-pointer"
           >
             Solutions
           </button>
           <button 
             onClick={() => handleNavigation('process')} 
-            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+            className="transition-colors duration-200 hover:text-yellow-500 focus:text-yellow-500 bg-transparent border-none cursor-pointer"
           >
             Process
           </button>
           <button 
             onClick={() => handleNavigation('testimonials')} 
-            className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400 bg-transparent border-none cursor-pointer"
+            className="transition-colors duration-200 hover:text-yellow-500 focus:text-yellow-500 bg-transparent border-none cursor-pointer"
           >
             Case Studies
           </button>
           {/* <Link to="/templates" className="transition-colors duration-200 hover:text-purple-400 focus:text-purple-400">Templates</Link> */}
           <button 
             onClick={() => window.open('https://calendly.com/opsyde-info/30min', '_blank', 'noopener noreferrer')}
-            className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 cursor-pointer"
+            className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 cursor-pointer"
           >
             Book a Call
           </button>
@@ -525,19 +525,19 @@ function App() {
   ];
 
   const themeClasses = isDark 
-    ? `min-h-screen bg-black text-white relative`
-    : `min-h-screen bg-[#f7fafd] text-gray-900 relative`;
+    ? `min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative`
+    : `min-h-screen bg-gray-50 text-gray-900 relative`;
 
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ThemeContext.Provider value={{ isDark, toggleTheme }}>
         <AuthProvider>
           <div className={`${themeClasses} font-['Space_Grotesk'] transition-colors duration-300 relative`}>
             {/* Animated Gradient/Vignette Overlay for Dark Theme - absolute and only in dark mode */}
             {isDark && (
               <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-cyan-900/20 to-black opacity-80 animate-gradient-x" style={{mixBlendMode: 'screen'}}></div>
-                <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black opacity-60" style={{mixBlendMode: 'multiply'}}></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800/10 via-transparent to-gray-800/10 opacity-60 animate-gradient-x" style={{mixBlendMode: 'screen'}}></div>
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-gray-900/40 opacity-40" style={{mixBlendMode: 'multiply'}}></div>
               </div>
             )}
 
@@ -565,7 +565,7 @@ function App() {
                     id="features"
                     ref={featuresRef}
                     className={`px-4 sm:px-6 py-16 sm:py-20 mt-12 sm:mt-16 ${
-                      isDark ? 'bg-zinc-900/30' : 'bg-gray-100'
+                      isDark ? 'bg-zinc-900/30' : 'bg-gray-50'
                     }`}
                     initial="initial"
                     whileInView="animate"
@@ -624,7 +624,7 @@ function App() {
                         {whyChooseUs.map((item, idx) => (
                           <motion.div
                             key={idx}
-                            className="bg-zinc-800/50 border border-white/10 rounded-2xl shadow-lg p-8 flex flex-col items-center text-center hover:bg-zinc-800/80 transition-colors"
+                            className="bg-zinc-800/50 border border-yellow-500/20 rounded-2xl shadow-lg p-8 flex flex-col items-center text-center hover:bg-zinc-800/80 hover:border-yellow-500/40 transition-colors"
                             variants={fadeInUp}
                           >
                             <span className="mb-4">{item.icon}</span>
@@ -668,8 +668,8 @@ function App() {
                             key={index}
                             className={`p-6 sm:p-8 rounded-xl border transition-all duration-300 ${
                               isDark 
-                                ? 'bg-zinc-800/50 border-white/10 hover:border-purple-500' 
-                                : 'bg-white border-gray-200 hover:border-purple-500 shadow-sm'
+                                ? 'bg-zinc-800/50 border-white/10 hover:border-yellow-500' 
+                                : 'bg-white border-gray-200 hover:border-yellow-500 shadow-sm'
                             }`}
                             variants={fadeInUp}
                             whileHover={{ y: -2 }}
@@ -741,8 +741,8 @@ function App() {
                             key={index}
                             className={`p-6 sm:p-8 rounded-xl border transition-all duration-300 ${
                               isDark 
-                                ? 'bg-zinc-800/50 border-white/10 hover:border-purple-500' 
-                                : 'bg-white border-gray-200 hover:border-purple-500 shadow-sm'
+                                ? 'bg-zinc-800/50 border-white/10 hover:border-yellow-500' 
+                                : 'bg-white border-gray-200 hover:border-yellow-500 shadow-sm'
                             }`}
                             variants={fadeInUp}
                             whileHover={{ y: -2 }}
@@ -768,7 +768,7 @@ function App() {
 
                   {/* Industries Section */}
                   <motion.section 
-                    className="px-4 sm:px-6 py-16 sm:py-20 bg-gradient-to-br from-purple-900/20 to-cyan-900/20"
+                    className="px-4 sm:px-6 py-16 sm:py-20 bg-gradient-to-br from-gray-900/20 to-gray-800/20"
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true, margin: "-100px" }}
@@ -789,8 +789,8 @@ function App() {
                               key={index}
                               className={`flex-shrink-0 w-64 p-6 rounded-xl border transition-all duration-300 text-center shadow-sm hover:shadow-md ${
                                 isDark 
-                                  ? 'bg-zinc-800/50 border-white/10 hover:border-purple-500' 
-                                  : 'bg-white border-gray-200 hover:border-purple-500'
+                                  ? 'bg-zinc-800/50 border-white/10 hover:border-yellow-500' 
+                                  : 'bg-white border-gray-200 hover:border-yellow-500'
                               }`}
                               whileHover={{ y: -2 }}
                             >
@@ -843,7 +843,7 @@ function App() {
                           
                           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <motion.button 
-                              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-white flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-purple-500"
+                              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-black flex items-center gap-2 justify-center focus:outline-none focus:ring-2 focus:ring-yellow-500"
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                               onClick={() => window.open('https://calendly.com/opsyde-info/30min', '_blank', 'noopener noreferrer')}
@@ -853,7 +853,7 @@ function App() {
                             </motion.button>
                             
                             <motion.button 
-                              className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center gap-2 justify-center text-purple-400 border-purple-400 bg-transparent hover:bg-purple-400/10 hover:text-purple-300 hover:border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500`}
+                              className={`px-6 sm:px-8 py-3 sm:py-4 border-2 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 flex items-center gap-2 justify-center text-yellow-500 border-yellow-500 bg-transparent hover:bg-yellow-500/10 hover:text-yellow-400 hover:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500`}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                               onClick={navigateToTemplates}
@@ -910,9 +910,9 @@ function App() {
                   <div className={`flex gap-6 sm:gap-8 text-sm sm:text-base ${
                     isDark ? 'text-zinc-400' : 'text-gray-600'
                   }`}>
-                    <button className="hover:text-purple-400 transition-colors bg-transparent border-none cursor-pointer">Templates</button>
-                    <button className="hover:text-purple-400 transition-colors bg-transparent border-none cursor-pointer">Support</button>
-                    <button className="hover:text-purple-400 transition-colors bg-transparent border-none cursor-pointer">Contact</button>
+                    <button className="hover:text-yellow-500 transition-colors bg-transparent border-none cursor-pointer">Templates</button>
+                    <button className="hover:text-yellow-500 transition-colors bg-transparent border-none cursor-pointer">Support</button>
+                    <button className="hover:text-yellow-500 transition-colors bg-transparent border-none cursor-pointer">Contact</button>
                   </div>
                 </div>
                 <div className={`mt-6 sm:mt-8 pt-6 sm:pt-8 border-t text-center text-sm sm:text-base ${

@@ -144,15 +144,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <motion.section 
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black text-white"
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white"
       initial="initial"
       animate="animate"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/20 to-black"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-cyan-600/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-800/10 via-transparent to-gray-800/10"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-gray-500/5 rounded-full filter blur-3xl"></div>
       </div>
       <motion.div className="container mx-auto px-4 z-10 text-center">
         <motion.div
@@ -162,14 +162,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="max-w-4xl mx-auto"
         >
           <div className="flex justify-center mb-8">
-            <Sparkles className="h-10 w-10 text-purple-500" />
+            <Sparkles className="h-10 w-10 text-yellow-500" />
           </div>
           <h1
             ref={titleRef}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
           >
             <span className="block">Optimize Your Operations</span>
-            <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-400">
+            <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-yellow-400">
               with Smart Automation
             </span>
           </h1>
@@ -187,7 +187,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             className="flex flex-col sm:flex-row gap-4 justify-center px-4"
           >
             <motion.button 
-              className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-8 py-6 text-lg font-bold rounded-xl shadow-lg transition-all duration-300"
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black px-8 py-6 text-lg font-bold rounded-xl shadow-lg transition-all duration-300"
               onClick={onOpenScheduling}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -195,7 +195,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               Book a Consultation
             </motion.button>
             <motion.button 
-              className="border-2 border-white/20 hover:bg-white/10 text-white px-8 py-6 text-lg font-bold rounded-xl transition-all duration-300"
+              className="border-2 border-yellow-500/50 hover:bg-yellow-500/10 text-yellow-500 px-8 py-6 text-lg font-bold rounded-xl transition-all duration-300"
               onClick={onScrollToFeatures}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

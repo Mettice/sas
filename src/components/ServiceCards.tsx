@@ -138,11 +138,11 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({ isDark, services }) 
         <motion.div
           key={index}
           ref={(el) => { cards.current[index] = el; }}
-          className="bg-zinc-800/50 border border-white/10 p-8 rounded-xl hover:bg-zinc-800/80 transition-colors flex flex-col items-center text-center relative"
+          className="bg-zinc-800/50 border border-yellow-500/20 p-8 rounded-xl hover:bg-zinc-800/80 hover:border-yellow-500/40 transition-colors flex flex-col items-center text-center relative"
         >
           {/* Service Icon */}
           <div className="mb-6 flex justify-center">
-            <span className="text-5xl text-purple-500 service-icon">{service.icon}</span>
+            <span className="text-5xl text-yellow-500 service-icon">{service.icon}</span>
           </div>
           {/* Service Title */}
           <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
@@ -152,7 +152,7 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({ isDark, services }) 
           <ul className="space-y-2 mb-2">
             {service.features.map((feature, featureIndex) => (
               <li key={featureIndex} className="flex items-center gap-2 justify-center text-zinc-300 text-sm feature-item">
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-purple-600/20 text-purple-400"><Check className="w-4 h-4" /></span>
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-yellow-600/20 text-yellow-400"><Check className="w-4 h-4" /></span>
                 <span>{feature}</span>
               </li>
             ))}

@@ -61,21 +61,22 @@ export const generateAIResponse = async (messages: { text: string; sender: 'user
       }))
     ];
 
-    console.log('Sending request to OpenAI...'); // Debug log
     const response = await openai.chat.completions.create({
       model: 'gpt-4-turbo-preview',
       messages: conversation,
       temperature: 0.7,
       max_tokens: 300,
     });
-    console.log('Received response from OpenAI'); // Debug log
 
     return response.choices[0].message.content || "I apologize, but I'm having trouble generating a response. Could you please try rephrasing your message?";
   } catch (error) {
-    console.error('Error generating AI response:', error);
+    // Log error securely without exposing sensitive information
     if (error instanceof Error) {
-      if (error.message.includes('API key')) {
+      if (error.message.includes('API key') || error.message.includes('401') || error.message.includes('Incorrect API key')) {
         return "I apologize, but there seems to be an issue with the API configuration. Please contact support to resolve this.";
+      }
+      if (error.message.includes('rate limit') || error.message.includes('429')) {
+        return "I'm currently experiencing high demand. Please try again in a moment.";
       }
     }
     return "I apologize, but I'm having trouble connecting right now. Would you like to schedule a call with our team instead?";

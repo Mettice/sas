@@ -78,7 +78,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
         animate={{ opacity: 1, y: 0 }}
         className="bg-zinc-800/50 border border-white/10 p-8 rounded-xl text-center"
       >
-        <MessageSquare className="w-12 h-12 text-purple-500 mx-auto mb-4" />
+        <MessageSquare className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold mb-2 text-white">Message Sent!</h3>
         <p className="text-zinc-300">
           Thank you for reaching out. We'll get back to you soon.
@@ -91,7 +91,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
     <motion.form
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`space-y-8 bg-zinc-800/50 border border-white/10 p-8 rounded-xl ${className}`}
+      className={`space-y-8 bg-zinc-800/50 border border-yellow-500/20 p-8 rounded-xl ${className}`}
       onSubmit={handleSubmit}
     >
       {error && (
@@ -111,7 +111,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             value={formData.name}
             onChange={handleChange}
             placeholder="Enter your name"
-            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder:text-zinc-400"
             required
           />
         </div>
@@ -126,7 +126,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder:text-zinc-400"
             required
           />
         </div>
@@ -141,7 +141,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             value={formData.phone}
             onChange={handleChange}
             placeholder="Enter your phone number"
-            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder:text-zinc-400"
             required
           />
         </div>
@@ -156,7 +156,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
             value={formData.website}
             onChange={handleChange}
             placeholder="Enter your website (optional)"
-            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400"
+            className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder:text-zinc-400"
           />
         </div>
       </div>
@@ -205,14 +205,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({ className = '', onSucc
           onChange={handleChange}
           rows={4}
           placeholder="Tell us about your automation needs..."
-          className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder:text-zinc-400 min-h-[120px]"
+          className="w-full px-4 py-3 rounded-lg border border-white/10 bg-zinc-900/50 text-white text-base focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 placeholder:text-zinc-400 min-h-[120px]"
           required
         />
       </div>
       <motion.button
         type="submit"
         disabled={loading}
-        className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white font-bold py-3 rounded-lg mt-6 flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-60"
+        className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold py-3 rounded-lg mt-6 flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-60"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
