@@ -1,21 +1,6 @@
 import * as React from 'react';
-import {
-  Activity,
-  ArrowRight,
-  BarChart,
-  Menu,
-  Plug,
-  Sparkles,
-  Zap,
-} from 'lucide-react';
+import { Activity, ArrowRight, BarChart, Plug, Sparkles, Zap } from 'lucide-react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-
-const navigationItems = [
-  { title: 'SOLUTIONS', href: '#' },
-  { title: 'INDUSTRIES', href: '#' },
-  { title: 'RESOURCES', href: '#' },
-  { title: 'CASE STUDIES', href: '#' },
-];
 
 const labels = [
   { icon: Sparkles, label: 'AI Strategy & Roadmapping' },
