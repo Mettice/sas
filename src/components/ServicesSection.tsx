@@ -120,9 +120,16 @@ const ServiceCard: React.FC<CardProps> = ({ service, index }) => {
                     <p className="text-gray-400 leading-relaxed text-base font-medium">
                         {service.description}
                     </p>
-                    <div className="mt-8 flex items-center gap-2 text-sm font-bold text-white group-hover:translate-x-1 transition-transform cursor-pointer">
-                        Explore practice <ChevronRight size={14} />
-                    </div>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="mt-8 flex items-center gap-2 text-sm font-bold text-white/80 hover:text-[#d8ff3d] group-hover:translate-x-1 transition-all cursor-pointer"
+                        data-testid={`service-explore-${service.label.replace(/\s+/g, '-').toLowerCase()}`}
+                    >
+                        Explore capability <ChevronRight size={14} />
+                    </button>
                 </div>
             </div>
         </motion.div>

@@ -8,45 +8,45 @@ import { ExternalLink, ArrowRight } from 'lucide-react';
 const caseStudies = [
     {
         company: 'BCG (Boston Consulting Group)',
-        type: 'Enterprise Transformation',
-        title: 'Financial Document Analysis RAG System',
+        type: 'Multi-Model RAG',
+        title: 'Financial Document Analysis System',
         description:
-            'We built a production RAG system for strategy consultants to parse 100+ page financial reports. Implemented semantic retrieval with 95%+ accuracy and automated source citations to eliminate manual audit risk.',
+            'We architected a Claude + GPT-5.2 hybrid RAG router for strategy consultants parsing 100+ page financial reports. Semantic retrieval at 95%+ accuracy, automated citation graphs, and a fallback to Llama 4 when token budgets exceed threshold.',
         metrics: [
-            { value: '60%', label: 'Extraction Speed' },
-            { value: 'Zero', label: 'Hallucinations' },
-            { value: '95%+', label: 'Audit Accuracy' },
+            { value: '60%', label: 'Faster Extraction' },
+            { value: '0', label: 'Hallucinations' },
+            { value: '95%', label: 'Audit Accuracy' },
         ],
-        tech: ['Vector DB', 'Semantic Search', 'LLM RAG'],
-        accent: '#10b981', // emerald
+        tech: ['Claude Sonnet 4.5', 'Qdrant', 'Router Fallback'],
+        accent: '#d8ff3d',
     },
     {
         company: 'Andzen (Growth Agency)',
-        type: 'SMB Scalability',
+        type: 'Agent Orchestration',
         title: 'Automated Klaviyo Audit Platform',
         description:
-            'Developed a full-stack audit platform that reduced manual audit time from 72 hours to 30 minutes. The system integrations enabled the agency to scale their audit capacity by 10× without increasing headcount.',
+            'A multi-agent swarm that pulls Klaviyo data, runs eval loops across three LLMs, and ships a branded audit PDF in 30 minutes instead of 72 hours. Agency capacity scaled 10× with zero additional headcount.',
         metrics: [
             { value: '10×', label: 'Capacity Gain' },
             { value: '30m', label: 'Audit Speed' },
             { value: '100+', label: 'Monthly Audits' },
         ],
-        tech: ['FastAPI', 'PostgreSQL', 'API Automation'],
-        accent: '#6366f1', // indigo
+        tech: ['Agent Swarm', 'GPT-5.2 + Gemini', 'Eval Loops'],
+        accent: '#ffa14a',
     },
     {
         company: 'Holiday Pirates',
-        type: 'AI-Driven Integration',
+        type: 'Real-time Inference',
         title: 'Global Deal Discovery Engine',
         description:
-            'Architected a deal discovery engine processing thousands of flight offers daily. Implemented a custom ranking algorithm (PirateScore™) that feeds a RAG pipeline to surface high-ROI deals in real-time.',
+            'Thousands of flight offers processed every minute through a custom ranking model on NVIDIA H200s, feeding a grounded-search RAG pipeline powered by Perplexity Sonar. Sub-100ms decision latency, zero downtime.',
         metrics: [
-            { value: '60%', label: 'Review Time Saved' },
-            { value: '1,000s', label: 'Daily Processing' },
+            { value: '99ms', label: 'p95 Latency' },
+            { value: '10k/m', label: 'Offers Scored' },
             { value: 'Realtime', label: 'Deal Alerts' },
         ],
-        tech: ['Airtable Automation', 'Slack RAG', 'Custom ML'],
-        accent: '#f59e0b', // amber
+        tech: ['NVIDIA H200', 'Perplexity Sonar', 'Custom Rerank'],
+        accent: '#8aa9ff',
     },
 ];
 
@@ -105,8 +105,8 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
                         ))}
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm font-bold text-white cursor-pointer group-hover:translate-x-1 transition-transform">
-                        Read Case Study <ArrowRight size={14} className="text-indigo-400" />
+                    <div className="flex items-center gap-2 text-[12px] font-mono tracking-wide text-white group-hover:translate-x-1 transition-transform cursor-pointer hover:text-[#d8ff3d]" style={{ color: study.accent }}>
+                        Read case study <ArrowRight size={14} />
                     </div>
                 </div>
 
@@ -150,7 +150,7 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
 ───────────────────────────────────────────── */
 export const CaseStudiesSection: React.FC = () => {
     return (
-        <section id="case-studies" className="relative py-32" style={{ background: '#020202' }}>
+        <section id="case-studies" className="relative py-32" style={{ background: '#030405' }}>
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 {/* Header */}
                 <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
@@ -161,9 +161,9 @@ export const CaseStudiesSection: React.FC = () => {
                             viewport={{ once: true }}
                             className="flex items-center gap-3 mb-6"
                         >
-                            <div className="w-10 h-1 bg-emerald-500 rounded-full" />
-                            <span className="text-xs font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                                Impact & Results
+                            <div className="w-10 h-px bg-[#d8ff3d]" />
+                            <span className="text-[11px] font-mono tracking-[0.3em] text-[#d8ff3d] uppercase">
+                                /impact in production
                             </span>
                         </motion.div>
 
@@ -171,10 +171,16 @@ export const CaseStudiesSection: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tighter"
+                            className="text-white leading-[0.95] tracking-tight"
+                            style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)', fontWeight: 500 }}
                         >
-                            Proven outcomes <br />
-                            <span className="text-gray-500">at every business scale.</span>
+                            Systems running <br />
+                            <span
+                                className="italic text-white/55"
+                                style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+                            >
+                                at every scale.
+                            </span>
                         </motion.h2>
                     </div>
 
@@ -185,9 +191,9 @@ export const CaseStudiesSection: React.FC = () => {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-white transition-colors border-b border-white/10 pb-2 group"
+                        className="flex items-center gap-2 text-[12px] font-mono tracking-wide text-white/50 hover:text-[#d8ff3d] transition-colors border-b border-white/10 hover:border-[#d8ff3d]/50 pb-2 group"
                     >
-                        Explore Repo <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
+                        Explore repo <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
                     </motion.a>
                 </div>
 

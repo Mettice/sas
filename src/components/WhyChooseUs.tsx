@@ -25,24 +25,26 @@ const useCounter = (target: number, duration = 2, shouldStart = false) => {
 };
 
 /* ─────────────────────────────────────────────
-   Stats
+   Infra metrics
 ───────────────────────────────────────────── */
 const stats = [
-    { value: 100, suffix: '+', label: 'Clients Automated' },
-    { value: 4, suffix: ' wks', label: 'Avg. Time to Launch' },
-    { value: 98, suffix: '%', label: 'Client Retention' },
-    { value: 6, suffix: 'x', label: 'Avg. Efficiency Gain' },
+    { value: 100, suffix: '+', label: 'Models Orchestrated' },
+    { value: 98, suffix: 'ms', label: 'p50 Inference Latency' },
+    { value: 99, suffix: '.99%', label: 'Router Uptime' },
+    { value: 12, suffix: ' regions', label: 'GPU Footprint' },
 ];
 
 const AnimatedStat: React.FC<{ stat: typeof stats[0]; animate: boolean }> = ({ stat, animate }) => {
     const count = useCounter(stat.value, 1.8, animate);
     return (
         <div className="text-center">
-            <div className="text-4xl lg:text-5xl font-black text-white mb-1 tabular-nums">
+            <div className="text-4xl lg:text-5xl font-black text-white mb-1 tabular-nums tracking-tight">
                 {count}
-                <span className="text-2xl lg:text-3xl" style={{ color: '#818cf8' }}>{stat.suffix}</span>
+                <span className="text-2xl lg:text-3xl text-[#d8ff3d]">{stat.suffix}</span>
             </div>
-            <div className="text-sm text-white/40 font-medium">{stat.label}</div>
+            <div className="text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase">
+                {stat.label}
+            </div>
         </div>
     );
 };
@@ -53,29 +55,29 @@ const AnimatedStat: React.FC<{ stat: typeof stats[0]; animate: boolean }> = ({ s
 const features = [
     {
         number: '01',
-        headline: 'Built around your business, not a template',
-        body: 'Every engagement starts with discovery. We map your current processes, identify friction, and design automation that fits — not a generic package.',
+        headline: 'Architected around your data — not a framework',
+        body: 'Every engagement starts with a three-day audit of your data, latency budgets and compliance boundaries. We then design a routing topology tailored to your traffic — not a reference architecture copied from a blog post.',
         visual: {
             lines: [
-                { label: 'Process Review', width: 90 },
-                { label: 'Custom Architecture', width: 78 },
-                { label: 'Tool Selection', width: 65 },
-                { label: 'ROI Modelling', width: 85 },
+                { label: 'Traffic & latency audit', width: 92 },
+                { label: 'Router topology design', width: 78 },
+                { label: 'Model + GPU selection', width: 85 },
+                { label: 'Cost-per-token modelling', width: 70 },
             ],
         },
     },
     {
         number: '02',
-        headline: 'Live in weeks, not quarters',
-        body: 'Our proven methodology gets your first automations running in 2–4 weeks. You see results — then we scale.',
+        headline: 'In production in weeks — not quarters',
+        body: 'First router deployed on your VPC in 2–3 weeks. First model swap in week 4. Full multi-model orchestration with evals, guardrails and observability by week 8.',
         visual: {
-            timeline: ['Discovery', 'Design', 'Build', 'Deploy', 'Optimise'],
+            timeline: ['Audit', 'Router', 'Models', 'Guardrails', 'Scale'],
         },
     },
     {
         number: '03',
-        headline: 'Continuous improvement — not a one-off project',
-        body: 'We monitor performance, surface edge cases, and keep your automations evolving as your business does. Ongoing support included.',
+        headline: 'A pod that stays on — long after launch',
+        body: 'Every deployment ships with a dedicated pod (engineer + SRE + product lead) that monitors drift, rotates models as new ones ship, and keeps your stack current with the frontier — on a predictable monthly retainer.',
         visual: {
             pulse: true,
         },
@@ -86,14 +88,14 @@ const BarVisual: React.FC<{ lines: { label: string; width: number }[]; animate: 
     <div className="space-y-3">
         {lines.map((l, i) => (
             <div key={i}>
-                <div className="flex justify-between text-xs text-white/40 mb-1">
+                <div className="flex justify-between text-[11px] font-mono text-white/45 mb-1.5 tracking-wide">
                     <span>{l.label}</span>
-                    <span>{l.width}%</span>
+                    <span className="text-[#d8ff3d]">{l.width}%</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
                     <motion.div
                         className="h-full rounded-full"
-                        style={{ background: 'linear-gradient(90deg, #6366f1, #a78bfa)' }}
+                        style={{ background: 'linear-gradient(90deg, #d8ff3d, #ffa14a)' }}
                         initial={{ width: 0 }}
                         animate={animate ? { width: `${l.width}%` } : { width: 0 }}
                         transition={{ duration: 1, delay: i * 0.15, ease: 'easeOut' }}
@@ -115,19 +117,19 @@ const TimelineVisual: React.FC<{ steps: string[]; animate: boolean }> = ({ steps
                     transition={{ duration: 0.4, delay: i * 0.2 }}
                 >
                     <motion.div
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                        style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
-                        animate={animate ? { boxShadow: ['0 0 0 rgba(99,102,241,0)', '0 0 16px rgba(99,102,241,0.6)', '0 0 0 rgba(99,102,241,0)'] } : {}}
-                        transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+                        className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-black font-mono"
+                        style={{ background: '#d8ff3d' }}
+                        animate={animate ? { boxShadow: ['0 0 0 rgba(216,255,61,0)', '0 0 18px rgba(216,255,61,0.7)', '0 0 0 rgba(216,255,61,0)'] } : {}}
+                        transition={{ duration: 2.2, delay: i * 0.3, repeat: Infinity }}
                     >
                         {i + 1}
                     </motion.div>
-                    <span className="text-white/40 text-xs mt-2 text-center w-12 leading-tight">{step}</span>
+                    <span className="text-white/50 text-[10px] font-mono tracking-wider uppercase mt-2 text-center w-14 leading-tight">{step}</span>
                 </motion.div>
                 {i < steps.length - 1 && (
                     <motion.div
                         className="flex-1 h-px mx-1 mb-5"
-                        style={{ background: 'rgba(99,102,241,0.3)' }}
+                        style={{ background: 'rgba(216,255,61,0.35)' }}
                         initial={{ scaleX: 0 }}
                         animate={animate ? { scaleX: 1 } : { scaleX: 0 }}
                         transition={{ duration: 0.5, delay: i * 0.2 + 0.2 }}
@@ -139,12 +141,12 @@ const TimelineVisual: React.FC<{ steps: string[]; animate: boolean }> = ({ steps
 );
 
 const PulseVisual: React.FC<{ animate: boolean }> = ({ animate }) => (
-    <div className="flex items-center justify-center py-4">
+    <div className="flex items-center justify-center py-8 relative h-32">
         {[0, 1, 2].map((i) => (
             <motion.div
                 key={i}
                 className="absolute rounded-full border"
-                style={{ borderColor: 'rgba(99,102,241,0.4)' }}
+                style={{ borderColor: 'rgba(216,255,61,0.45)' }}
                 initial={{ width: 40, height: 40, opacity: 0.8 }}
                 animate={animate ? {
                     width: [40, 120 + i * 60],
@@ -156,10 +158,10 @@ const PulseVisual: React.FC<{ animate: boolean }> = ({ animate }) => (
         ))}
         <div
             className="relative w-10 h-10 rounded-full flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', boxShadow: '0 0 20px rgba(99,102,241,0.5)' }}
+            style={{ background: '#d8ff3d', boxShadow: '0 0 24px rgba(216,255,61,0.6)' }}
         >
             <motion.div
-                className="w-3 h-3 rounded-full bg-white"
+                className="w-3 h-3 rounded-full bg-black"
                 animate={animate ? { scale: [1, 1.3, 1] } : {}}
                 transition={{ duration: 1.5, repeat: Infinity }}
             />
@@ -178,7 +180,7 @@ const FeatureRow: React.FC<{ feature: typeof features[0]; index: number }> = ({ 
     return (
         <div
             ref={ref}
-            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? 'direction-reverse' : ''}`}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
         >
             {/* Text side */}
             <motion.div
@@ -187,32 +189,41 @@ const FeatureRow: React.FC<{ feature: typeof features[0]; index: number }> = ({ 
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-                <div className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: '#6366f1' }}>
-                    {feature.number}
+                <div className="text-[11px] font-mono tracking-[0.3em] uppercase mb-4 text-[#d8ff3d]">
+                    /{feature.number}
                 </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-5 leading-snug">
+                <h3
+                    className="text-white mb-5 leading-[1.1] tracking-tight"
+                    style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.25rem)', fontWeight: 500 }}
+                >
                     {feature.headline}
                 </h3>
-                <p className="text-white/50 leading-relaxed text-base">{feature.body}</p>
+                <p className="text-white/55 leading-relaxed text-base font-light">{feature.body}</p>
             </motion.div>
 
             {/* Visual side */}
             <motion.div
-                className={`relative rounded-2xl p-8 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
-                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+                className={`relative rounded-2xl p-8 overflow-hidden ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+                style={{ background: 'rgba(216,255,61,0.02)', border: '1px solid rgba(255,255,255,0.08)' }}
                 initial={{ opacity: 0, x: isEven ? 30 : -30 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-                {feature.visual.lines && (
-                    <BarVisual lines={feature.visual.lines} animate={inView} />
-                )}
-                {feature.visual.timeline && (
-                    <TimelineVisual steps={feature.visual.timeline} animate={inView} />
-                )}
-                {feature.visual.pulse && (
-                    <PulseVisual animate={inView} />
-                )}
+                <div
+                    className="absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-40 pointer-events-none"
+                    style={{ background: 'rgba(216,255,61,0.18)' }}
+                />
+                <div className="relative">
+                    {feature.visual.lines && (
+                        <BarVisual lines={feature.visual.lines} animate={inView} />
+                    )}
+                    {feature.visual.timeline && (
+                        <TimelineVisual steps={feature.visual.timeline} animate={inView} />
+                    )}
+                    {feature.visual.pulse && (
+                        <PulseVisual animate={inView} />
+                    )}
+                </div>
             </motion.div>
         </div>
     );
@@ -226,20 +237,19 @@ export const WhyChooseUs: React.FC = () => {
     const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
 
     return (
-        <section className="relative py-28 overflow-hidden" style={{ background: '#080810' }}>
-            {/* Top gradient separator */}
+        <section className="relative py-28 overflow-hidden" style={{ background: '#05070a' }}>
             <div
                 className="pointer-events-none absolute top-0 left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(216,255,61,0.5), transparent)' }}
             />
 
             <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
 
-                {/* Animated stats bar */}
+                {/* Stats bar */}
                 <motion.div
                     ref={statsRef}
                     className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24 p-8 rounded-2xl"
-                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)' }}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -259,27 +269,29 @@ export const WhyChooseUs: React.FC = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <motion.span
-                        className="inline-block text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full border mb-5"
-                        style={{ color: '#818cf8', borderColor: 'rgba(129,140,248,0.3)', background: 'rgba(99,102,241,0.08)' }}
+                        className="inline-block text-[11px] font-mono tracking-[0.3em] uppercase px-4 py-1.5 rounded-full border border-[#d8ff3d]/30 text-[#d8ff3d] mb-6"
+                        style={{ background: 'rgba(216,255,61,0.06)' }}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                     >
-                        Why OpSyde
+                        /why OpSyde
                     </motion.span>
-                    <h2 className="text-4xl lg:text-5xl font-bold text-white mb-5">
-                        The way enterprise
+                    <h2
+                        className="text-white mb-5 leading-[0.95] tracking-tight"
+                        style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)', fontWeight: 500 }}
+                    >
+                        The way modern AI infra
                         <br />
                         <span
-                            className="bg-clip-text text-transparent"
-                            style={{ backgroundImage: 'linear-gradient(90deg, #818cf8, #c084fc)' }}
+                            className="italic text-white/55"
+                            style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
                         >
-                            automation should work
+                            is actually supposed to ship.
                         </span>
                     </h2>
-                    <p className="text-white/50 text-lg max-w-xl mx-auto">
-                        Not templates. Not guesswork. A structured approach that delivers measurable
-                        results from day one.
+                    <p className="text-white/55 text-lg max-w-xl mx-auto font-light">
+                        No vendor decks. No &ldquo;centers of excellence.&rdquo; Production systems, measurable latency, and a pod that stays on call.
                     </p>
                 </motion.div>
 
@@ -291,10 +303,9 @@ export const WhyChooseUs: React.FC = () => {
                 </div>
             </div>
 
-            {/* Bottom gradient separator */}
             <div
                 className="pointer-events-none absolute bottom-0 left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.4), transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(216,255,61,0.5), transparent)' }}
             />
         </section>
     );

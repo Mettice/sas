@@ -7,12 +7,12 @@ const ProcessSection: React.FC = () => {
     const inView = useInView(ref, { once: true, margin: '-100px' });
 
     return (
-        <section id="process" className="relative py-32 border-y border-white/5" style={{ background: '#050505' }}>
+        <section id="process" className="relative py-32 border-y border-white/5" style={{ background: '#050607' }}>
 
             {/* Background gradients */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] mix-blend-screen" />
-                <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px] mix-blend-screen" />
+                <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] mix-blend-screen" style={{ background: 'rgba(216,255,61,0.06)' }} />
+                <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full blur-[100px] mix-blend-screen" style={{ background: 'rgba(255,161,74,0.05)' }} />
             </div>
 
             <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
@@ -26,33 +26,41 @@ const ProcessSection: React.FC = () => {
                             transition={{ duration: 0.6 }}
                         >
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full" />
-                                <span className="text-xs font-bold tracking-[0.2em] uppercase text-indigo-400">
-                                    Engagement Model
+                                <div className="w-10 h-px bg-[#d8ff3d]" />
+                                <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-[#d8ff3d]">
+                                    /engagement model
                                 </span>
                             </div>
-                            <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-8 leading-tight tracking-tighter">
-                                Accelerating adoption <br />
-                                <span className="text-gray-500">at every level.</span>
+                            <h2
+                                className="text-white mb-8 leading-[0.95] tracking-tight"
+                                style={{ fontSize: 'clamp(2.25rem, 4vw, 3.5rem)', fontWeight: 500 }}
+                            >
+                                From zero to <br />
+                                <span
+                                    className="italic text-white/55"
+                                    style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+                                >
+                                    production-grade AI.
+                                </span>
                             </h2>
-                            <div className="space-y-6 text-lg text-gray-400 leading-relaxed font-medium">
+                            <div className="space-y-6 text-lg text-white/55 leading-relaxed font-light">
                                 <p>
-                                    Technology alone doesn't generate value. Success requires aligning your organizational culture, data foundations, and practical AI applications into a cohesive engine.
+                                    Infrastructure is not a deck. It&apos;s code, SLAs and on-call rotations. We deliver in three tight phases — each ending with something running in production on your stack.
                                 </p>
                                 <p>
-                                    Our three-phase framework is designed to deliver immediate results for SMBs while establishing the governance required for enterprise-scale transformation.
+                                    Whether you&apos;re a ten-person team evaluating your first model or a global firm consolidating twelve AI vendors, the framework adapts to the scope.
                                 </p>
                             </div>
 
                             {/* Stat callouts */}
                             <div className="mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
                                 <div>
-                                    <div className="text-4xl font-black text-white mb-2 tracking-tighter">10×</div>
-                                    <div className="text-xs text-gray-500 font-bold uppercase tracking-widest">Efficiency Target</div>
+                                    <div className="text-4xl font-black text-white mb-2 tracking-tighter">8 wks</div>
+                                    <div className="text-[10px] text-white/40 font-mono uppercase tracking-[0.25em]">To Production</div>
                                 </div>
                                 <div>
-                                    <div className="text-4xl font-black text-white mb-2 tracking-tighter">100%</div>
-                                    <div className="text-xs text-gray-500 font-bold uppercase tracking-widest">Tech Agnostic</div>
+                                    <div className="text-4xl font-black text-white mb-2 tracking-tighter">10+</div>
+                                    <div className="text-[10px] text-white/40 font-mono uppercase tracking-[0.25em]">Models Routed</div>
                                 </div>
                             </div>
                         </motion.div>
@@ -67,23 +75,23 @@ const ProcessSection: React.FC = () => {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={inView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: 0.2 }}
-                                style={{ background: '#0a0a0a' }}
-                                className="relative rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-white/10 transition-all group"
+                                style={{ background: '#0a0c10' }}
+                                className="relative rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-[#d8ff3d]/30 transition-all group"
                             >
                                 <div className="flex items-start justify-between mb-8">
-                                    <div className="w-14 h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 text-indigo-400">
+                                    <div className="w-14 h-14 rounded-xl flex items-center justify-center border text-[#d8ff3d]" style={{ background: 'rgba(216,255,61,0.08)', borderColor: 'rgba(216,255,61,0.25)' }}>
                                         <Search size={24} />
                                     </div>
-                                    <span className="text-sm font-black text-white/20 group-hover:text-indigo-500/40 transition-colors">PHASE 01</span>
+                                    <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-white/25 group-hover:text-[#d8ff3d]/60 transition-colors">PHASE / 01</span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-4">Discovery & Strategy</h3>
-                                <p className="text-gray-400 text-base leading-relaxed mb-6">
-                                    We audit your current data maturity and identify high-value "Quick Wins". Whether you're a 10-person agency or a global firm, we map the exact use cases that drive the highest ROI.
+                                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">Audit &amp; Strategy</h3>
+                                <p className="text-white/55 text-base leading-relaxed mb-6 font-light">
+                                    Three days on-site (or remote) mapping your traffic patterns, latency budgets, compliance boundaries and existing model spend. We deliver a routing topology and a cost-per-token baseline.
                                 </p>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                                    {['Gap Analysis', 'ROI Mapping', 'Tool Selection', 'Strategic Roadmap'].map((item) => (
-                                        <li key={item} className="flex items-center gap-2 text-sm text-gray-500 font-bold">
-                                            <ArrowRight size={12} className="text-indigo-500" /> {item}
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+                                    {['Traffic audit', 'Latency budgeting', 'Model benchmarks', 'Routing topology'].map((item) => (
+                                        <li key={item} className="flex items-center gap-2 text-[12px] font-mono tracking-wide text-white/55">
+                                            <ArrowRight size={12} className="text-[#d8ff3d]" /> {item}
                                         </li>
                                     ))}
                                 </ul>
@@ -94,23 +102,23 @@ const ProcessSection: React.FC = () => {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={inView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: 0.3 }}
-                                style={{ background: '#0a0a0a' }}
-                                className="relative rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-white/10 transition-all group"
+                                style={{ background: '#0a0c10' }}
+                                className="relative rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-[#ffa14a]/30 transition-all group"
                             >
                                 <div className="flex items-start justify-between mb-8">
-                                    <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
+                                    <div className="w-14 h-14 rounded-xl flex items-center justify-center border text-[#ffa14a]" style={{ background: 'rgba(255,161,74,0.08)', borderColor: 'rgba(255,161,74,0.25)' }}>
                                         <Lightbulb size={24} />
                                     </div>
-                                    <span className="text-sm font-black text-white/20 group-hover:text-emerald-500/40 transition-colors">PHASE 02</span>
+                                    <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-white/25 group-hover:text-[#ffa14a]/60 transition-colors">PHASE / 02</span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-4">Foundation & Architecture</h3>
-                                <p className="text-gray-400 text-base leading-relaxed mb-6">
-                                    We build the infrastructure for scale. This involves setting up secure cloud foundations and deploying production-grade AI agents and RAG systems tailored to your workflows.
+                                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">Build &amp; Deploy</h3>
+                                <p className="text-white/55 text-base leading-relaxed mb-6 font-light">
+                                    We ship the router, connect your first two or three models, wire in guardrails, PII redaction and eval loops. Deployed on your VPC or our managed GPU fleet — zero glue code left behind.
                                 </p>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                                    {['Secure Cloud Build', 'AI Orchestration', 'Data Pipelines', 'API Integration'].map((item) => (
-                                        <li key={item} className="flex items-center gap-2 text-sm text-gray-500 font-bold">
-                                            <ArrowRight size={12} className="text-emerald-500" /> {item}
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+                                    {['Router on VPC', 'Model connectors', 'Eval pipelines', 'Observability stack'].map((item) => (
+                                        <li key={item} className="flex items-center gap-2 text-[12px] font-mono tracking-wide text-white/55">
+                                            <ArrowRight size={12} className="text-[#ffa14a]" /> {item}
                                         </li>
                                     ))}
                                 </ul>
@@ -121,23 +129,23 @@ const ProcessSection: React.FC = () => {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={inView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.5, delay: 0.4 }}
-                                style={{ background: '#0a0a0a' }}
-                                className="relative rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-white/10 transition-all group"
+                                style={{ background: '#0a0c10' }}
+                                className="relative rounded-2xl p-8 lg:p-10 border border-white/5 hover:border-white/20 transition-all group"
                             >
                                 <div className="flex items-start justify-between mb-8">
-                                    <div className="w-14 h-14 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 text-amber-400">
+                                    <div className="w-14 h-14 rounded-xl flex items-center justify-center border text-white" style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.15)' }}>
                                         <GraduationCap size={24} />
                                     </div>
-                                    <span className="text-sm font-black text-white/20 group-hover:text-amber-500/40 transition-colors">PHASE 03</span>
+                                    <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-white/25 group-hover:text-white/60 transition-colors">PHASE / 03</span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-4">Run & Optimise</h3>
-                                <p className="text-gray-400 text-base leading-relaxed mb-6">
-                                    Once live, we stay close to your operations – tracking performance, closing edge cases, and evolving automations as your business changes.
+                                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">Run &amp; Evolve</h3>
+                                <p className="text-white/55 text-base leading-relaxed mb-6 font-light">
+                                    Our pod stays on — rotating to new models as they ship (Claude 5, GPT-6, etc.), tuning prompts, watching drift, and keeping your costs and latency flat as traffic grows.
                                 </p>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                                    {['SLAs & Monitoring', 'Experimentation & A/B Tests', 'Change Management', 'Ongoing Support'].map((item) => (
-                                        <li key={item} className="flex items-center gap-2 text-sm text-gray-500 font-bold">
-                                            <ArrowRight size={12} className="text-amber-500" /> {item}
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+                                    {['24/7 on-call pod', 'Quarterly model reviews', 'Drift alerting', 'Predictable retainer'].map((item) => (
+                                        <li key={item} className="flex items-center gap-2 text-[12px] font-mono tracking-wide text-white/55">
+                                            <ArrowRight size={12} className="text-white/80" /> {item}
                                         </li>
                                     ))}
                                 </ul>

@@ -18,6 +18,17 @@ User instruction: **"be creative"** — full creative freedom granted.
 
 ## What's Been Implemented (Jan 2026)
 
+### v2.1 — Theme Consistency Pass (Jan 2026)
+- **Removed all legacy indigo/emerald/purple/slate-900 accents** from WhyChooseUs, ProcessSection, CaseStudiesSection, FooterSection, ContactSection — unified on lime `#d8ff3d` + amber `#ffa14a` + cool-blue `#8aa9ff` accent trio.
+- **WhyChooseUs** rewritten: infra-specific metrics (models orchestrated, p50 latency, router uptime, GPU regions), new copy ("The way modern AI infra is actually supposed to ship"), lime gradient progress bars, lime timeline dots, lime pulse ring.
+- **ProcessSection** rewritten: "From zero to production-grade AI" italic headline, three phases (Audit & Strategy / Build & Deploy / Run & Evolve) with lime/amber/white icons, mono "PHASE / 01" labels, stats "8 wks to production · 10+ models routed".
+- **CaseStudiesSection** rewritten: lime eyebrow, italic serif heading, three cases reframed around infrastructure tech (Claude RAG router, Agent swarm orchestration, NVIDIA H200 inference) with accent-colored CTAs.
+- **ContactSection** rewritten: "Ready to ship multi-model infra?" italic headline, lime/amber dual-CTA (Book architect call + Send a brief), new startup/enterprise split cards, lime glow background.
+- **FooterSection** rewritten: dark black background, lime "/Platforms /Company /Support" headers, AI platforms as quick-links, v2.4 build tag, lime-hover social icons.
+- **ServicesSection "Explore practice" button fixed** — was a dead `<div>`, now a working `<button>` that smooth-scrolls to `#capabilities`.
+
+### Initial redesign (prior session)
+
 ### New components
 - `src/components/hero/NeuralCore3D.tsx` — WebGL scene with emissive nucleus, wireframe icosahedron, 3 orbital rings, starfield particle backdrop
 - `src/components/hero/NexusHero.tsx` — cinematic hero with 3D canvas + large italic typography + orbiting platform chips (Claude, OpenAI, Gemini, Llama, Mistral, NVIDIA, Perplexity, HuggingFace)

@@ -4,15 +4,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
 
 const footerLinks = {
-    Services: [
-        'Workflow Automation',
-        'AI Integration',
-        'Data Automation',
-        'Lead Generation',
-        'CRM Integration',
+    Platforms: [
+        'Claude',
+        'OpenAI GPT-5.2',
+        'Gemini 3',
+        'Llama 4',
+        'NVIDIA NIM',
     ],
-    Company: ['About Us', 'Case Studies', 'Process', 'Capabilities', 'Templates'],
-    Support: ['Contact Us', 'Book a Call', 'Documentation', 'FAQ'],
+    Company: ['The Stack', 'Case Studies', 'Process', 'Infrastructure', 'Templates'],
+    Support: ['Contact', 'Book Architect Call', 'Documentation', 'FAQ'],
 };
 
 export const FooterSection: React.FC = () => {
@@ -29,8 +29,8 @@ export const FooterSection: React.FC = () => {
     };
 
     return (
-        <footer className="bg-slate-900 text-gray-400">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-8">
+        <footer className="text-white/60" style={{ background: '#020304', borderTop: '1px solid rgba(216,255,61,0.12)' }}>
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
                     {/* Brand */}
                     <div className="lg:col-span-2">
@@ -39,11 +39,15 @@ export const FooterSection: React.FC = () => {
                             className="flex items-center gap-2.5 mb-4 focus:outline-none group"
                         >
                             <img src="/logo.png" alt="OpSyde" className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                            <span className="text-xl font-bold text-white">OpSyde</span>
+                            <div className="flex flex-col items-start leading-none">
+                                <span className="text-xl font-bold text-white">OpSyde</span>
+                                <span className="text-[9px] font-mono tracking-[0.25em] uppercase text-[#d8ff3d] mt-0.5">
+                                    AI Infrastructure
+                                </span>
+                            </div>
                         </button>
-                        <p className="text-sm leading-relaxed mb-6 max-w-xs">
-                            Enterprise AI & automation consultancy helping businesses unlock measurable
-                            productivity gains through intelligent workflow design and implementation.
+                        <p className="text-sm leading-relaxed mb-6 max-w-xs font-light">
+                            The AI infrastructure agency for teams that refuse to pick a single model. Router, GPUs, guardrails — engineered, shipped and operated by our pod.
                         </p>
                         <div className="flex items-center gap-3">
                             {[
@@ -57,10 +61,10 @@ export const FooterSection: React.FC = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={label}
-                                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all"
+                                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#d8ff3d] hover:text-black hover:border-[#d8ff3d] transition-all"
                                     whileHover={{ y: -2 }}
                                 >
-                                    <Icon size={16} className="text-gray-300" />
+                                    <Icon size={16} />
                                 </motion.a>
                             ))}
                         </div>
@@ -69,12 +73,12 @@ export const FooterSection: React.FC = () => {
                     {/* Link columns */}
                     {Object.entries(footerLinks).map(([group, links]) => (
                         <div key={group}>
-                            <h4 className="text-white text-sm font-semibold mb-4">{group}</h4>
+                            <h4 className="text-[11px] font-mono tracking-[0.25em] uppercase text-[#d8ff3d] mb-5">/{group}</h4>
                             <ul className="space-y-2.5">
                                 {links.map((link) => (
                                     <li key={link}>
                                         <button
-                                            className="text-sm text-gray-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 text-left"
+                                            className="text-sm text-white/55 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0 text-left font-light"
                                         >
                                             {link}
                                         </button>
@@ -86,17 +90,18 @@ export const FooterSection: React.FC = () => {
                 </div>
 
                 {/* Bottom bar */}
-                <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-gray-500">
-                        &copy; {new Date().getFullYear()} OpSyde. All rights reserved.
+                <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p className="text-[11px] font-mono tracking-wider text-white/35">
+                        &copy; {new Date().getFullYear()} OpSyde &middot; AI Infrastructure Agency
                     </p>
-                    <div className="flex items-center gap-6 text-xs text-gray-500">
-                        <button className="hover:text-white transition-colors bg-transparent border-none cursor-pointer">
-                            Privacy Policy
+                    <div className="flex items-center gap-6 text-[11px] font-mono tracking-wider text-white/35">
+                        <button className="hover:text-[#d8ff3d] transition-colors bg-transparent border-none cursor-pointer">
+                            Privacy
                         </button>
-                        <button className="hover:text-white transition-colors bg-transparent border-none cursor-pointer">
-                            Terms of Service
+                        <button className="hover:text-[#d8ff3d] transition-colors bg-transparent border-none cursor-pointer">
+                            Terms
                         </button>
+                        <span className="text-[#d8ff3d]">v2.4</span>
                     </div>
                 </div>
             </div>
