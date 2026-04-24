@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Cloud, GraduationCap, Users, BookOpen, Globe, Shield } from 'lucide-react';
+import { Cloud, Lock, Zap, GitBranch, Globe, Shield } from 'lucide-react';
 
 /* ─────────────────────────────────────────────
-   Consultancy Pillars Data
+   Infrastructure Capabilities
 ───────────────────────────────────────────── */
 const pillars = [
     {
         icon: Cloud,
-        title: 'Technology Agnostic',
+        title: 'Any-Model, Any-Cloud',
         description:
-            "We partner with the industry's leading cloud providers (AWS, GCP, Azure) to design secure architectures that fit your existing environment without vendor lock-in.",
-        accent: '#0ea5e9', // sky
+            "We run on AWS, GCP, Azure, Lambda Labs or bare-metal — and route between Claude, GPT-5.2, Gemini 3, Llama 4, Mistral and open-weight models per request. No vendor lock-in by design.",
+        accent: '#d8ff3d',
     },
     {
-        icon: Users,
-        title: 'Ops & Automation Pods',
+        icon: Lock,
+        title: 'Private Deployments',
         description:
-            'Cross-functional squads that sit close to your teams, continuously identifying opportunities to streamline operations and ship new automations.',
-        accent: '#f59e0b', // amber
+            'VPC-only inference, BYO-key, zero-retention contracts and on-prem GPU options for regulated data. SOC 2, HIPAA and GDPR-aligned architectures from day one.',
+        accent: '#ffa14a',
     },
     {
-        icon: BookOpen,
-        title: 'Data Foundations',
+        icon: Zap,
+        title: 'Sub-100ms Inference',
         description:
-            'Establishing the fundamentals of data governance, security, and compliance so AI initiatives stay reliable and auditable as they scale.',
-        accent: '#10b981', // emerald
+            'Optimised vLLM/TensorRT-LLM builds, KV-cache sharing, speculative decoding and smart batching. Dashboards that show p50/p95/p99 latency per model, per tenant, live.',
+        accent: '#76B900',
     },
     {
-        icon: GraduationCap,
-        title: 'On-the-Job Enablement',
+        icon: GitBranch,
+        title: 'Eval-Driven Rollouts',
         description:
-            'Instead of generic academies, we coach your teams inside live projects so new capabilities stick and translate into day-to-day habits.',
-        accent: '#8b5cf6', // violet
+            'Every prompt, model and tool is versioned, scored and shadow-tested. We ship behind feature flags with auto-rollback if quality, cost or latency regress.',
+        accent: '#8aa9ff',
     },
 ];
 
@@ -55,9 +55,9 @@ export const CapabilitiesSection: React.FC = () => {
                         viewport={{ once: true }}
                         className="flex items-center gap-3 mb-6"
                     >
-                        <div className="w-10 h-1 bg-sky-500 rounded-full" />
-                        <span className="text-xs font-bold tracking-[0.2em] text-sky-400 uppercase">
-                            Operational Capabilities
+                        <div className="w-10 h-px bg-[#d8ff3d]" />
+                        <span className="text-[11px] font-mono tracking-[0.3em] text-[#d8ff3d] uppercase">
+                            /operational capabilities
                         </span>
                     </motion.div>
 
@@ -66,19 +66,25 @@ export const CapabilitiesSection: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight max-w-4xl tracking-tighter"
+                        className="text-white leading-[0.95] max-w-4xl tracking-tight"
+                        style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)', fontWeight: 500 }}
                     >
-                        Building the capabilities <br />
-                        <span className="text-gray-500">to run AI-powered operations every day.</span>
+                        Built to run <br />
+                        <span
+                            className="italic text-white/50"
+                            style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+                        >
+                            in production, forever.
+                        </span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="mt-8 text-xl text-white/50 max-w-2xl font-medium leading-relaxed"
+                        className="mt-8 text-xl text-white/55 max-w-2xl font-light leading-relaxed"
                     >
-                        We don&apos;t just deliver software. We make sure your operations, data, and people can sustain AI systems long after the first launch.
+                        We don&apos;t just deliver a prototype. We make sure your AI infrastructure is compliant, observable and operable the day after launch &mdash; and every day after.
                     </motion.p>
                 </div>
 

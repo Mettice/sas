@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
+import { PlatformStack } from './components/PlatformStack';
 import { ServicesSection } from './components/ServicesSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
@@ -28,13 +29,16 @@ function HomePage({ heroTheme }: { heroTheme: HeroTheme }) {
   };
 
   return (
-    <div className="min-h-screen bg-white font-['Inter',sans-serif]">
+    <div className="min-h-screen font-['Inter',sans-serif]" style={{ background: '#020304' }}>
       {/* Hero */}
       <HeroSection
         onScrollToContact={scrollToContact}
         onScrollToCaseStudies={scrollToCaseStudies}
         theme={heroTheme}
       />
+
+      {/* AI Infrastructure Platform Stack */}
+      <PlatformStack />
 
       {/* Services */}
       <ServicesSection />

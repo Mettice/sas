@@ -1,54 +1,54 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { Rocket, Sparkles, Database, Server, BarChart3, ChevronRight } from 'lucide-react';
+import { Network, Brain, Database, Cpu, Eye, ChevronRight } from 'lucide-react';
 
 /* ─────────────────────────────────────────────
-   Consultancy Services Data
+   AI Infrastructure Services
 ───────────────────────────────────────────── */
 const services = [
     {
-        icon: Rocket,
-        label: 'Strategy & Transformation',
-        subtitle: 'From roadmap to operational reality',
+        icon: Network,
+        label: 'Multi-Model Orchestration',
+        subtitle: 'Router · Fallbacks · Cost Caps',
         description:
-            'We accompany businesses from initial strategy to deployment and team adoption. We leverage data across your organization to accelerate transformation and train your workforce for an AI-first era.',
-        accent: '#6366f1', // indigo
+            'One API that routes each request to Claude, GPT-5.2, Gemini 3, Llama 4 or Mistral based on intent, latency and budget. Bring your own keys or run on our managed GPU fleet.',
+        accent: '#d8ff3d', // lime
         size: 'large',
     },
     {
-        icon: Sparkles,
-        label: 'AI Acceleration',
-        subtitle: 'Generative & Agentic Solutions',
+        icon: Brain,
+        label: 'Agentic Workflows',
+        subtitle: 'Tools · Planners · Swarms',
         description:
-            'Grounded on solid data foundations, we develop tailored AI agents and GenAI solutions that optimize specific departments (Sales, Marketing, HR, Finance) and augment human capability.',
-        accent: '#10b981', // emerald
+            'Production-grade agents that reason, plan, call tools and recover from failure. We design the scaffolding, memory layer and human-in-the-loop hooks — not demos, systems.',
+        accent: '#ffa14a', // amber
         size: 'normal',
     },
     {
         icon: Database,
-        label: 'Data Foundations & BI',
-        subtitle: 'Governance that drives value',
+        label: 'RAG & Knowledge Graphs',
+        subtitle: 'Retrieval · Rerank · Citations',
         description:
-            'We create effective data governance and management frameworks that ensure compliance while driving smarter results through advanced analytics and business intelligence.',
-        accent: '#f59e0b', // amber
+            'Hybrid retrieval over your private corpus, graph-indexed for multi-hop reasoning. Cohere Rerank, Qdrant/pgvector, and evaluation loops that catch hallucinations before users do.',
+        accent: '#8aa9ff', // steel blue
         size: 'normal',
     },
     {
-        icon: Server,
-        label: 'IT & Data Platforms',
-        subtitle: 'Scalable, agnostic infrastructure',
+        icon: Cpu,
+        label: 'Inference Ops & GPU',
+        subtitle: 'NVIDIA NIM · Triton · vLLM',
         description:
-            'We build data-centric IT ecosystems that treat data as a strategic asset. Our cloud solutions provide secure, secure infrastructure integrated with the industry\'s leading providers.',
-        accent: '#0ea5e9', // sky
+            'We deploy, auto-scale and monitor open-weight models on H200/B200 capacity. Sub-100ms median latency, cost-per-token dashboards, and hot-swap between on-prem and cloud GPUs.',
+        accent: '#76B900', // nvidia
         size: 'normal',
     },
     {
-        icon: BarChart3,
-        label: 'Marketing Data & Digital',
-        subtitle: 'Increasing ROI through agility',
+        icon: Eye,
+        label: 'Observability & Guardrails',
+        subtitle: 'Traces · Evals · Policy',
         description:
-            'Working at the intersection of marketing and data science, we manage complex cross-channel mechanisms through Customer Data Platforms to empower marketing teams and maximize ROI.',
-        accent: '#8b5cf6', // violet
+            'Every call is traced. Every output is scored. We wire in PII redaction, prompt-injection defense, jailbreak detection and live evals so your AI stays shipped and safe.',
+        accent: '#CC785C', // claude
         size: 'large',
     },
 ];
@@ -144,8 +144,8 @@ export const ServicesSection: React.FC = () => {
                         viewport={{ once: true }}
                         className="flex items-center gap-3 mb-6"
                     >
-                        <div className="w-10 h-1 bg-indigo-500 rounded-full" />
-                        <span className="text-xs font-bold tracking-[0.2em] text-indigo-400 uppercase">Our Practices</span>
+                        <div className="w-10 h-px bg-[#d8ff3d]" />
+                        <span className="text-[11px] font-mono tracking-[0.3em] text-[#d8ff3d] uppercase">/ what we build</span>
                     </motion.div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
@@ -154,19 +154,25 @@ export const ServicesSection: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tighter"
+                            className="text-white leading-[0.95] tracking-tight"
+                            style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)', fontWeight: 500 }}
                         >
-                            End-to-End solutions <br />
-                            <span className="text-gray-500">for the AI-first economy.</span>
+                            Five infrastructure pillars.<br />
+                            <span
+                                className="italic text-white/50"
+                                style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+                            >
+                                zero glue code for you.
+                            </span>
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-lg text-gray-400 font-medium max-w-lg mb-4"
+                            className="text-lg text-white/55 font-light leading-relaxed max-w-lg mb-4"
                         >
-                            We combine deep business consulting with cutting-edge data science to architect, build, and scale your organization's AI capabilities.
+                            We don't resell seats. We engineer, deploy and operate the full AI stack — from router to GPU to guardrails — on your cloud, our cloud, or a hybrid of both.
                         </motion.p>
                     </div>
                 </div>
